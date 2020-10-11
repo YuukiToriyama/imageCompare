@@ -1,0 +1,27 @@
+/* style.css */
+
+body {
+	padding: 10px 100px 10px 100px;
+	background: azure;
+	font-family: "M PLUS Rounded 1c";
+}
+header {
+	padding-bottom: 20px;
+}
+main {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#image_area {
+	border: 20px white solid;
+	background: white;
+	text-align: center;
+	margin-top: 10px;
+}
+canvas {
+	width: 100%;
+	cursor: crosshair;
+}
+footer {
+	padding-top: 10px;
+}

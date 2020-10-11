@@ -1,0 +1,22 @@
+{
+	"name": "skewedimageiron",
+	"version": "1.0.0",
+	"description": "歪んだ画像に対しホモグラフィ変換を行ない、画像をまっすぐに直すWebツールです",
+	"main": "main.js",
+	"scripts": {
+		"test": "./node_modules/http-server/bin/http-server . 8080"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/YUUKIToriyama/skewedImageIron.git"
+	},
+	"author": "YUUKIToriyama",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/YUUKIToriyama/skewedImageIron/issues"
+	},
+	"homepage": "https://github.com/YUUKIToriyama/skewedImageIron#readme",
+	"devDependencies": {
+		"http-server": "^0.12.3"
+	}
+}
