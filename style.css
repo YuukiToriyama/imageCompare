@@ -18,6 +18,11 @@ main {
 	text-align: center;
 	margin-top: 10px;
 }
+
+#view {
+	width: 500px;
+	height: 500px;
+}
 canvas {
 	width: 100%;
 	cursor: crosshair;

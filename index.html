@@ -2,17 +2,22 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>skewedImageIron - 画像歪み変換ツール | YUUKIToriyama</title>
+		<title>imageCompare | YUUKIToriyama</title>
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
-		<script type="text/javascript" src="https://docs.opencv.org/4.4.0/opencv.js"></script>
+		<!-- Leaflet -->
+		<script type="text/javascript" src="./node_modules/leaflet/dist/leaflet.js"></script>
+		<link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css">
+		<!-- opencv.js -->
+		<script type="text/javascript" src="./opencv.js"></script>
+		<!-- Google Font -->
 		<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="./style.css">
 	</head>
 	<body>
 		<header>
-			<h1>skewedImageIron</h1>
-			<h2>画像歪み変換ツール</h2>
-			<p>歪んだ画像に対しホモグラフィ変換を行ない、画像をまっすぐに直すWebツールです</p>
+			<h1>imageCompare</h1>
+			<h2>画像比較ツール</h2>
+			<p>二枚の画像を比較して表示できるツールです</p>
 		</header>
 		<main>
 			<div id="image_area">
@@ -27,11 +32,12 @@
 					</fieldset>
 				</form>		
 			</div>
+			<div id="view"></div>
 		</main>
 		<footer>
 			<div>
 				<a class="github-button" href="https://github.com/YUUKIToriyama" data-show-count="true" aria-label="Follow @YUUKIToriyama on GitHub">Follow</a>
-				<a class="github-button" href="https://github.com/YUUKIToriyama/skewedImageIron" data-icon="octicon-star" data-show-count="true" aria-label="Star YUUKIToriyama/skewedImageIron on GitHub">Star</a>
+				<a class="github-button" href="https://github.com/YUUKIToriyama/imageCompare" data-icon="octicon-star" data-show-count="true" aria-label="Star YUUKIToriyama/imageCompare on GitHub">Star</a>
 			</div>
 			<small>&copy;2020 YUUKIToriyama All rights reserved.</small>
 		</footer>

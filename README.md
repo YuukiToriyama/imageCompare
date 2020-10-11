@@ -1,10 +1,9 @@
-# skewedImageIron 画像歪み変換ツール
-歪んだ画像に対しホモグラフィ変換を行ない、画像をまっすぐに直すWebツールです
+# imageCompare
 
 ## Usage
 ```bash
 # clone this repository
-git clone https://github.com/YUUKIToriyama/skewedImageIron.git
+git clone https://github.com/YUUKIToriyama/imageCompare.git
 # do npm settings
 npm install
 # type these commands on bash, and go to localhost:8080 on your browser

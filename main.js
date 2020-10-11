@@ -5,6 +5,12 @@ var scale = 1;
 var src, working;
 let fillColor, strokeColor;
 
+const view = L.map("view", {
+	crs: L.CRS.Simple,
+	center: [0,0],
+	zoom: 1
+});
+
 window.onload = () => {
 	document.getElementById("readImage").addEventListener("change", loadLocalImage, false);
 	fillColor = new cv.Scalar(255,255,0,0.5);
@@ -31,6 +37,8 @@ const loadImage = (input) => {
 	const reader = new FileReader();
 	reader.readAsDataURL(file);
 	reader.onload = () => {
+		L.imageOverlay(reader.result, [[0,0], [500,500]], {crossOrigin: true}).addTo(view);
+		console.log(reader.result);
 		// 読み込んだ画像をセットする
 		const src_data = reader.result;
 		let img = new Image();
