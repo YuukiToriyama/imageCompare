@@ -2,36 +2,57 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>skewedImageIron - 画像歪み変換ツール | YUUKIToriyama</title>
+		<title>imageCompare | YUUKIToriyama</title>
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
-		<script type="text/javascript" src="https://docs.opencv.org/4.4.0/opencv.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
-		<link rel="stylesheet" href="style.css">
+		<!-- Leaflet -->
+		<link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css">
+		<script type="text/javascript" src="./node_modules/leaflet/dist/leaflet.js"></script>
+		<!-- opencv.js -->
+		<script type="text/javascript" src="./opencv.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="./style.css">
+		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
 	<body>
 		<header>
-			<h1>skewedImageIron</h1>
-			<h2>画像歪み変換ツール</h2>
-			<p>歪んだ画像に対しホモグラフィ変換を行ない、画像をまっすぐに直すWebツールです</p>
+			<h1>imageCompare</h1>
+			<h2>画像比較ツール</h2>
+			<p>二枚の画像を比較して表示できるツールです</p>
 		</header>
 		<main>
-			<div id="image_area">
-				<canvas></canvas>
-				<p>画像を選択して下さい</p>
-			</div>
-			<div id="controls">
+			<!-- ファイル選択フォームここから -->
+			<section id="controls">
 				<form>
 					<fieldset>
 						<legend>画像を選択</legend>
 						<input type="file" name="readImage" id="readImage" accept="image/jpeg,image/png">
 					</fieldset>
 				</form>		
-			</div>
+			</section>
+			<!-- ファイル選択フォームここまで -->
+			<!-- leaflet表示エリアここから -->
+			<section id="view"></section>
+			<!-- leaflet表示エリアここまで -->
+			<!-- モーダルウィンドウここから -->
+			<section id="modalArea" class="modalArea">
+				<div id="modalBg" class="modalBg"></div>
+				<div class="modalWrapper">
+					<div class="modalContents">
+						<h1>切り出す４点を指定して下さい</h1>
+						<p>時計回りに四角形を描くとうまく行きます</p>
+					</div>
+					<div id="closeModal" class="closeModal">
+						×
+					</div>
+					<div id="image_area"></div>
+				</div>
+			</section>
+			<!-- モーダルウィンドウここまで -->
 		</main>
 		<footer>
 			<div>
 				<a class="github-button" href="https://github.com/YUUKIToriyama" data-show-count="true" aria-label="Follow @YUUKIToriyama on GitHub">Follow</a>
-				<a class="github-button" href="https://github.com/YUUKIToriyama/skewedImageIron" data-icon="octicon-star" data-show-count="true" aria-label="Star YUUKIToriyama/skewedImageIron on GitHub">Star</a>
+				<a class="github-button" href="https://github.com/YUUKIToriyama/imageCompare" data-icon="octicon-star" data-show-count="true" aria-label="Star YUUKIToriyama/imageCompare on GitHub">Star</a>
 			</div>
 			<small>&copy;2020 YUUKIToriyama All rights reserved.</small>
 		</footer>
