@@ -1,20 +1,22 @@
 /* main.js */
 
 var canvas;
+var viewer;
 var scale = 1;
 var src, working;
 let fillColor, strokeColor;
-
-const view = L.map("view", {
-	crs: L.CRS.Simple,
-	center: [0,0],
-	zoom: 1
-});
 
 window.onload = () => {
 	document.getElementById("readImage").addEventListener("change", loadLocalImage, false);
 	fillColor = new cv.Scalar(255,255,0,0.5);
 	strokeColor = new cv.Scalar(255,255,10,1);
+	createModalWindow();
+	// 処理した画像を表示するためのLeafletを起動
+	viewer = L.map("view", {
+		crs: L.CRS.Simple,
+		zoom: 7,
+		center: [0,0]
+	});
 }
 
 // 読み込みボタンを押すと画像が読み込まれる
@@ -26,6 +28,7 @@ const loadLocalImage = (event) => {
 	}
 	points = [];
 	loadImage(event.target);
+	document.getElementById("readImage").value = "";
 }
 
 // canvasに画像をロードする
@@ -37,8 +40,6 @@ const loadImage = (input) => {
 	const reader = new FileReader();
 	reader.readAsDataURL(file);
 	reader.onload = () => {
-		L.imageOverlay(reader.result, [[0,0], [500,500]], {crossOrigin: true}).addTo(view);
-		console.log(reader.result);
 		// 読み込んだ画像をセットする
 		const src_data = reader.result;
 		let img = new Image();
@@ -54,6 +55,8 @@ const loadImage = (input) => {
 			// canvasにイベントリスナーを設定
 			canvas.addEventListener("click", (ev) => drawSquare(ev));
 		}
+		// モーダルウィンドウを開く
+		openModalWindow();
 	}
 }
 
@@ -71,28 +74,34 @@ const drawSquare = (event) => {
 
 		// クリックした位置にマーカーを描画
 		cv.circle(working, p, 10, fillColor, cv.FILLED);
+		cv.imshow(canvas, working);
+
 		// 配列pointsに点の情報を格納
 		points.push(p);
 		
 		// 2点目からはその点とその前の点とを結ぶ線分を描く
 		if (0 < n) {
 			cv.line(working, points[n - 1], points[n], strokeColor, 2, cv.LINE_AA, 0);
+			cv.imshow(canvas, working);
 		}
+
 		// 4点指定したら最初の点と最後の点を結び、四角形にする
 		if (n == 3) {
 			cv.line(working, points[3], points[0], strokeColor, 2, cv.LINE_AA, 0);
+			cv.imshow(canvas, working);
 		}
-
-		// 描画
-		cv.imshow(canvas, working);
 
 		// 画像処理(ホモグラフィ変換)
 		if (points.length == 4) {
 			let dialog = window.confirm("この四点で変換を行ないますか？");
 			if (dialog === true) {
 				rectifyImage(src, points);
+				// モーダルウィンドウを閉める
+				openModalWindow();
 			} else {
 				// キャンセルを押したらポイントはリセット
+				working.delete();
+				working = src.clone();
 				cv.imshow(canvas, src);
 				points = [];
 			}
@@ -133,8 +142,19 @@ const rectifyImage = (src, p) => {
 	let dsize = new cv.Size(w, h);
 	cv.warpPerspective(src, dst, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
 	cv.imshow(canvas, dst);
+	// leafletに画像を貼る
+	projectImageOnLeafletMap(canvas.toDataURL("image/png", 1), w, h);
+	// メモリの解放
+	src.delete();
+	dst.delete();
+	working.delete();
 }
 
+// leafletをつかって画像を表示する
+const projectImageOnLeafletMap = (dataURL, width, height) => {
+	let imageLayer = L.imageOverlay(dataURL, [[-height/2, -width/2], [height/2, width/2]]);
+	imageLayer.addTo(viewer);
+}
 
 // 画像を削除する
 const clearImage = () => {
@@ -158,10 +178,28 @@ document.addEventListener("keydown", event => {
 	}
 })
 
+/*
 // 画像処理(サンプル)
 const convertColor = () => {
 	let src = cv.imread(canvas);
 	let dst = new cv.Mat();
 	cv.cvtColor(src, dst, cv.COLOR_RGB2GRAY);
 	cv.imshow(canvas, dst);
+}
+*/
+
+// モーダルウィンドウを作成
+const createModalWindow = () => {
+	const modalArea = document.getElementById('modalArea');
+	const closeModal = document.getElementById('closeModal');
+	const modalBg = document.getElementById('modalBg');
+	[closeModal, modalBg].forEach((elm) => {
+		elm.addEventListener("click", () => {
+			modalArea.classList.toggle("is-show");
+		});
+	});
+}
+// モーダルウィンドウを開け閉めする函数
+const openModalWindow = () => {
+	document.getElementById("modalArea").classList.toggle("is-show");
 }

@@ -5,13 +5,13 @@
 		<title>imageCompare | YUUKIToriyama</title>
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
 		<!-- Leaflet -->
-		<script type="text/javascript" src="./node_modules/leaflet/dist/leaflet.js"></script>
 		<link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css">
+		<script type="text/javascript" src="./node_modules/leaflet/dist/leaflet.js"></script>
 		<!-- opencv.js -->
 		<script type="text/javascript" src="./opencv.js"></script>
-		<!-- Google Font -->
-		<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+		<!-- CSS -->
 		<link rel="stylesheet" href="./style.css">
+		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
 	<body>
 		<header>
@@ -20,19 +20,34 @@
 			<p>二枚の画像を比較して表示できるツールです</p>
 		</header>
 		<main>
-			<div id="image_area">
-				<canvas></canvas>
-				<p>画像を選択して下さい</p>
-			</div>
-			<div id="controls">
+			<!-- ファイル選択フォームここから -->
+			<section id="controls">
 				<form>
 					<fieldset>
 						<legend>画像を選択</legend>
 						<input type="file" name="readImage" id="readImage" accept="image/jpeg,image/png">
 					</fieldset>
 				</form>		
-			</div>
-			<div id="view"></div>
+			</section>
+			<!-- ファイル選択フォームここまで -->
+			<!-- leaflet表示エリアここから -->
+			<section id="view"></section>
+			<!-- leaflet表示エリアここまで -->
+			<!-- モーダルウィンドウここから -->
+			<section id="modalArea" class="modalArea">
+				<div id="modalBg" class="modalBg"></div>
+				<div class="modalWrapper">
+					<div class="modalContents">
+						<h1>切り出す４点を指定して下さい</h1>
+						<p>時計回りに四角形を描くとうまく行きます</p>
+					</div>
+					<div id="closeModal" class="closeModal">
+						×
+					</div>
+					<div id="image_area"></div>
+				</div>
+			</section>
+			<!-- モーダルウィンドウここまで -->
 		</main>
 		<footer>
 			<div>
