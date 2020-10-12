@@ -1,22 +1,26 @@
 {
-	"name": "skewedimageiron",
+	"name": "imageCompare",
 	"version": "1.0.0",
-	"description": "歪んだ画像に対しホモグラフィ変換を行ない、画像をまっすぐに直すWebツールです",
+	"description": "画像比較のためのWebサービス",
 	"main": "main.js",
 	"scripts": {
 		"test": "./node_modules/http-server/bin/http-server . 8080"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/YUUKIToriyama/skewedImageIron.git"
+		"url": "git+https://github.com/YUUKIToriyama/imageCompare.git"
 	},
 	"author": "YUUKIToriyama",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/YUUKIToriyama/skewedImageIron/issues"
+		"url": "https://github.com/YUUKIToriyama/imageCompare/issues"
 	},
-	"homepage": "https://github.com/YUUKIToriyama/skewedImageIron#readme",
+	"homepage": "https://github.com/YUUKIToriyama/imageCompare#readme",
 	"devDependencies": {
 		"http-server": "^0.12.3"
+	},
+	"dependencies": {
+		"leaflet": "^1.7.1",
+		"leaflet.sync": "^0.2.4"
 	}
 }
