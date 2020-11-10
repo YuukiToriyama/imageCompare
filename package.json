@@ -1,10 +1,11 @@
 {
 	"name": "imageCompare",
-	"version": "1.0.0",
+	"version": "1.0.9",
 	"description": "画像比較のためのWebサービス",
 	"main": "main.js",
 	"scripts": {
-		"test": "./node_modules/http-server/bin/http-server . 8080"
+		"start": "webpack serve --mode development --env development",
+		"build": "webpack --watch"
 	},
 	"repository": {
 		"type": "git",
@@ -17,10 +18,25 @@
 	},
 	"homepage": "https://github.com/YUUKIToriyama/imageCompare#readme",
 	"devDependencies": {
-		"http-server": "^0.12.3"
+		"@babel/core": "^7.12.3",
+		"@babel/preset-env": "^7.12.1",
+		"@babel/preset-react": "^7.12.5",
+		"babel-loader": "^8.1.0",
+		"copy-webpack-plugin": "^6.3.0",
+		"css-loader": "^5.0.1",
+		"http-server": "^0.12.3",
+		"style-loader": "^2.0.0",
+		"webpack": "^5.4.0",
+		"webpack-cli": "^4.2.0",
+		"webpack-dev-server": "^3.11.0"
 	},
 	"dependencies": {
+		"@material-ui/core": "^4.11.0",
+		"@material-ui/icons": "^4.9.1",
 		"leaflet": "^1.7.1",
-		"leaflet.sync": "^0.2.4"
+		"leaflet.sync": "^0.2.4",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-leaflet": "^3.0.2"
 	}
 }
