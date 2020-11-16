@@ -2,8 +2,6 @@
 
 import React from "react";
 
-import cv from "../public/opencv.js";
-
 const ImageCrop = () => {
 	const canvasElement = React.useRef(null);
 
