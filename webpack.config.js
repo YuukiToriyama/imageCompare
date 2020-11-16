@@ -7,11 +7,11 @@ const DEV_PORT = process.env.PORT || 3000;
 module.exports = {
 	entry: "./src/main.js",
 	output: {
-		path: path.resolve(__dirname, "dist/"),
+		path: path.resolve(__dirname, "./dist"),
 		filename: "bundle.js"
 	},
 	devServer: {
-		contentBase: path.join(__dirname, "dist/"),
+		contentBase: path.join(__dirname, "./dist"),
 			port: DEV_PORT,
 			hot: true
 	},
@@ -33,6 +33,7 @@ module.exports = {
 				exclude: /node_modules/,
 				loader: "babel-loader",
 				options: {
+					cacheDirectory: true,
 					presets: ["@babel/env"]
 				}
 			},

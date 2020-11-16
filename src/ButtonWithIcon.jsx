@@ -9,6 +9,7 @@ const ButtonWithIcon = (props) => {
 			variant="contained"
 			startIcon={props.icon}
 			component="span"
+			color={props.color}
 		>
 			{props.title}
 		</Button>

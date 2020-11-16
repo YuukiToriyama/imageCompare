@@ -12,7 +12,7 @@ import {
 
 // 自作モジュールの読み込み
 import ButtonWithIcon from "./ButtonWithIcon.jsx";
-
+import DisplayImage from "./DisplayImage.jsx";
 
 const ImageLoader = () => {
 	const [imageSrc, setImageSrc] = React.useState("");
@@ -28,7 +28,7 @@ const ImageLoader = () => {
 
 	const deletePhoto = () => {
 		setImageSrc("");
-	}
+	};
 
 	return (
 		<Box>
@@ -36,8 +36,8 @@ const ImageLoader = () => {
 			<label htmlFor="upload-photo">
 				<ButtonWithIcon icon={<PhotoCamera />} title="アップロード" />
 			</label>
-			<ButtonWithIcon icon={<DeleteForever />} title="削除" onChange={handle}/>
-			<img src={imageSrc} />
+			<ButtonWithIcon icon={<DeleteForever />} title="削除" onChange={deletePhoto} />
+			<DisplayImage imageURL={imageSrc} width="100"/>
 		</Box>
 	);
 }

@@ -14,6 +14,7 @@ import {
 
 // 自作モジュールの読み込み
 import ImageLoader from "./ImageLoader.jsx";
+import ImageCrop from "./ImageCrop.jsx";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -48,6 +49,7 @@ function getStepContent(step) {
 			<Box>
 				<Typography>画像補正のために頂点をマウスで選択して下さい</Typography>
 				<Typography>時計回りに4点を指定してもらえると嬉しいです</Typography>
+				<ImageCrop />
 			</Box>
 		);
 		case 2: return (
