@@ -9,9 +9,9 @@ import orange from "@material-ui/core/colors/orange";
 
 // 自作モジュールの読み込み
 import opencvUtils from "./opencv-utils/opencv-utils.js";
-import MyAppBar from "./MyAppBar.jsx";
-import MainContent from "./MainContent.jsx";
-import LoadingSpinner from "./LoadingSpinner.jsx";
+import MyAppBar from "./components/MyAppBar.jsx";
+import MainContent from "./components/MainContent.jsx";
+import LoadingSpinner from "./components/LoadingSpinner.jsx";
 
 const theme = createMuiTheme({
 	palette: {

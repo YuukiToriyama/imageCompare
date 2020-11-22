@@ -1,6 +1,6 @@
 /* Workflow.jsx */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import {
 	Stepper,
 	Step,
@@ -16,25 +16,26 @@ import {
 import ImageLoader from "./ImageLoader.jsx";
 import ImageCrop from "./ImageCrop.jsx";
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
 	root: {
 		width: '100%',
 	},
 	button: {
-		marginTop: theme.spacing(1),
-		marginRight: theme.spacing(1),
+		marginTop: "5px",
+		marginRight: "5px",
 	},
 	actionsContainer: {
-		marginBottom: theme.spacing(2),
+		marginBottom: "5px",
 	},
 	resetContainer: {
-		padding: theme.spacing(3),
+		padding: "5px",
 	},
-}));
-
+};
+/*
 function getSteps() {
 	return ['画像をアップロード', '頂点を選択', '変換'];
 }
+*/
 
 function getStepContent(step) {
 	switch (step) {
@@ -63,64 +64,91 @@ function getStepContent(step) {
 	}
 }
 
-const Workflow = () => {
-	const classes = useStyles();
-	const [activeStep, setActiveStep] = React.useState(0);
-	const steps = getSteps();
+class Workflow extends React.Component {
+//const Workflow = () => {
+	state = {
+		activeStep: 0
+	}
+	//[activeStep, setActiveStep] = React.useState(0);
+	//steps = getSteps();
+	steps = [
+		'画像をアップロード',
+		'頂点を選択',
+		'変換'
+	];
 
-	const handleNext = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep + 1);
-	};
+	handleNext = () => {
+		this.setState({
+			activeStep: this.state.activeStep + 1
+		});
+		//setActiveStep((prevActiveStep) => prevActiveStep + 1);
+	}
 
+	handleBack = () => {
+		this.setState({
+			activeStep: this.state.activeStep - 1
+		});
+	}
+	/*
 	const handleBack = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
-	};
+	};*/
 
+	handleReset = () => {
+		this.setState({
+			activeStep: 0
+		});
+	}
+	/*
 	const handleReset = () => {
 		setActiveStep(0);
-	};
+	};*/
 
-	return (
-		<Box className={classes.root}>
-			<Stepper activeStep={activeStep} orientation="vertical">
-				{steps.map((label, index) => (
-					<Step key={label}>
-						<StepLabel>{label}</StepLabel>
-						<StepContent>
-							<Typography>{getStepContent(index)}</Typography>
-							<Box className={classes.actionsContainer}>
-								<Box>
-									<Button
-										disabled={activeStep === 0}
-										onClick={handleBack}
-										className={classes.button}
-									>
-										Back
-									</Button>
-									<Button
-										variant="contained"
-										color="primary"
-										onClick={handleNext}
-										className={classes.button}
-									>
-										{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-									</Button>
+	render() {
+		return (
+			<Box className={this.props.classes.root}>
+				<Stepper activeStep={this.state.activeStep} orientation="vertical">
+					{this.steps.map((label, index) => (
+						<Step key={label}>
+							<StepLabel>{label}</StepLabel>
+							<StepContent>
+								<Typography>{getStepContent(index)}</Typography>
+								<Box className={this.props.classes.actionsContainer}>
+									<Box>
+										<Button
+											disabled={this.state.activeStep === 0}
+											onClick={this.handleBack}
+											className={this.props.classes.button}
+										>
+											Back
+										</Button>
+										<Button
+											variant="contained"
+											color="primary"
+											onClick={this.handleNext}
+											className={this.props.classes.button}
+										>
+											{this.state.activeStep === this.steps.length - 1 ? 'Finish' : 'Next'}
+										</Button>
+									</Box>
 								</Box>
-							</Box>
-						</StepContent>
-					</Step>
-				))}
-			</Stepper>
-			{activeStep === steps.length && (
-				<Paper square elevation={0} className={classes.resetContainer}>
-					<Typography>処理が完了しました！</Typography>
-					<Button onClick={handleReset} className={classes.button}>
-						やり直す
-					</Button>
-				</Paper>
-			)}
-		</Box>
-	);
+							</StepContent>
+						</Step>
+					))}
+				</Stepper>
+				{this.state.activeStep === this.steps.length && (
+					<Paper square elevation={0} className={this.props.classes.resetContainer}>
+						<Typography>処理が完了しました！</Typography>
+						<Button onClick={this.handleReset} className={this.props.classes.button}>
+							やり直す
+						</Button>
+					</Paper>
+				)}
+			</Box>
+		);
+	}
 };
 
-export default Workflow;
+//export default Workflow;
+
+export default withStyles(styles)(Workflow);
