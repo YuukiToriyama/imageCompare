@@ -1,41 +1,45 @@
 {
-	"name": "imageCompare",
-	"version": "1.0.9",
-	"description": "画像比較のためのWebサービス",
-	"main": "main.js",
-	"scripts": {
-		"start": "webpack serve --mode development --env development",
-		"build": "webpack --watch"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/YUUKIToriyama/imageCompare.git"
-	},
-	"author": "YUUKIToriyama",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/YUUKIToriyama/imageCompare/issues"
-	},
-	"homepage": "https://github.com/YUUKIToriyama/imageCompare#readme",
-	"devDependencies": {
-		"@babel/core": "^7.12.3",
-		"@babel/preset-env": "^7.12.1",
-		"@babel/preset-react": "^7.12.5",
-		"babel-loader": "^8.2.1",
-		"copy-webpack-plugin": "^6.3.0",
-		"css-loader": "^5.0.1",
-		"style-loader": "^2.0.0",
-		"webpack": "^5.4.0",
-		"webpack-cli": "^4.2.0",
-		"webpack-dev-server": "^3.11.0"
-	},
-	"dependencies": {
-		"@material-ui/core": "^4.11.0",
-		"@material-ui/icons": "^4.9.1",
-		"leaflet": "^1.7.1",
-		"leaflet.sync": "^0.2.4",
-		"react": "^16.8.0",
-		"react-dom": "^16.8.0",
-		"react-leaflet": "^3.0.2"
-	}
+  "name": "imageCompare",
+  "version": "1.1.0",
+  "description": "画像比較のためのWebサービス",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "PORT=8080 react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YUUKIToriyama/imageCompare.git"
+  },
+  "author": "YUUKIToriyama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YUUKIToriyama/imageCompare/issues"
+  },
+  "homepage": "YUUKIToriyama/imageCompare",
+  "devDependencies": {
+    "react-scripts": "^4.0.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "leaflet": "^1.7.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-leaflet": "^3.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

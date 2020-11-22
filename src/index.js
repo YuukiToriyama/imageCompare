@@ -1,4 +1,4 @@
-/* main.js */
+/* index.js */
 
 // react
 import React from "react";

@@ -8,6 +8,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import orange from "@material-ui/core/colors/orange";
 
 // 自作モジュールの読み込み
+import opencvUtils from "./opencv-utils/opencv-utils.js";
 import MyAppBar from "./MyAppBar.jsx";
 import MainContent from "./MainContent.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
@@ -54,7 +55,7 @@ class App extends React.Component {
 	// Appコンポーネントが呼び出されたら次はOpenCV.jsの読み込みを行なう
 	componentDidMount() {
 		const opencv_utils = new opencvUtils();
-		opencv_utils.loadOpenCV("opencv-4.5.0.js", () => {
+		opencv_utils.loadOpenCV("https://docs.opencv.org/4.5.0/opencv.js", () => {
 			//opencv_utils.executeScript("./process.js");
 			// OpenCV.jsの読み込みが完了したらstate.loadingをfalseにする
 			this.setState({
