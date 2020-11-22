@@ -14,8 +14,9 @@ import {
 } from "@material-ui/core";
 
 // 自作モジュールの読み込み
-import ImageLoader from "./ImageLoader.jsx";
-import ImageCrop from "./ImageCrop.jsx";
+import ImageLoader from "./ImageLoader";
+import ImageCrop from "./ImageCrop";
+import ImageDisplay from "./ImageDisplay";
 
 const styles = {
 	root: {
@@ -41,7 +42,11 @@ class Workflow extends React.Component {
 		this.state = {
 			activeStep: 0,
 			inputImage: "",
-			processedImage: ""
+			processedImage: {
+				url: "",
+				width: 0,
+				height: 0
+			}
 		}
 	}
 
@@ -60,9 +65,9 @@ class Workflow extends React.Component {
 	};
 	// 処理の終わった画像を受け取る関数
 	// ImageCropsから呼び出して使う
-	handleImageProcessingDone = (url) => {
+	handleImageProcessingDone = (image) => {
 		this.setState({
-			processedImage: url
+			processedImage: image
 		});
 	};
 
@@ -100,6 +105,7 @@ class Workflow extends React.Component {
 			case 2: return(
 				<Box>
 					<Typography>処理中……</Typography>
+					<ImageDisplay image={this.state.processedImage}/>
 				</Box>
 			);
 			default: return(

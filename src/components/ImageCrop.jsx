@@ -119,8 +119,13 @@ class ImageCrop extends React.Component {
 		cv.imshow(this.canvasElement.current, dst);
 
 		// 処理後の画像を親コンポーネントに渡す
-		let dataURL = this.canvasElement.current.toDataURL("image/png", 1, w, h);
-		this.props.onImageProcessingDone(dataURL);
+		//let dataURL = this.canvasElement.current.toDataURL("image/png", 1, w, h);
+		var processedImage = {
+			url: this.canvasElement.current.toDataURL("image/png", 1, w, h),
+			width: w,
+			height: h
+		};
+		this.props.onImageProcessingDone(processedImage);
 
 		[src, dst].forEach(mat => mat.delete());
 	}
