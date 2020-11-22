@@ -4,6 +4,8 @@
 ```bash
 # clone this repository
 git clone https://github.com/YUUKIToriyama/imageCompare.git
+# download YUUKIToriyama/opencv-utils
+git submodule update --init --recursive
 # do npm settings
 npm install
 # type these commands on bash, and go to localhost:8080 on your browser

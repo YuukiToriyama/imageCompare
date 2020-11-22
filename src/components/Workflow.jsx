@@ -1,4 +1,5 @@
 /* Workflow.jsx */
+
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -21,88 +22,91 @@ const styles = {
 		width: '100%',
 	},
 	button: {
-		marginTop: "5px",
-		marginRight: "5px",
+		marginTop: "15px",
+		marginRight: "15px",
 	},
 	actionsContainer: {
-		marginBottom: "5px",
+		marginBottom: "15px",
 	},
 	resetContainer: {
-		padding: "5px",
+		padding: "15px",
 	},
 };
-/*
-function getSteps() {
-	return ['画像をアップロード', '頂点を選択', '変換'];
-}
-*/
 
-function getStepContent(step) {
-	switch (step) {
-		case 0: return (
-			<Box>
-				<Typography>処理を行ないたい画像をアップロードして下さい</Typography>
-				<Typography>URLを指定してインターネット上の画像を読み込むこともできます</Typography>
-				<ImageLoader />
-			</Box>
-		);
-		case 1: return (
-			<Box>
-				<Typography>画像補正のために頂点をマウスで選択して下さい</Typography>
-				<Typography>時計回りに4点を指定してもらえると嬉しいです</Typography>
-				<ImageCrop />
-			</Box>
-		);
-		case 2: return (
-			<Box>
-				<Typography>処理を行なっています…</Typography>
-				<Typography>しばらくお待ち下さい</Typography>
-			</Box>
-		);
-		default:
-			return 'Unknown step';
-	}
-}
 
 class Workflow extends React.Component {
-//const Workflow = () => {
-	state = {
-		activeStep: 0
+	constructor(props) {
+		super(props);
+		this.handleInputImageChange = this.handleInputImageChange.bind(this);
+		this.state = {
+			activeStep: 0,
+			inputImage: "",
+			processedImage: ""
+		}
 	}
-	//[activeStep, setActiveStep] = React.useState(0);
-	//steps = getSteps();
+
 	steps = [
 		'画像をアップロード',
 		'頂点を選択',
 		'変換'
 	];
 
+	// 読み込んだ画像のURLを変更する関数
+	// ImageLoaderから呼び出して使う
+	handleInputImageChange = (url) => {
+		this.setState({
+			inputImage: url
+		});
+	};
+	// 処理の終わった画像を受け取る関数
+	// ImageCropsから呼び出して使う
+	handleImageProcessingDone = (url) => {
+		this.setState({
+			processedImage: url
+		});
+	};
+
+	// Stepperの挙動を制御する関数
 	handleNext = () => {
 		this.setState({
 			activeStep: this.state.activeStep + 1
 		});
-		//setActiveStep((prevActiveStep) => prevActiveStep + 1);
-	}
-
+	};
 	handleBack = () => {
 		this.setState({
 			activeStep: this.state.activeStep - 1
 		});
-	}
-	/*
-	const handleBack = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep - 1);
-	};*/
-
+	};
 	handleReset = () => {
 		this.setState({
 			activeStep: 0
 		});
+	};
+
+	getStepContent = (step) => {
+		switch(step) {
+			case 0: return(
+				<Box>
+					<Typography>処理を行ないない画像をアップロードしてください</Typography>
+					<ImageLoader onInputImageChange={this.handleInputImageChange}/>
+				</Box>
+			);
+			case 1: return(
+				<Box>
+					<Typography>画像補正のために頂点をマウスで選択して下さい</Typography>
+					<ImageCrop image={this.state.inputImage} onImageProcessingDone={this.handleImageProcessingDone}/>
+				</Box>
+			);
+			case 2: return(
+				<Box>
+					<Typography>処理中……</Typography>
+				</Box>
+			);
+			default: return(
+				<Typography>Unknown step</Typography>
+			);
+		};
 	}
-	/*
-	const handleReset = () => {
-		setActiveStep(0);
-	};*/
 
 	render() {
 		return (
@@ -112,7 +116,10 @@ class Workflow extends React.Component {
 						<Step key={label}>
 							<StepLabel>{label}</StepLabel>
 							<StepContent>
-								<Typography>{getStepContent(index)}</Typography>
+								{
+									// 各ステップがここに挿入される
+									this.getStepContent(index)
+								}
 								<Box className={this.props.classes.actionsContainer}>
 									<Box>
 										<Button
@@ -148,7 +155,5 @@ class Workflow extends React.Component {
 		);
 	}
 };
-
-//export default Workflow;
 
 export default withStyles(styles)(Workflow);
