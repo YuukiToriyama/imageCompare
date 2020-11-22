@@ -6,10 +6,12 @@ import {
 	AppBar,
 	Toolbar,
 	Typography,
-	Button,
 	IconButton
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+
+// 自作モジュールの読み込み
+import ScrollDialog from "./ScrollDialog";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -22,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1
 	}
 }));
+
+const message = `
+imageCompare 0.9
+https://github.com/YUUKIToriyama/imageCompare
+(C)Copyright 2020 YUUKIToriyama All Rights Reserved.
+`.split("\n").map(line => <span>{line}<br/></span>);
 
 const MyAppBar = () => {
 	const classes = useStyles();
@@ -36,7 +44,11 @@ const MyAppBar = () => {
 					<Typography variant="h6" className={classes.title}>
 						imageCompare
 					</Typography>
-					<Button color="inherit">Help</Button>
+					<ScrollDialog
+						label="Help"
+						title="About this app"
+						content={message}
+					/>
 				</Toolbar>
 			</AppBar>
 		</div>
