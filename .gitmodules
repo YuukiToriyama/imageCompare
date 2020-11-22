@@ -1,3 +1,6 @@
 [submodule "public/opencv-utils"]
 	path = public/opencv-utils
 	url = https://github.com/YUUKIToriyama/opencv-utils.js
+[submodule "src/opencv-utils"]
+	path = src/opencv-utils
+	url = https://github.com/YUUKIToriyama/opencv-utils.js.git
