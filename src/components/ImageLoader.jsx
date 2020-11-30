@@ -2,51 +2,48 @@
 
 import React from "react";
 import {
-	Box
+	Box,
+	IconButton
 } from "@material-ui/core";
 import {
 	PhotoCamera,
 	DeleteForever
 } from "@material-ui/icons";
+import FileInputComponent from 'react-file-input-previews-base64';
 
 
 // 自作モジュールの読み込み
-import ButtonWithIcon from "./ButtonWithIcon.jsx";
-import DisplayImage from "./DisplayImage.jsx";
+import PreviewImageOnLeaflet from "./PreviewImageOnLeaflet";
 
 class ImageLoader extends React.Component {
-	state = {
-		imageSrc: ""
-	}
-
-	handleChangeFile = (event) => {
-		let files = event.target.files;
-		let imageURL = "";
-		if (files.length != 0) {
-			imageURL = URL.createObjectURL(files[0]);
-		};
-		this.props.onInputImageChange(imageURL);
-		this.setState({
-			imageSrc: imageURL
-		});
-		
-	}
-
-	deletePhoto = (event) => {
-		this.setState({
-			imageSrc: ""
-		});
+	constructor(props) {
+		super(props);
+		this.state = {
+			file1: {hoge: "hage"},
+			file2: {}
+		}
 	}
 
 	render() {
 		return (
 			<Box>
-				<input accept="image/*" id="upload-photo" type="file" style={{display: "none"}} onChange={this.handleChangeFile}/>
-				<label htmlFor="upload-photo">
-					<ButtonWithIcon icon={<PhotoCamera />} title="アップロード" />
-				</label>
-				<ButtonWithIcon icon={<DeleteForever />} title="削除" onClick={this.deletePhoto} />
-				<DisplayImage imageURL={this.state.imageSrc} width="100"/>
+				<FileInputComponent
+					labelText="1枚め"
+					imagePreview={false}
+					multiple={false}
+					callbackFunction={(file) => {
+						console.log(file.name);
+						this.setState({
+							file1: file
+						});
+					}}
+					buttonComponent={
+						<IconButton color="primary" aria-label="upload picture" component="span"><PhotoCamera /></IconButton>
+					}
+					textFieldComponent={<input type="text"/>}
+					accept='image/*'
+				/>
+				{this.state.file1.name !== undefined ? <PreviewImageOnLeaflet image={this.state.file1} /> : ""}
 			</Box>
 		);
 	}

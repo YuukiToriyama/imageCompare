@@ -52,6 +52,7 @@ class App extends React.Component {
 		}
 	}
 
+	/*
 	// Appコンポーネントが呼び出されたら次はOpenCV.jsの読み込みを行なう
 	componentDidMount() {
 		const opencv_utils = new opencvUtils();
@@ -63,6 +64,7 @@ class App extends React.Component {
 			});
 		});
 	}
+	*/
 
 	render() {
 		return (
