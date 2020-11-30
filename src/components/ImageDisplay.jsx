@@ -2,18 +2,21 @@
 
 import React from "react";
 import "leaflet/dist/leaflet.css";
+/*
 import {
     MapContainer,
     ImageOverlay,
     //Marker
 } from "react-leaflet";
-
+*/
 import L from "leaflet";
+/*
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 const popupIcon = L.icon({
     iconUrl: markerIcon,
     iconSize: [25,35]
 });
+*/
 
 class ImageDisplay extends React.Component {
     constructor(props) {
@@ -29,6 +32,7 @@ class ImageDisplay extends React.Component {
     render() {
         const image = this.props.image;
         return (
+            /*
             <MapContainer center={[this.state.lat, this.state.lng]} zoom={this.state.zoom} crs={this.state.crs} style={{width: "100%", height: "300px"}}>
                 <ImageOverlay
                     attribution="imageCompare"
@@ -37,6 +41,8 @@ class ImageDisplay extends React.Component {
                 >
                 </ImageOverlay>
             </MapContainer>
+            */
+           <div></div>
         )
     }
 }

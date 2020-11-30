@@ -28,8 +28,7 @@
     "leaflet": "^1.7.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-file-input-previews-base64": "^1.0.8",
-    "react-leaflet": "^3.0.2"
+    "react-file-input-previews-base64": "^1.0.8"
   },
   "browserslist": {
     "production": [
