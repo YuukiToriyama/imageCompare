@@ -5,9 +5,6 @@ import { Box, IconButton } from "@material-ui/core";
 import { PhotoCamera, DeleteForever } from "@material-ui/icons";
 import FileInputComponent from "react-file-input-previews-base64";
 
-// 自作モジュールの読み込み
-import PreviewImage from "./PreviewImage";
-
 class ImageLoader extends React.Component {
 	constructor(props) {
 		super(props);

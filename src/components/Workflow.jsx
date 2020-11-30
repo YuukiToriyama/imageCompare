@@ -40,6 +40,7 @@ class Workflow extends React.Component {
 		//this.handleInputImageChange = this.handleInputImageChange.bind(this);
 		this.state = {
 			activeStep: 0,
+			goNextStep: false,
 			inputImages: [null, null],
 			processedImage: {
 				url: "",
@@ -49,7 +50,7 @@ class Workflow extends React.Component {
 		};
 	}
 
-	steps = ["画像をアップロード", "頂点を選択", "変換"];
+	steps = ["画像をアップロード", "対応点を選択", "変換"];
 
 	// ImageLoaderを複数用意するための準備
 	renderImageLoader = (i) => {
@@ -92,6 +93,13 @@ class Workflow extends React.Component {
 		});
 	};
 
+	// 次に進んでよいかどうかを状態goNextStepを使って管理している
+	allowNextStep = () => {
+		this.setState({
+			goNextStep: true,
+		});
+	};
+
 	getStepContent = (step) => {
 		switch (step) {
 			case 0:
@@ -105,7 +113,9 @@ class Workflow extends React.Component {
 			case 1:
 				return (
 					<Box>
-						<Typography></Typography>
+						<Typography>
+							マーカーを動かして対応する点を指定してください
+						</Typography>
 						<ImageCrop
 							images={this.state.inputImages}
 							onImageProcessingDone={this.handleImageProcessingDone}
@@ -146,6 +156,7 @@ class Workflow extends React.Component {
 											Back
 										</Button>
 										<Button
+											disabled={!this.state.goNextStep}
 											variant="contained"
 											color="primary"
 											onClick={this.handleNext}
