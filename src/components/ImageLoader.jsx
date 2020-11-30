@@ -13,7 +13,7 @@ import FileInputComponent from 'react-file-input-previews-base64';
 
 
 // 自作モジュールの読み込み
-import PreviewImageOnLeaflet from "./PreviewImageOnLeaflet";
+import PreviewImage from "./PreviewImage";
 
 class ImageLoader extends React.Component {
 	constructor(props) {
@@ -33,9 +33,16 @@ class ImageLoader extends React.Component {
 					multiple={false}
 					callbackFunction={(file) => {
 						console.log(file.name);
-						this.setState({
-							file1: file
-						});
+						let fileDetail = file;
+						let img = new Image();
+						img.src = fileDetail.base64;
+						img.onload = () => {
+							fileDetail["width"] = img.width;
+							fileDetail["height"] = img.height;
+							this.setState({
+								file1: fileDetail
+							})
+						}
 					}}
 					buttonComponent={
 						<IconButton color="primary" aria-label="upload picture" component="span"><PhotoCamera /></IconButton>
@@ -43,7 +50,7 @@ class ImageLoader extends React.Component {
 					textFieldComponent={<input type="text"/>}
 					accept='image/*'
 				/>
-				{this.state.file1.name !== undefined ? <PreviewImageOnLeaflet image={this.state.file1} /> : ""}
+				{this.state.file1.name !== undefined ? <PreviewImage image={this.state.file1} /> : ""}
 			</Box>
 		);
 	}

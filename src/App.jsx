@@ -13,6 +13,7 @@ import MyAppBar from "./components/MyAppBar.jsx";
 import MainContent from "./components/MainContent.jsx";
 import LoadingSpinner from "./components/LoadingSpinner.jsx";
 
+
 const theme = createMuiTheme({
 	palette: {
 		primary: orange
