@@ -40,7 +40,7 @@ class Workflow extends React.Component {
 		//this.handleInputImageChange = this.handleInputImageChange.bind(this);
 		this.state = {
 			activeStep: 0,
-			goNextStep: false,
+			goNextStep: true,
 			inputImages: [null, null],
 			processedImage: {
 				url: "",

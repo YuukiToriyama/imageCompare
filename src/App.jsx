@@ -45,6 +45,13 @@ const theme = createMuiTheme({
 	}
 });
 
+const message = `
+imageCompare 0.9
+https://github.com/YUUKIToriyama/imageCompare
+(C)Copyright 2020 YUUKIToriyama All Rights Reserved.
+`;
+
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -71,7 +78,7 @@ class App extends React.Component {
 		return (
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-				<MyAppBar />
+				<MyAppBar message={message}/>
 				<LoadingSpinner loading={this.state.loading} />
 				<MainContent />
 			</ThemeProvider>

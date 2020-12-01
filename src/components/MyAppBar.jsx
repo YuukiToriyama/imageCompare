@@ -1,7 +1,7 @@
 /* MyAppBar.jsx */
 
 import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import {
 	AppBar,
 	Toolbar,
@@ -11,9 +11,10 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 
 // 自作モジュールの読み込み
+import MyDrawer from "./MyDrawer";
 import ScrollDialog from "./ScrollDialog";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = (theme) => ({
 	root: {
 		flexGrow: 1
 	},
@@ -22,37 +23,47 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1
+	},
+});
+
+class MyAppBar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.drawerRef = React.createRef();
 	}
-}));
 
-const message = `
-imageCompare 0.9
-https://github.com/YUUKIToriyama/imageCompare
-(C)Copyright 2020 YUUKIToriyama All Rights Reserved.
-`.split("\n").map(line => <span>{line}<br/></span>);
+	handleDrawerOpen = () => {
+		this.drawerRef.current.handleDrawerOpen();
+	}
+/*
+	handleDrawerClose = () => {
+		this.drawerRef.current.handleDrawerClose();
+	}
+	*/
 
-const MyAppBar = () => {
-	const classes = useStyles();
-
-	return (
-		<div className={classes.root}>
-			<AppBar position="static">
-				<Toolbar>
-					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-						<MenuIcon/>
-					</IconButton>
-					<Typography variant="h6" className={classes.title}>
-						imageCompare
+	render() {
+		const {classes} = this.props;
+		return (
+			<div className={classes.root}>
+				<AppBar position="static">
+					<Toolbar>
+						<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+							<MenuIcon onClick={this.handleDrawerOpen}/>
+						</IconButton>
+						<Typography variant="h6" className={classes.title}>
+							imageCompare
 					</Typography>
-					<ScrollDialog
-						label="Help"
-						title="About this app"
-						content={message}
-					/>
-				</Toolbar>
-			</AppBar>
-		</div>
-	);
+						<ScrollDialog
+							label="Help"
+							title="About this app"
+							content={this.props.message}
+						/>
+					</Toolbar>
+				</AppBar>
+				<MyDrawer ref={this.drawerRef}/>
+			</div>
+		);
+	}
 };
 
-export default MyAppBar;
+export default withStyles(useStyles)(MyAppBar);
