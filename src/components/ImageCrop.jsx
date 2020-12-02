@@ -10,170 +10,88 @@ import Box from "@material-ui/core/Box";
 // 自作モジュールの読み込み
 import PreviewImage from "./PreviewImage";
 
+const warpImage = (imageA, imageB, cPointsA, cPointsB, n_points) => {
+	// imageA, imageB: 入力画像の要素あるいはid
+	// cPointsA, cPointsB: 対応点。javascriptの配列
+	// n_points: 対応点の個数
+	const matA = cv.matFromArray(n_points, 3, cv.CV_32F, cPointsA);
+	const matB = cv.matFromArray(n_points, 3, cv.CV_32F, cPointsB);
+
+	// ホモグラフィの推定
+	const estimateHomography = (matrixA, matrixB, method) => {
+		// method: 0(default) or 4(LMEDS) or 8(RANSAC) or 16(RHO)
+		let homography = new cv.Mat(3, 3, cv.CV_32F);
+		homography = cv.findHomography(matrixA, matrixB, method);
+		return homography;
+	}
+
+	let H = estimateHomography(matA, matB, 0);
+	let srcA = cv.imread(imageA, cv.IMREAD_COLOR);
+	let srcB = cv.imread(imageB, cv.IMREAD_COLOR);
+	let dst = cv.Mat.zeros(srcB.rows, srcB.cols, cv.CV_8UC3);
+
+	cv.warpPerspective(srcA, dst, H, new cv.Size(dst.cols, dst.rows), cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+	srcA.delete();
+	srcB.delete();
+	return dst;
+	//dst.delete();
+}
+
 class ImageCrop extends React.Component {
 	constructor(props) {
 		super(props);
-		this.canvasElement = React.createRef();
 		this.images = this.props.images;
-		this.src;
-		this.working;
-		this.imageSize;
-		this.scale;
 		this.state = {
-			vertices: [],
-		};
+			correspondingPointsArray: []
+		}
+		this.setCorrespondingPoints = this.setCorrespondingPoints.bind(this);
+		this.invisibleCanvasRef = React.createRef();
+		this.n_marker = 4;
 	}
 
-	/*
-	showImage = (imageURL, canvas) => {
-		// opencvUtilsを援用して画像をCanvasに読み込み
-		// typeof(src): cv.Mat
-		const opencv_utils = new opencvUtils();
-		opencv_utils.loadImage(imageURL, (src) => {
-			cv.imshow(canvas, src);
-			// 一旦srcを削除するのでデータを退避
-			this.src = src.clone();
-			this.working = src.clone();
-
-			// 画像のサイズを計測
-			console.log(src.size());
-			this.imageSize = src.size();
-			this.scale = canvas.clientWidth / this.imageSize.width;
-
-			// srcを削除
-			src.delete();
-		});
-	};
-	*/
-
-	drawRectifyArea = (event) => {
-		const fillColor = new cv.Scalar(255, 255, 0, 0.5);
-		const strokeColor = new cv.Scalar(255, 0, 255, 0.5);
-		let n = this.state.vertices.length;
-		// ポイントの数が0,1,2,3個のとき
-		if (n < 4) {
-			/*
-			 * キャンパス上のマウスカーソルの位置を特定し、
-			 * それと、事前に求めておいたscaleの値(実際の画像の大きさと表示上の大きさの比)を元に、
-			 * 切り出しポイントを特定している。
-			 */
-			let rect = event.target.getBoundingClientRect();
-			let x = (event.clientX - rect.left) / this.scale;
-			let y = (event.clientY - rect.top) / this.scale;
-			//console.log(x,y);
-			let vertex = new cv.Point(parseInt(x), parseInt(y));
-
-			// その位置にマーカーを描画
-			cv.circle(this.working, vertex, 10 / this.scale, fillColor, cv.FILLED);
-			cv.imshow(this.canvasElement.current, this.working);
-
-			// 配列verticesに計算したvertexを追加
-			this.state.vertices.push(vertex);
-
-			// 2点めからはその一つ前の点とその点を結ぶ線分も描く
-			if (n != 0) {
-				cv.line(
-					this.working,
-					this.state.vertices[n - 1],
-					this.state.vertices[n],
-					strokeColor,
-					2 / this.scale,
-					cv.LINE_AA,
-					0
-				);
-				cv.imshow(this.canvasElement.current, this.working);
+	executeImageMatching() {
+		// マーカーの位置情報から対応点の配列を作る
+		const correspondingPoints_1 = this.state.correspondingPointsArray[0].map(hash => {
+			return [hash.x, hash.y, 1]
+		}).flat();
+		const correspondingPoints_2 = this.state.correspondingPointsArray[1].map(hash => {
+			return [hash.x, hash.y, 1]
+		}).flat();
+		// 画像の読み出し
+		const createImgElement = (url) => {
+			let imgElement = new Image();
+			imgElement.src = url;
+			imgElement.onload = () => {
+				return imgElement;
 			}
-		}
+		};
+		let image_1 = createImgElement(this.images[0].base64);
+		let image_2 = createImgElement(this.images[1].base64);
 
-		// ポイントの数が3個のとき
-		// 4点目を指定したら最初の1つ目の点と4つ目の点を結び四角形にする
-		if (n == 3) {
-			cv.line(
-				this.working,
-				this.state.vertices[3],
-				this.state.vertices[0],
-				strokeColor,
-				2 / this.scale,
-				cv.LINE_AA,
-				0
-			);
-			cv.imshow(this.canvasElement.current, this.working);
-		}
+		// image_1をimage_2のサイズをもとに変換する
+		let new_image_1 = warpImage(image_1, image_2, correspondingPoints_1, correspondingPoints_2, this.n_marker);
+		// new_image_1を一旦canvasに貼り、base64に変換する
+		cv.imshow(this.invisibleCanvasRef, new_image_1);
+		let url = this.invisibleCanvasRef.toDataURL("image/png", 1);
+		// Workflowに送る
+		this.props.onImageProcessingDone(url);
+		new_image_1.delete();
+	}
 
-		// 4点指定できたら画像処理を行う
-		if (this.state.vertices.length == 4) {
-			this.rectifyImage(this.src, this.state.vertices);
-		}
-	};
-
-	// ホモグラフィ変換で画像の歪みを補正する
-	rectifyImage = (src, vertices) => {
-		let srcArr = [];
-		vertices.forEach((vertex) => {
-			srcArr.push(vertex.x);
-			srcArr.push(vertex.y);
+	setCorrespondingPoints(correspondingPoints, id) {
+		let array = this.state.correspondingPointsArray;
+		array[id] = correspondingPoints;
+		this.setState({
+			correspondingPointsArray: array
 		});
-
-		const distance = (p1, p2) => {
-			return Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
-		};
-
-		let w1 = distance(vertices[0], vertices[1]);
-		let h1 = distance(vertices[1], vertices[2]);
-		let w2 = distance(vertices[2], vertices[3]);
-		let h2 = distance(vertices[3], vertices[0]);
-
-		let w = Math.max(w1, w2);
-		let h = Math.max(h1, h2);
-
-		const dstArr = [0, 0, w, 0, w, h, 0, h];
-
-		const srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, srcArr);
-		const dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, dstArr);
-		const M = cv.getPerspectiveTransform(srcTri, dstTri);
-
-		let dst = new cv.Mat();
-		let dsize = new cv.Size(w, h);
-
-		cv.warpPerspective(
-			src,
-			dst,
-			M,
-			dsize,
-			cv.INTER_LINEAR,
-			cv.BORDER_CONSTANT,
-			new cv.Scalar()
-		);
-		cv.imshow(this.canvasElement.current, dst);
-
-		// 処理後の画像を親コンポーネントに渡す
-		//let dataURL = this.canvasElement.current.toDataURL("image/png", 1, w, h);
-		var processedImage = {
-			url: this.canvasElement.current.toDataURL("image/png", 1, w, h),
-			width: w,
-			height: h,
-		};
-		this.props.onImageProcessingDone(processedImage);
-
-		[src, dst].forEach((mat) => mat.delete());
-	};
-
-	componentDidMount() {
-		//this.showImage(this.props.image, this.canvasElement.current);
 	}
 
 	render() {
 		return (
 			<Box>
-				<PreviewImage image={this.images[0]} />
-				<PreviewImage image={this.images[1]} />
-				{/*
-				<canvas
-					onClick={(event) => this.drawRectifyArea(event)}
-					ref={this.canvasElement}
-					style={{ width: "500px", maxWidth: "90%" }}
-				></canvas>
-				*/}
+				<PreviewImage imageId={0} image={this.images[0]} onPointsSet={this.setCorrespondingPoints} n_marker={this.n_marker}/>
+				<PreviewImage imageId={1} image={this.images[1]} onPointsSet={this.setCorrespondingPoints} n_marker={this.n_marker}/>
+				<canvas ref={this.invisibleCanvasRef} style={{display:  "none"}}></canvas>
 			</Box>
 		);
 	}

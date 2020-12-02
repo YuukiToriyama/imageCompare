@@ -60,11 +60,11 @@ class App extends React.Component {
 		}
 	}
 
-	/*
 	// Appコンポーネントが呼び出されたら次はOpenCV.jsの読み込みを行なう
 	componentDidMount() {
 		const opencv_utils = new opencvUtils();
 		opencv_utils.loadOpenCV("https://docs.opencv.org/4.5.0/opencv.js", () => {
+		//opencv_utils.loadOpenCV("./opencv.js", () => {
 			//opencv_utils.executeScript("./process.js");
 			// OpenCV.jsの読み込みが完了したらstate.loadingをfalseにする
 			this.setState({
@@ -72,7 +72,6 @@ class App extends React.Component {
 			});
 		});
 	}
-	*/
 
 	render() {
 		return (

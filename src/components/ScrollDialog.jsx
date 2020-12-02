@@ -10,7 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 class ScrollDialog extends React.Component {
     constructor(props) {
-		super(props);
+        super(props);
         this.state = {
             open: false
         };
@@ -29,15 +29,15 @@ class ScrollDialog extends React.Component {
         });
     }
 
-/*	
-	componentDidUpdate(prevPrep, prevState) {
-		if (prevState.open !== this.state.open) {
-			if (this.descriptionElement.current != null) {
-				this.descriptionElement.current.focus();
-			}
-		}
-	}
-	*/
+    /*	
+        componentDidUpdate(prevPrep, prevState) {
+            if (prevState.open !== this.state.open) {
+                if (this.descriptionElement.current != null) {
+                    this.descriptionElement.current.focus();
+                }
+            }
+        }
+        */
 
     render() {
         return (
@@ -57,14 +57,14 @@ class ScrollDialog extends React.Component {
                             ref={this.descriptionElement}
                             tabIndex={-1}
                         >
-							{this.props.content}
+                            {this.props.content}
                         </DialogContentText>
                     </DialogContent>
-					<DialogActions>
-						<Button onClick={this.handleClose} color="primary">
-							OK
+                    <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                            OK
 						</Button>
-					</DialogActions>
+                    </DialogActions>
                 </Dialog>
             </div>
         );

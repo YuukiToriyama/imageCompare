@@ -17,10 +17,6 @@ class PreviewImage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.mapRef = React.createRef();
-		this.state = {
-			width: 0,
-			height: 0,
-		};
 		this.map = null;
 		this.layer = null;
 		this.imageBounds;
@@ -45,9 +41,9 @@ class PreviewImage extends React.Component {
 
 		// マーカーを設置
 		// これを動かして位置合わせをする
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < this.props.n_marker; i++) {
 			let divIcon = L.divIcon({
-				html: `<div class="bg-round"><span>${10 - i}</span></div>`,
+				html: `<div class="bg-round"><span>${this.props.n_marker - i}</span></div>`,
 				className: "divicon",
 			});
 			let center = this.map.getCenter();
@@ -59,8 +55,18 @@ class PreviewImage extends React.Component {
 		}
 		this.markers.forEach((marker) => {
 			marker.on("moveend", (event) => {
-				let position = event.target.getLatLng();
-				console.log(position);
+				//let position = event.target.getLatLng();
+				//console.log(position);
+				let correspondingPoint = this.markers.map(marker => {
+					let latlng = marker.getLatLng();
+					// CRS.Simpleから通常の原点座標系へ変換している
+					let point = {
+						x: this.props.image.width / 2 + latlng.lng,
+						y: this.props.image.height / 2 - latlng.lat
+					}
+					return point;
+				});
+				this.props.onPointsSet(correspondingPoint, this.props.imageId);
 			});
 			marker.addTo(this.map);
 		});

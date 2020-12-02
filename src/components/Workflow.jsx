@@ -42,11 +42,7 @@ class Workflow extends React.Component {
 			activeStep: 0,
 			goNextStep: true,
 			inputImages: [null, null],
-			processedImage: {
-				url: "",
-				width: 0,
-				height: 0,
-			},
+			processedImage: "",
 		};
 	}
 
@@ -70,9 +66,9 @@ class Workflow extends React.Component {
 
 	// 処理の終わった画像を受け取る関数
 	// ImageCropsから呼び出して使う
-	handleImageProcessingDone = (image) => {
+	handleImageProcessingDone = (imageURL) => {
 		this.setState({
-			processedImage: image,
+			processedImage: imageURL,
 		});
 	};
 
