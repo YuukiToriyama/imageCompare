@@ -4,29 +4,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, IconButton } from '@material-ui/core';
-import { PhotoCamera, DeleteForever } from '@material-ui/icons';
+import { PhotoCamera } from '@material-ui/icons';
 import FileInputComponent from 'react-file-input-previews-base64';
 
 class ImageLoader extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			file: {},
-		};
-	}
-
 	fileInputCallback = (file) => {
-		let fileDetail = file;
+		let imageObject = file;
 		let img = new Image();
-		img.src = fileDetail.base64;
+		img.src = imageObject.base64;
 		img.onload = () => {
-			fileDetail['width'] = img.width;
-			fileDetail['height'] = img.height;
-			this.setState({
-				file: fileDetail,
-			});
-			this.props.onInputImageChange(fileDetail);
+			imageObject['width'] = img.width;
+			imageObject['height'] = img.height;
+			// 親コンポーネントに読み込んだ画像を登録
+			this.props.onInputImageChange(imageObject);
 		};
+		/* imageObjectには以下のようなオブジェクトが入ります
+		{
+			name: 'IMG_20160813_102226.jpg',
+			type: 'image/jpeg',
+			size: 645,
+			base64: 'data:image/jpeg;base64,/9j/4SzyRXhpZgAATU0AKgA...',
+			file: File,
+			width: 320,
+			height: 260
+		};
+		*/
 	};
 
 	render() {
@@ -37,8 +39,8 @@ class ImageLoader extends React.Component {
 					imagePreview={true}
 					multiple={false}
 					callbackFunction={(file) => {
-						console.log(file.name);
-						this.fileInputCallback(file, 1);
+						console.log(file.name + ' has been loaded.');
+						this.fileInputCallback(file);
 					}}
 					buttonComponent={
 						<IconButton

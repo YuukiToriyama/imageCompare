@@ -24,22 +24,16 @@ class LoadingSpinner extends React.Component {
 						<DoneIcon />
 					</Icon>
 				)}
-				<Typography>
-					{!this.props.opencvLoaded
-						? 'Now Loading OpenCV.js...'
-						: 'OpenCV.js has been loaded on your browser!'}
-				</Typography>
-				{!this.props.opencvLoaded ? (
-					''
-				) : (
+				<Typography>{!this.props.opencvLoaded ? 'Now Loading OpenCV.js...' : 'OpenCV.js has been loaded on your browser!'}</Typography>
+				{this.props.opencvLoaded == true && (
 					<ScrollDialog
 						label='About OpenCV.js'
 						title='Build information'
 						content={cv
 							.getBuildInformation()
 							.split('\n')
-							.map((line) => (
-								<span>
+							.map((line, key) => (
+								<span key={key}>
 									{line}
 									<br />
 								</span>

@@ -45,13 +45,13 @@ class PreviewImage extends React.Component {
 		// これを動かして位置合わせをする
 		for (var i = 0; i < this.props.n_marker; i++) {
 			let divIcon = L.divIcon({
-				html: `<div class="bg-round"><span>${
-					this.props.n_marker - i
-				}</span></div>`,
+				html: `<div class="bg-round"><span>${this.props.n_marker - i}</span></div>`,
 				className: 'divicon',
 			});
-			let center = this.map.getCenter();
-			let marker = new L.marker(center, {
+			let { lat, lng } = this.map.getCenter();
+			lat = lat + 50 * Math.cos((2 * (i + 1) * Math.PI) / this.props.n_marker);
+			lng = lng + 50 * Math.sin((2 * (i + 1) * Math.PI) / this.props.n_marker);
+			let marker = new L.marker([lat, lng], {
 				draggable: true,
 				icon: divIcon,
 			});
@@ -82,14 +82,13 @@ class PreviewImage extends React.Component {
 	}
 
 	render() {
-		return (
-			<div ref={this.mapRef} style={{ width: '100%', height: '300px' }}></div>
-		);
+		return <div ref={this.mapRef} style={{ width: '100%', height: '300px' }}></div>;
 	}
 }
 
 export default PreviewImage;
 
-PreviewImage.PropTypes = {
-	//
+PreviewImage.propTypes = {
+	image: PropTypes.object.isRequired,
+	imageId: PropTypes.number.isRequired,
 };

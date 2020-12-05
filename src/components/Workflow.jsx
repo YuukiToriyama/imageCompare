@@ -2,17 +2,9 @@
 
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {
-	Stepper,
-	Step,
-	StepLabel,
-	StepContent,
-	Button,
-	Box,
-	Paper,
-	Typography,
-} from '@material-ui/core';
+import { Stepper, Step, StepLabel, StepContent, Button, Box, Paper, Typography } from '@material-ui/core';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 // 自作モジュールの読み込み
 import ImageLoader from './ImageLoader';
 import ImageCrop from './ImageCrop';
@@ -39,24 +31,12 @@ class GuideButtons extends React.Component {
 	render() {
 		return (
 			<Box>
-				<Box>
-					<Button
-						disabled={this.props.activeStep === 0}
-						onClick={this.props.handleBack}
-					>
-						Back
-					</Button>
-					<Button
-						disabled={!this.props.isAllowedToStepForward}
-						variant='contained'
-						color='primary'
-						onClick={this.props.handleNext}
-					>
-						{this.props.activeStep === this.props.steps.length - 1
-							? 'Finish'
-							: 'Next'}
-					</Button>
-				</Box>
+				<Button disabled={this.props.activeStep === 0} onClick={this.props.handleBack}>
+					Back
+				</Button>
+				<Button disabled={!this.props.isAllowedToStepForward} variant='contained' color='primary' onClick={this.props.handleNext}>
+					{this.props.activeStep === this.props.steps.length - 1 ? 'Finish' : 'Next'}
+				</Button>
 			</Box>
 		);
 	}
@@ -68,9 +48,10 @@ class Workflow extends React.Component {
 		//this.handleInputImageChange = this.handleInputImageChange.bind(this);
 		this.state = {
 			activeStep: 0,
-			isAllowedToStepForward: false,
+			//isAllowedToStepForward: false,
 			inputImages: [null, null],
 			processedImage: '',
+			processing: false,
 		};
 		this.imageCropRef = React.createRef();
 	}
@@ -82,9 +63,9 @@ class Workflow extends React.Component {
 		return (
 			<ImageLoader
 				loaderId={i}
-				onInputImageChange={(inputImage) => {
+				onInputImageChange={(imageObject) => {
 					let images = this.state.inputImages;
-					images[i] = inputImage;
+					images[i] = imageObject;
 					this.setState({
 						inputImages: images,
 					});
@@ -93,6 +74,7 @@ class Workflow extends React.Component {
 		);
 	};
 
+	// 画像処理を行なう
 	executeImageMatching = () => {
 		this.imageCropRef.current.executeImageMatching();
 	};
@@ -101,6 +83,7 @@ class Workflow extends React.Component {
 	handleImageProcessingDone = (imageURL) => {
 		this.setState({
 			processedImage: imageURL,
+			processing: false,
 		});
 	};
 
@@ -121,13 +104,6 @@ class Workflow extends React.Component {
 		});
 	};
 
-	// 次に進んでよいかどうかを状態goNextStepを使って管理している
-	allowToStepForward = () => {
-		this.setState({
-			isAllowedToStepForward: true,
-		});
-	};
-
 	getEachSteps = (step) => {
 		switch (step) {
 			case 0:
@@ -142,7 +118,13 @@ class Workflow extends React.Component {
 							activeStep={this.state.activeStep}
 							handleBack={this.handleBack}
 							handleNext={this.handleNext}
-							isAllowedToStepForward={this.isAllowedToStepForward}
+							isAllowedToStepForward={
+								// 画像が二枚選択されていないと次に進めないようにする
+								this.state.inputImages.length == 2 &&
+								this.state.inputImages.every((inputImage) => {
+									return inputImage != null;
+								})
+							}
 							steps={this.steps}
 						/>
 					</StepContent>
@@ -151,23 +133,21 @@ class Workflow extends React.Component {
 				return (
 					<StepContent>
 						<Box>
-							<Typography>
-								マーカーを動かして対応する点を指定してください
-							</Typography>
-							<ImageCrop
-								ref={this.imageCropRef}
-								images={this.state.inputImages}
-								onImageProcessingDone={this.handleImageProcessingDone}
-							/>
-							<Button onClick={this.executeImageMatching}>開始</Button>
+							<Typography>マーカーを動かして対応する点を指定してください</Typography>
+							<ImageCrop ref={this.imageCropRef} images={this.state.inputImages} onImageProcessingDone={this.handleImageProcessingDone} />
+							<Button
+								onClick={() => {
+									this.setState({
+										processing: true,
+									});
+									this.executeImageMatching();
+								}}
+							>
+								開始
+							</Button>
+							{this.state.processing == true && <CircularProgress />}
 						</Box>
-						<GuideButtons
-							activeStep={this.state.activeStep}
-							handleBack={this.handleBack}
-							handleNext={this.handleNext}
-							isAllowedToStepForward={this.isAllowedToStepForward}
-							steps={this.steps}
-						/>
+						<GuideButtons activeStep={this.state.activeStep} handleBack={this.handleBack} handleNext={this.handleNext} isAllowedToStepForward={this.state.processedImage != ''} steps={this.steps} />
 					</StepContent>
 				);
 			case 2:
@@ -177,13 +157,7 @@ class Workflow extends React.Component {
 							<Typography>処理中……</Typography>
 							<ImageDisplay image={this.state.processedImage} />
 						</Box>
-						<GuideButtons
-							activeStep={this.state.activeStep}
-							handleBack={this.handleBack}
-							handleNext={this.handleNext}
-							isAllowedToStepForward={this.isAllowedToStepForward}
-							steps={this.steps}
-						/>
+						<GuideButtons activeStep={this.state.activeStep} handleBack={this.handleBack} handleNext={this.handleNext} isAllowedToStepForward={true} steps={this.steps} />
 					</StepContent>
 				);
 			default:
@@ -210,16 +184,9 @@ class Workflow extends React.Component {
 					))}
 				</Stepper>
 				{this.state.activeStep === this.steps.length && (
-					<Paper
-						square
-						elevation={0}
-						className={this.props.classes.resetContainer}
-					>
+					<Paper square elevation={0} className={this.props.classes.resetContainer}>
 						<Typography>処理が完了しました！</Typography>
-						<Button
-							onClick={this.handleReset}
-							className={this.props.classes.button}
-						>
+						<Button onClick={this.handleReset} className={this.props.classes.button}>
 							やり直す
 						</Button>
 					</Paper>
