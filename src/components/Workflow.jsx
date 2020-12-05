@@ -44,6 +44,7 @@ class Workflow extends React.Component {
 			inputImages: [null, null],
 			processedImage: "",
 		};
+		this.imageCropRef = React.createRef();
 	}
 
 	steps = ["画像をアップロード", "対応点を選択", "変換"];
@@ -64,6 +65,9 @@ class Workflow extends React.Component {
 		);
 	};
 
+	executeImageMatching = () => {
+		this.imageCropRef.current.executeImageMatching();
+	};
 	// 処理の終わった画像を受け取る関数
 	// ImageCropsから呼び出して使う
 	handleImageProcessingDone = (imageURL) => {
@@ -113,9 +117,11 @@ class Workflow extends React.Component {
 							マーカーを動かして対応する点を指定してください
 						</Typography>
 						<ImageCrop
+							ref={this.imageCropRef}
 							images={this.state.inputImages}
 							onImageProcessingDone={this.handleImageProcessingDone}
 						/>
+						<Button onClick={this.executeImageMatching}>開始</Button>
 					</Box>
 				);
 			case 2:

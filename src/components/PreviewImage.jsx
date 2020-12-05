@@ -43,7 +43,9 @@ class PreviewImage extends React.Component {
 		// これを動かして位置合わせをする
 		for (var i = 0; i < this.props.n_marker; i++) {
 			let divIcon = L.divIcon({
-				html: `<div class="bg-round"><span>${this.props.n_marker - i}</span></div>`,
+				html: `<div class="bg-round"><span>${
+					this.props.n_marker - i
+				}</span></div>`,
 				className: "divicon",
 			});
 			let center = this.map.getCenter();
@@ -53,20 +55,25 @@ class PreviewImage extends React.Component {
 			});
 			this.markers.push(marker);
 		}
+
+		const setCorrespondingPoints = () => {
+			let correspondingPoint = this.markers.map((marker) => {
+				let latlng = marker.getLatLng();
+				// CRS.Simpleから通常の原点座標系へ変換している
+				let point = {
+					x: this.props.image.width / 2 + latlng.lng,
+					y: this.props.image.height / 2 - latlng.lat,
+				};
+				return point;
+			});
+			this.props.onPointsSet(correspondingPoint, this.props.imageId);
+		};
+		setCorrespondingPoints();
 		this.markers.forEach((marker) => {
 			marker.on("moveend", (event) => {
 				//let position = event.target.getLatLng();
 				//console.log(position);
-				let correspondingPoint = this.markers.map(marker => {
-					let latlng = marker.getLatLng();
-					// CRS.Simpleから通常の原点座標系へ変換している
-					let point = {
-						x: this.props.image.width / 2 + latlng.lng,
-						y: this.props.image.height / 2 - latlng.lat
-					}
-					return point;
-				});
-				this.props.onPointsSet(correspondingPoint, this.props.imageId);
+				setCorrespondingPoints();
 			});
 			marker.addTo(this.map);
 		});

@@ -4,28 +4,57 @@
  *
  */
 
-import React from "react";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Icon from '@material-ui/core/Icon';
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { Box, Typography, CircularProgress, Icon } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
 
 // 自作モジュールの読み込み
-import ScrollDialog from "./ScrollDialog";
+import ScrollDialog from './ScrollDialog';
 
 class LoadingSpinner extends React.Component {
 	render() {
-		return(
+		return (
 			<Box>
-				{this.props.loading ? <CircularProgress /> : <Icon color="primary" fontSize="large"><DoneIcon/></Icon>}
+				{!this.props.opencvLoaded ? (
+					<CircularProgress />
+				) : (
+					<Icon color='primary' fontSize='large'>
+						<DoneIcon />
+					</Icon>
+				)}
 				<Typography>
-					{this.props.loading ? "Now Loading OpenCV.js..." : "OpenCV.js has been loaded on your browser!"}
+					{!this.props.opencvLoaded
+						? 'Now Loading OpenCV.js...'
+						: 'OpenCV.js has been loaded on your browser!'}
 				</Typography>
-				{this.props.loading ? "" : <ScrollDialog label="About OpenCV.js" title="Build information" content={cv.getBuildInformation().split("\n").map((line) => <span>{line}<br /></span>)} />}
+				{!this.props.opencvLoaded ? (
+					''
+				) : (
+					<ScrollDialog
+						label='About OpenCV.js'
+						title='Build information'
+						content={cv
+							.getBuildInformation()
+							.split('\n')
+							.map((line) => (
+								<span>
+									{line}
+									<br />
+								</span>
+							))}
+					/>
+				)}
 			</Box>
-		)
+		);
 	}
 }
-
 export default LoadingSpinner;
+
+LoadingSpinner.propsTypes = {
+	opencvLoaded: PropTypes.bool.isRequired,
+};
+LoadingSpinner.defaultProps = {
+	opencvLoaded: false,
+};
