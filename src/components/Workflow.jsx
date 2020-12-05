@@ -1,7 +1,7 @@
 /* Workflow.jsx */
 
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import withStyles from '@material-ui/core/styles/withStyles';
 import {
 	Stepper,
 	Step,
@@ -11,28 +11,56 @@ import {
 	Box,
 	Paper,
 	Typography,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 // 自作モジュールの読み込み
-import ImageLoader from "./ImageLoader";
-import ImageCrop from "./ImageCrop";
-import ImageDisplay from "./ImageDisplay";
+import ImageLoader from './ImageLoader';
+import ImageCrop from './ImageCrop';
+import ImageDisplay from './ImageDisplay';
 
 const styles = {
 	root: {
-		width: "100%",
+		width: '100%',
 	},
 	button: {
-		marginTop: "15px",
-		marginRight: "15px",
+		marginTop: '15px',
+		marginRight: '15px',
 	},
 	actionsContainer: {
-		marginBottom: "15px",
+		marginBottom: '15px',
 	},
 	resetContainer: {
-		padding: "15px",
+		padding: '15px',
 	},
 };
+
+// ステップごとに「進む」「戻る」ボタンの有効/無効を決めたかったのでWorkflowから分離
+class GuideButtons extends React.Component {
+	render() {
+		return (
+			<Box>
+				<Box>
+					<Button
+						disabled={this.props.activeStep === 0}
+						onClick={this.props.handleBack}
+					>
+						Back
+					</Button>
+					<Button
+						disabled={!this.props.isAllowedToStepForward}
+						variant='contained'
+						color='primary'
+						onClick={this.props.handleNext}
+					>
+						{this.props.activeStep === this.props.steps.length - 1
+							? 'Finish'
+							: 'Next'}
+					</Button>
+				</Box>
+			</Box>
+		);
+	}
+}
 
 class Workflow extends React.Component {
 	constructor(props) {
@@ -40,14 +68,14 @@ class Workflow extends React.Component {
 		//this.handleInputImageChange = this.handleInputImageChange.bind(this);
 		this.state = {
 			activeStep: 0,
-			goNextStep: true,
+			isAllowedToStepForward: false,
 			inputImages: [null, null],
-			processedImage: "",
+			processedImage: '',
 		};
 		this.imageCropRef = React.createRef();
 	}
 
-	steps = ["画像をアップロード", "対応点を選択", "変換"];
+	steps = ['画像をアップロード', '対応点を選択', '変換'];
 
 	// ImageLoaderを複数用意するための準備
 	renderImageLoader = (i) => {
@@ -78,14 +106,14 @@ class Workflow extends React.Component {
 
 	// Stepperの挙動を制御する関数
 	handleNext = () => {
-		this.setState({
-			activeStep: this.state.activeStep + 1,
-		});
+		this.setState((prevState) => ({
+			activeStep: prevState.activeStep + 1,
+		}));
 	};
 	handleBack = () => {
-		this.setState({
-			activeStep: this.state.activeStep - 1,
-		});
+		this.setState((prevState) => ({
+			activeStep: prevState.activeStep - 1,
+		}));
 	};
 	handleReset = () => {
 		this.setState({
@@ -94,83 +122,90 @@ class Workflow extends React.Component {
 	};
 
 	// 次に進んでよいかどうかを状態goNextStepを使って管理している
-	allowNextStep = () => {
+	allowToStepForward = () => {
 		this.setState({
-			goNextStep: true,
+			isAllowedToStepForward: true,
 		});
 	};
 
-	getStepContent = (step) => {
+	getEachSteps = (step) => {
 		switch (step) {
 			case 0:
 				return (
-					<Box>
-						<Typography>処理を行なう画像をアップロード</Typography>
-						{this.renderImageLoader(0)}
-						{this.renderImageLoader(1)}
-					</Box>
+					<StepContent>
+						<Box>
+							<Typography>処理を行なう画像をアップロード</Typography>
+							{this.renderImageLoader(0)}
+							{this.renderImageLoader(1)}
+						</Box>
+						<GuideButtons
+							activeStep={this.state.activeStep}
+							handleBack={this.handleBack}
+							handleNext={this.handleNext}
+							isAllowedToStepForward={this.isAllowedToStepForward}
+							steps={this.steps}
+						/>
+					</StepContent>
 				);
 			case 1:
 				return (
-					<Box>
-						<Typography>
-							マーカーを動かして対応する点を指定してください
-						</Typography>
-						<ImageCrop
-							ref={this.imageCropRef}
-							images={this.state.inputImages}
-							onImageProcessingDone={this.handleImageProcessingDone}
+					<StepContent>
+						<Box>
+							<Typography>
+								マーカーを動かして対応する点を指定してください
+							</Typography>
+							<ImageCrop
+								ref={this.imageCropRef}
+								images={this.state.inputImages}
+								onImageProcessingDone={this.handleImageProcessingDone}
+							/>
+							<Button onClick={this.executeImageMatching}>開始</Button>
+						</Box>
+						<GuideButtons
+							activeStep={this.state.activeStep}
+							handleBack={this.handleBack}
+							handleNext={this.handleNext}
+							isAllowedToStepForward={this.isAllowedToStepForward}
+							steps={this.steps}
 						/>
-						<Button onClick={this.executeImageMatching}>開始</Button>
-					</Box>
+					</StepContent>
 				);
 			case 2:
 				return (
-					<Box>
-						<Typography>処理中……</Typography>
-						<ImageDisplay image={this.state.processedImage} />
-					</Box>
+					<StepContent>
+						<Box>
+							<Typography>処理中……</Typography>
+							<ImageDisplay image={this.state.processedImage} />
+						</Box>
+						<GuideButtons
+							activeStep={this.state.activeStep}
+							handleBack={this.handleBack}
+							handleNext={this.handleNext}
+							isAllowedToStepForward={this.isAllowedToStepForward}
+							steps={this.steps}
+						/>
+					</StepContent>
 				);
 			default:
-				return <Typography>Unknown step</Typography>;
+				return (
+					<StepContent>
+						<Typography>Unknown step</Typography>
+					</StepContent>
+				);
 		}
 	};
 
 	render() {
 		return (
 			<Box className={this.props.classes.root}>
-				<Stepper activeStep={this.state.activeStep} orientation="vertical">
+				<Stepper activeStep={this.state.activeStep} orientation='vertical'>
 					{this.steps.map((label, index) => (
 						<Step key={label}>
 							<StepLabel>{label}</StepLabel>
-							<StepContent>
-								{
-									// 各ステップがここに挿入される
-									this.getStepContent(index)
-								}
-								<Box className={this.props.classes.actionsContainer}>
-									<Box>
-										<Button
-											disabled={this.state.activeStep === 0}
-											onClick={this.handleBack}
-											className={this.props.classes.button}
-										>
-											Back
-										</Button>
-										<Button
-											disabled={!this.state.goNextStep}
-											variant="contained"
-											color="primary"
-											onClick={this.handleNext}
-											className={this.props.classes.button}
-										>
-											{this.state.activeStep === this.steps.length - 1
-												? "Finish"
-												: "Next"}
-										</Button>
-									</Box>
-								</Box>
-							</StepContent>
+							{
+								// 各ステップがここに挿入される
+								this.getEachSteps(index)
+							}
 						</Step>
 					))}
 				</Stepper>

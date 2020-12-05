@@ -1,9 +1,11 @@
 /* ImageLoader.jsx */
 
-import React from "react";
-import { Box, IconButton } from "@material-ui/core";
-import { PhotoCamera, DeleteForever } from "@material-ui/icons";
-import FileInputComponent from "react-file-input-previews-base64";
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { Box, IconButton } from '@material-ui/core';
+import { PhotoCamera, DeleteForever } from '@material-ui/icons';
+import FileInputComponent from 'react-file-input-previews-base64';
 
 class ImageLoader extends React.Component {
 	constructor(props) {
@@ -18,8 +20,8 @@ class ImageLoader extends React.Component {
 		let img = new Image();
 		img.src = fileDetail.base64;
 		img.onload = () => {
-			fileDetail["width"] = img.width;
-			fileDetail["height"] = img.height;
+			fileDetail['width'] = img.width;
+			fileDetail['height'] = img.height;
 			this.setState({
 				file: fileDetail,
 			});
@@ -31,7 +33,7 @@ class ImageLoader extends React.Component {
 		return (
 			<Box>
 				<FileInputComponent
-					labelText={this.props.loaderId + 1 + "枚目"}
+					labelText={this.props.loaderId + 1 + '枚目'}
 					imagePreview={true}
 					multiple={false}
 					callbackFunction={(file) => {
@@ -40,26 +42,23 @@ class ImageLoader extends React.Component {
 					}}
 					buttonComponent={
 						<IconButton
-							color="primary"
-							aria-label="upload picture"
-							component="span"
+							color='primary'
+							aria-label='upload picture'
+							component='span'
 						>
 							<PhotoCamera />
 						</IconButton>
 					}
-					textFieldComponent={<input type="text" />}
-					accept="image/*"
+					textFieldComponent={<input type='text' />}
+					accept='image/*'
 				/>
-				{/*
-				// 読み込んだ画像のleafletでの表示は次のセクションにて
-				{this.state.file.name !== undefined ? (
-					<PreviewImage image={this.state.file} />
-				) : (
-					""
-				)}
-				*/}
 			</Box>
 		);
 	}
 }
 export default ImageLoader;
+
+ImageLoader.propTypes = {
+	loaderId: PropTypes.number.isRequired,
+	onInputImageChange: PropTypes.func.isRequired,
+};

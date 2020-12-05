@@ -1,9 +1,11 @@
 /* PreviewImage.jsx */
 
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+// Leaflet
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
 /*
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -46,7 +48,7 @@ class PreviewImage extends React.Component {
 				html: `<div class="bg-round"><span>${
 					this.props.n_marker - i
 				}</span></div>`,
-				className: "divicon",
+				className: 'divicon',
 			});
 			let center = this.map.getCenter();
 			let marker = new L.marker(center, {
@@ -70,7 +72,7 @@ class PreviewImage extends React.Component {
 		};
 		setCorrespondingPoints();
 		this.markers.forEach((marker) => {
-			marker.on("moveend", (event) => {
+			marker.on('moveend', (event) => {
 				//let position = event.target.getLatLng();
 				//console.log(position);
 				setCorrespondingPoints();
@@ -81,9 +83,13 @@ class PreviewImage extends React.Component {
 
 	render() {
 		return (
-			<div ref={this.mapRef} style={{ width: "100%", height: "300px" }}></div>
+			<div ref={this.mapRef} style={{ width: '100%', height: '300px' }}></div>
 		);
 	}
 }
 
 export default PreviewImage;
+
+PreviewImage.PropTypes = {
+	//
+};
