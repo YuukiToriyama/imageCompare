@@ -1,4 +1,4 @@
-/* ImageCrop.jsx */
+/* ImageTransform.jsx */
 // canvasを使って画像の位置合わせをするのをやめる
 // その代わりにleafletのピンを用いて位置の特定を行ない、
 // それをもとにopencvで位置合わせを行なう
@@ -28,14 +28,22 @@ const warpImage = (srcA, srcB, cPointsA, cPointsB, n_points) => {
 	let H = estimateHomography(matA, matB, 0);
 	let dst = cv.Mat.zeros(srcB.rows, srcB.cols, cv.CV_8UC3);
 
-	cv.warpPerspective(srcA, dst, H, new cv.Size(dst.cols, dst.rows), cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+	cv.warpPerspective(
+		srcA,
+		dst,
+		H,
+		new cv.Size(dst.cols, dst.rows),
+		cv.INTER_LINEAR,
+		cv.BORDER_CONSTANT,
+		new cv.Scalar()
+	);
 	//srcA.delete();
 	//srcB.delete();
 	return dst;
 	//dst.delete();
 };
 
-class ImageCrop extends React.Component {
+class ImageTransform extends React.Component {
 	constructor(props) {
 		super(props);
 		this.images = this.props.images;
@@ -83,8 +91,15 @@ class ImageCrop extends React.Component {
 		// new_image_1を一旦canvasに貼り、base64に変換する
 		cv.imshow(this.invisibleCanvasRef.current, new_image_1);
 		let dataUrl = this.invisibleCanvasRef.current.toDataURL('image/png', 1);
+		const imageObject = {
+			name: this.images[0].name + '(Transformed)',
+			base64: dataUrl,
+			width: this.invisibleCanvasRef.current.width,
+			height: this.invisibleCanvasRef.current.height,
+		};
 		// Workflowに送る
-		this.props.onImageProcessingDone(dataUrl);
+		this.props.onImageProcessingDone(imageObject);
+		// 不要になったcv.Matを削除しメモリを解放
 		image_1.delete();
 		image_2.delete();
 		new_image_1.delete();
@@ -93,17 +108,27 @@ class ImageCrop extends React.Component {
 	render() {
 		return (
 			<Box>
-				<PreviewImage imageId={0} image={this.images[0]} onPointsSet={this.setCorrespondingPoints} n_marker={this.n_marker} />
-				<PreviewImage imageId={1} image={this.images[1]} onPointsSet={this.setCorrespondingPoints} n_marker={this.n_marker} />
+				<PreviewImage
+					imageId={0}
+					image={this.images[0]}
+					onPointsSet={this.setCorrespondingPoints}
+					n_marker={this.n_marker}
+				/>
+				<PreviewImage
+					imageId={1}
+					image={this.images[1]}
+					onPointsSet={this.setCorrespondingPoints}
+					n_marker={this.n_marker}
+				/>
 				<canvas ref={this.invisibleCanvasRef} style={{ display: 'none' }}></canvas>
 			</Box>
 		);
 	}
 }
 
-export default ImageCrop;
+export default ImageTransform;
 
-ImageCrop.propTypes = {
+ImageTransform.propTypes = {
 	images: PropTypes.array.isRequired,
 	onImageProcessingDone: PropTypes.func.isRequired,
 };
