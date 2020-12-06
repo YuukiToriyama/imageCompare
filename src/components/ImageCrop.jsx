@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 
 // 自作モジュールの読み込み
-//import opencvUtils from '../opencv-utils/opencv-utils';
 import PreviewImage from './PreviewImage';
 
 const warpImage = (srcA, srcB, cPointsA, cPointsB, n_points) => {
@@ -30,8 +29,8 @@ const warpImage = (srcA, srcB, cPointsA, cPointsB, n_points) => {
 	let dst = cv.Mat.zeros(srcB.rows, srcB.cols, cv.CV_8UC3);
 
 	cv.warpPerspective(srcA, dst, H, new cv.Size(dst.cols, dst.rows), cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
-	srcA.delete();
-	srcB.delete();
+	//srcA.delete();
+	//srcB.delete();
 	return dst;
 	//dst.delete();
 };
