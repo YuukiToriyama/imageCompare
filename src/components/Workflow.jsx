@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // 自作モジュールの読み込み
 import ImageLoader from './ImageLoader';
 import ImageCrop from './ImageCrop';
-import ImageDisplay from './ImageDisplay';
+import ImageCompare from './ImageCompare';
 
 const styles = {
 	root: {
@@ -154,8 +154,8 @@ class Workflow extends React.Component {
 				return (
 					<StepContent>
 						<Box>
-							<Typography>処理中……</Typography>
-							<ImageDisplay image={this.state.processedImage} />
+							<Typography>処理結果</Typography>
+							<ImageCompare images={[this.state.processedImage, this.state.inputImages[1]?.base64]} view={0}/>
 						</Box>
 						<GuideButtons activeStep={this.state.activeStep} handleBack={this.handleBack} handleNext={this.handleNext} isAllowedToStepForward={true} steps={this.steps} />
 					</StepContent>
