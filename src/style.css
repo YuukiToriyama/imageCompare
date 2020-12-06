@@ -1,0 +1,13 @@
+/* style.css */
+
+.bg-round {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	line-height: 30px;
+	text-align: center;
+	font-size: 20px;
+	color: white;
+	background: black;
+	opacity: 60%;
+}
