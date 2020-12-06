@@ -113,8 +113,10 @@ class Workflow extends React.Component {
 					<StepContent>
 						<Box>
 							<Typography>処理を行なう画像をアップロード</Typography>
-							{this.renderImageLoader(0)}
-							{this.renderImageLoader(1)}
+							<div>
+								{this.renderImageLoader(0)}
+								{this.renderImageLoader(1)}
+							</div>
 						</Box>
 						<GuideButtons
 							activeStep={this.state.activeStep}
@@ -135,13 +137,12 @@ class Workflow extends React.Component {
 				return (
 					<StepContent>
 						<Box>
-							<Typography>マーカーを動かして対応する点を指定してください</Typography>
-							<ImageTransform
-								ref={this.imageCropRef}
-								images={this.state.inputImages}
-								onImageProcessingDone={this.handleImageProcessingDone}
-							/>
+							<Typography>
+								マーカーを動かして二つの画像の間で対応する点を指定してください。マーカーを動かし終わったら処理実行ボタンを押してください。
+							</Typography>
 							<Button
+								variant='contained'
+								color='secondary'
 								onClick={() => {
 									this.setState({
 										processing: true,
@@ -149,15 +150,20 @@ class Workflow extends React.Component {
 									this.executeImageMatching();
 								}}
 							>
-								開始
+								処理実行
 							</Button>
+							<ImageTransform
+								ref={this.imageCropRef}
+								images={this.state.inputImages}
+								onImageProcessingDone={this.handleImageProcessingDone}
+							/>
 							{this.state.processing == true && <CircularProgress />}
 						</Box>
 						<GuideButtons
 							activeStep={this.state.activeStep}
 							handleBack={this.handleBack}
 							handleNext={this.handleNext}
-							isAllowedToStepForward={this.state.transformedImage != ''}
+							isAllowedToStepForward={this.state.transformedImage.base64 != undefined}
 							steps={this.steps}
 						/>
 					</StepContent>

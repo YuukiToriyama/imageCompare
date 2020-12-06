@@ -43,11 +43,7 @@ class ImageLoader extends React.Component {
 						this.fileInputCallback(file);
 					}}
 					buttonComponent={
-						<IconButton
-							color='primary'
-							aria-label='upload picture'
-							component='span'
-						>
+						<IconButton color='primary' aria-label='upload picture' component='span'>
 							<PhotoCamera />
 						</IconButton>
 					}

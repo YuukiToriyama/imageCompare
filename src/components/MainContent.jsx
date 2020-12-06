@@ -3,7 +3,7 @@ import React from 'react';
 
 // 自作モジュールの読み込み
 import Workflow from './Workflow';
-//import opencvUtils from '../opencv-utils/opencv-utils.js';
+import opencvUtils from '../opencv-utils/opencv-utils.js';
 import LoadingSpinner from './LoadingSpinner';
 
 class MainContent extends React.Component {
@@ -13,7 +13,6 @@ class MainContent extends React.Component {
 			opencvLoaded: false,
 		};
 	}
-	/*
 	// Appコンポーネントが呼び出されたら次はOpenCV.jsの読み込みを行なう
 	componentDidMount() {
 		const opencv_utils = new opencvUtils();
@@ -24,7 +23,6 @@ class MainContent extends React.Component {
 			});
 		});
 	}
-	*/
 
 	render() {
 		return (
