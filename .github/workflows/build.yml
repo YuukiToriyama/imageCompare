@@ -34,7 +34,7 @@ jobs:
     # パッケージのインストールとアプリのビルド
     - name: install and build
       run: |
-        git submodule --init --recursive
+        git submodule update --init --recursive
         npm ci
         npm run build
       env:
