@@ -1,7 +1,7 @@
 {
-  "name": "imageCompare",
+  "name": "image-compare",
   "version": "1.1.0",
-  "description": "画像比較のためのWebサービス",
+  "description": "ブラウザ上で簡単に画像比較が可能です",
   "main": "src/main.js",
   "scripts": {
     "start": "PORT=8080 react-scripts start",
