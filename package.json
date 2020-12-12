@@ -1,48 +1,48 @@
 {
-  "name": "image-compare",
-  "version": "1.1.0",
-  "description": "ブラウザ上で簡単に画像比較が可能です",
-  "main": "src/main.js",
-  "scripts": {
-    "start": "PORT=8080 react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "test": "react-scripts test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YUUKIToriyama/imageCompare.git"
-  },
-  "author": "YUUKIToriyama",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/YUUKIToriyama/imageCompare/issues"
-  },
-  "homepage": ".",
-  "devDependencies": {
-    "react-scripts": "^4.0.0"
-  },
-  "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "leaflet": "^1.7.1",
-    "leaflet.control.opacity": "^1.4.0",
-    "leaflet.sync": "^0.2.4",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-file-input-previews-base64": "^1.0.8"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "image-compare",
+	"version": "1.1.0",
+	"description": "ブラウザ上で簡単に画像比較が可能です",
+	"main": "src/index.js",
+	"scripts": {
+		"start": "PORT=8080 react-scripts start",
+		"build": "react-scripts build",
+		"eject": "react-scripts eject",
+		"test": "react-scripts test"
+	},
+	"repository": {
+		"type": "git",
+	  "url": "git+https://github.com/YUUKIToriyama/imageCompare.git"
+	},
+	"author": "YUUKIToriyama",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/YUUKIToriyama/imageCompare/issues"
+	},
+	"homepage": ".",
+	"devDependencies": {
+		"react-scripts": "^4.0.0"
+	},
+	"dependencies": {
+		"@material-ui/core": "^4.11.0",
+		"@material-ui/icons": "^4.9.1",
+		"leaflet": "^1.7.1",
+		"leaflet.control.opacity": "^1.4.0",
+		"leaflet.sync": "^0.2.4",
+		"prop-types": "^15.7.2",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-file-input-previews-base64": "^1.0.8"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
