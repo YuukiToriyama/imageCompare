@@ -113,12 +113,14 @@ class ImageTransform extends React.Component {
 					image={this.images[0]}
 					onPointsSet={this.setCorrespondingPoints}
 					n_marker={this.n_marker}
+					style={{width: "50%", float: "left"}}
 				/>
 				<PreviewImage
 					imageId={1}
 					image={this.images[1]}
 					onPointsSet={this.setCorrespondingPoints}
 					n_marker={this.n_marker}
+					style={{width: "50%"}}
 				/>
 				<canvas ref={this.invisibleCanvasRef} style={{ display: 'none' }}></canvas>
 			</Box>

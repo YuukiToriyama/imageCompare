@@ -73,7 +73,7 @@ class OverlayView extends React.Component {
 	}
 
 	render() {
-		return <div ref={this.viewerRef} style={{ width: '100%', height: '500px' }}></div>;
+		return <div ref={this.viewerRef} style={{ width: '100%', height: '90vh' }}></div>;
 	}
 }
 
@@ -121,8 +121,8 @@ class MultipleView extends React.Component {
 	render() {
 		return (
 			<div>
-				<div ref={this.viewer1Ref} style={{ width: '50%', height: '500px', float: 'left' }}></div>
-				<div ref={this.viewer2Ref} style={{ width: '50%', height: '500px' }}></div>
+				<div ref={this.viewer1Ref} style={{ width: '50%', height: '80vh', float: 'left' }}></div>
+				<div ref={this.viewer2Ref} style={{ width: '50%', height: '80vh' }}></div>
 			</div>
 		);
 	}

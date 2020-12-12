@@ -82,13 +82,17 @@ class PreviewImage extends React.Component {
 	}
 
 	render() {
-		return <div ref={this.mapRef} style={{ width: '100%', height: '300px' }}></div>;
+		return <div ref={this.mapRef} style={{ width: this.props.style.width, height: '80vh', float: this.props.style.float }}></div>;
 	}
 }
-
-export default PreviewImage;
 
 PreviewImage.propTypes = {
 	image: PropTypes.object.isRequired,
 	imageId: PropTypes.number.isRequired,
+	style: PropTypes.object
 };
+PreviewImage.defaultProps = {
+	style: {"width": "50%", height: "80vh", float: "none"}
+};
+
+export default PreviewImage;
