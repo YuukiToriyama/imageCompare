@@ -3,7 +3,6 @@ import React from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import orange from "@material-ui/core/colors/orange";
-//aaa
 
 // 自作モジュールの読み込み
 import MenuBar from "./components/MenuBar";
@@ -79,15 +78,6 @@ class App extends React.Component {
 		script.src = this.OPEN_CV_URL;
 		let node = document.querySelector("head");
 		node.appendChild(script);
-		/*;
-		const opencv_utils = new opencvUtils();
-		opencv_utils.loadOpenCV('https://docs.opencv.org/4.5.0/opencv.js', () => {
-			// OpenCV.jsの読み込みが完了したらstate.loadingをfalseにする
-			this.setState({
-				isOpencvLoaded: true,
-			});
-		});
-		*/
 	}
 
 	render() {
