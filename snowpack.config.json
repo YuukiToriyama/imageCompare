@@ -1,0 +1,9 @@
+{
+	"mount": {
+		"public": "/",
+		"src": "/static"
+	},
+	"buildOptions": {
+		"sourcemap": true
+	}
+}
