@@ -1,0 +1,50 @@
+import { r as react } from '../common/index-57a74e37.js';
+import { _ as _extends } from '../common/useTheme-44d92618.js';
+import { r as require$$2 } from '../common/SvgIcon-2b1943e7.js';
+import '../common/_commonjsHelpers-8c19dec8.js';
+import '../common/index-ce016b4a.js';
+import '../common/clsx.m-114f790f.js';
+import '../common/withStyles-70eb090b.js';
+import '../common/defaultTheme-7753c4cc.js';
+import '../common/createMuiTheme-779b326f.js';
+import '../common/withStyles-afecc0b4.js';
+import '../common/hoist-non-react-statics.cjs-c1ffb7fa.js';
+import '../common/capitalize-f0c61973.js';
+
+function createSvgIcon(path, displayName) {
+  var Component = react.memo(react.forwardRef(function (props, ref) {
+    return react.createElement(require$$2, _extends({
+      ref: ref
+    }, props), path);
+  }));
+
+  Component.muiName = require$$2.muiName;
+  return Component;
+}
+
+var ChevronLeft = createSvgIcon(react.createElement("path", {
+  d: "M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+}));
+
+var GitHub = createSvgIcon(react.createElement("path", {
+  d: "M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
+}));
+
+var Help = createSvgIcon(react.createElement("path", {
+  d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+}));
+
+var Info = createSvgIcon(react.createElement("path", {
+  d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+}));
+
+var PhotoCamera = createSvgIcon(react.createElement(react.Fragment, null, react.createElement("circle", {
+  cx: "12",
+  cy: "12",
+  r: "3.2"
+}), react.createElement("path", {
+  d: "M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"
+})));
+
+export { ChevronLeft, GitHub, Help, Info, PhotoCamera };
+//# sourceMappingURL=icons.js.map

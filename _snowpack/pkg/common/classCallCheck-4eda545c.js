@@ -1,0 +1,8 @@
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+export { _classCallCheck as _ };
+//# sourceMappingURL=classCallCheck-4eda545c.js.map

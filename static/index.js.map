@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["/home/runner/work/imageCompare/imageCompare/src/index.jsx"],
+  "sourcesContent": ["/* index.js */\n\n// react\nimport React from \"react\";\nimport ReactDOM from \"react-dom\";\n\n// styleSheet\nimport \"./style.css\";\n\n// App\u30B3\u30F3\u30DD\u30FC\u30CD\u30F3\u30C8\u3092\u8AAD\u307F\u8FBC\u3080\nimport App from \"./App.jsx\";\nReactDOM.render(<App />, document.getElementById(\"app\"));\n"],
+  "mappings": "AAGA;AACA;AAGA;AAGA;AACA,SAAS,OAAO,oCAAC,KAAD,OAAS,SAAS,eAAe;",
+  "names": []
+}

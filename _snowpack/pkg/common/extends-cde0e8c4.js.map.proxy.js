@@ -1,0 +1,1 @@
+export default "/_snowpack/pkg/common/extends-cde0e8c4.js.map";

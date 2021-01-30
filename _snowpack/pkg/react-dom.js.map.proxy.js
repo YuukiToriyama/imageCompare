@@ -1,0 +1,1 @@
+export default "/_snowpack/pkg/react-dom.js.map";

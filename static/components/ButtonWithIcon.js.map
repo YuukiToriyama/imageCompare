@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["/home/runner/work/imageCompare/imageCompare/src/components/ButtonWithIcon.jsx"],
+  "sourcesContent": ["/* ButtonWithIcon.jsx */\n\nimport React from 'react';\nimport PropTypes from 'prop-types';\nimport Button from '@material-ui/core/Button';\n\nconst ButtonWithIcon = (props) => {\n\treturn (\n\t\t<Button\n\t\t\tvariant='contained'\n\t\t\tstartIcon={props.icon}\n\t\t\tcomponent='span'\n\t\t\tcolor={props.color}\n\t\t>\n\t\t\t{props.title}\n\t\t</Button>\n\t);\n};\n\nexport default ButtonWithIcon;\n\nButtonWithIcon.propTypes = {\n\ticon: PropTypes.element.isRequired,\n\tcolor: PropTypes.string,\n\ttitle: PropTypes.string.isRequired,\n};\nButtonWithIcon.defaltProps = {\n\tcolor: 'default',\n};\n"],
+  "mappings": "AAEA;AACA;AACA;AAEA,MAAM,iBAAiB,CAAC;AACvB,SACC,oCAAC,QAAD;AAAA,IACC,SAAQ;AAAA,IACR,WAAW,MAAM;AAAA,IACjB,WAAU;AAAA,IACV,OAAO,MAAM;AAAA,KAEZ,MAAM;AAAA;AAKV,eAAe;AAEf,eAAe,YAAY;AAAA,EAC1B,MAAM,UAAU,QAAQ;AAAA,EACxB,OAAO,UAAU;AAAA,EACjB,OAAO,UAAU,OAAO;AAAA;AAEzB,eAAe,cAAc;AAAA,EAC5B,OAAO;AAAA;",
+  "names": []
+}
