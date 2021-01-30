@@ -22,7 +22,7 @@ jobs:
     # 各ステップの実行
     steps:
       # チェックアウト
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       # 使用するnodeのバージョンを指定
       - name: Use Node.js ${{ matrix.node-version }}
@@ -40,8 +40,7 @@ jobs:
 
       # gh-pagesを使って公開
       - name: deploy
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./build
