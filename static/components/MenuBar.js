@@ -11,6 +11,7 @@ import {
 import MenuIcon from "../../_snowpack/pkg/@material-ui/icons/Menu.js";
 import MyDrawer from "./MyDrawer.js";
 import ScrollDialog from "./ScrollDialog.js";
+import LicenseInfo from "./LicenseInfo.js";
 const useStyles = (theme) => ({
   root: {
     flexGrow: 1
@@ -50,13 +51,17 @@ class MenuBar extends React.Component {
     }) : /* @__PURE__ */ React.createElement(ScrollDialog, {
       label: "About OpenCV.js",
       title: "Build information",
-      content: cv.getBuildInformation().split("\n").map((line, key) => /* @__PURE__ */ React.createElement("span", {
+      contentText: cv.getBuildInformation().split("\n").map((line, key) => /* @__PURE__ */ React.createElement("span", {
         key
       }, line, /* @__PURE__ */ React.createElement("br", null)))
     }), /* @__PURE__ */ React.createElement(ScrollDialog, {
+      label: "Licenses",
+      title: "\u30E9\u30A4\u30BB\u30F3\u30B9\u60C5\u5831",
+      content: /* @__PURE__ */ React.createElement(LicenseInfo, null)
+    }), /* @__PURE__ */ React.createElement(ScrollDialog, {
       label: "Help",
       title: "About this app",
-      content: this.props.message
+      contentText: this.props.message
     }))), /* @__PURE__ */ React.createElement(MyDrawer, {
       ref: this.drawerRef
     }));

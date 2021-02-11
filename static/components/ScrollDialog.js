@@ -39,11 +39,11 @@ class ScrollDialog extends React.Component {
       id: "scroll-dialog-title"
     }, this.props.title), /* @__PURE__ */ React.createElement(DialogContent, {
       dividers: true
-    }, /* @__PURE__ */ React.createElement(DialogContentText, {
+    }, this.props.content != void 0 ? this.props.content : /* @__PURE__ */ React.createElement(DialogContentText, {
       id: "scroll-dialog-description",
       ref: this.descriptionElement,
       tabIndex: -1
-    }, this.props.content)), /* @__PURE__ */ React.createElement(DialogActions, null, /* @__PURE__ */ React.createElement(Button, {
+    }, this.props.contentText)), /* @__PURE__ */ React.createElement(DialogActions, null, /* @__PURE__ */ React.createElement(Button, {
       onClick: this.handleClose,
       color: "primary"
     }, "OK"))));
