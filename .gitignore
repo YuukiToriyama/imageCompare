@@ -1,5 +1,6 @@
 opencv.js
 build/
+src/licenses.json
 
 # Logs
 logs

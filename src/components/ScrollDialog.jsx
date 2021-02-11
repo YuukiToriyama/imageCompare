@@ -45,13 +45,15 @@ class ScrollDialog extends React.Component {
 				>
 					<DialogTitle id='scroll-dialog-title'>{this.props.title}</DialogTitle>
 					<DialogContent dividers={true}>
-						<DialogContentText
-							id='scroll-dialog-description'
-							ref={this.descriptionElement}
-							tabIndex={-1}
-						>
-							{this.props.content}
-						</DialogContentText>
+						{(this.props.content != undefined) ? this.props.content :
+							<DialogContentText
+								id='scroll-dialog-description'
+								ref={this.descriptionElement}
+								tabIndex={-1}
+							>
+								{this.props.contentText}
+							</DialogContentText>
+						}
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleClose} color='primary'>

@@ -16,6 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 // 自作モジュールの読み込み
 import MyDrawer from "./MyDrawer";
 import ScrollDialog from "./ScrollDialog";
+import LicenseInfo from "./LicenseInfo";
 
 const useStyles = (theme) => ({
 	root: {
@@ -60,24 +61,29 @@ class MenuBar extends React.Component {
 						{!this.props.isOpencvLoaded ? (
 							<CircularProgress color="inherit" />
 						) : (
-							<ScrollDialog
-								label="About OpenCV.js"
-								title="Build information"
-								content={cv
-									.getBuildInformation()
-									.split("\n")
-									.map((line, key) => (
-										<span key={key}>
-											{line}
-											<br />
-										</span>
-									))}
-							/>
-						)}
+								<ScrollDialog
+									label="About OpenCV.js"
+									title="Build information"
+									contentText={cv
+										.getBuildInformation()
+										.split("\n")
+										.map((line, key) => (
+											<span key={key}>
+												{line}
+												<br />
+											</span>
+										))}
+								/>
+							)}
+						<ScrollDialog
+							label="Licenses"
+							title="ライセンス情報"
+							content={<LicenseInfo />}
+						/>
 						<ScrollDialog
 							label="Help"
 							title="About this app"
-							content={this.props.message}
+							contentText={this.props.message}
 						/>
 					</Toolbar>
 				</AppBar>
