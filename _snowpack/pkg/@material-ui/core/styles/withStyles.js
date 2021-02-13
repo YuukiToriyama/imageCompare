@@ -1,13 +1,13 @@
 import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../../common/_commonjsHelpers-8c19dec8.js';
 import { i as interopRequireDefault, _ as _extends_1 } from '../../../common/extends-cde0e8c4.js';
-import { r as reactIs, a as _createClass, S as SheetsRegistry, c as createGenerateClassName, d as StylesProvider, h as hoistNonReactStatics_cjs, j as jssPreset, m as makeStyles, e as mergeClasses, s as sheetsManager, f as StylesContext } from '../../../common/hoist-non-react-statics.cjs-c1ffb7fa.js';
-import { j as _typeof, g as deepmerge, f as formatMuiErrorMessage, k as breakpoints, s as spacing, i as createUnarySpacing, _ as _extends, b as _objectWithoutProperties$1, u as useTheme } from '../../../common/useTheme-44d92618.js';
+import { r as reactIs, a as _createClass, S as SheetsRegistry, c as createGenerateClassName, d as StylesProvider, h as hoistNonReactStatics_cjs, j as jssPreset, m as makeStyles, e as mergeClasses, s as sheetsManager, f as StylesContext } from '../../../common/hoist-non-react-statics.cjs-ec3d9d33.js';
+import { j as _typeof, g as deepmerge, f as formatMuiErrorMessage, k as breakpoints, s as spacing, i as createUnarySpacing, _ as _extends, b as _objectWithoutProperties$1, u as useTheme } from '../../../common/useTheme-39bd54a0.js';
 import { r as react } from '../../../common/index-57a74e37.js';
 import { p as propTypes } from '../../../common/index-ce016b4a.js';
-import { g as getThemeProps, w as withStyles } from '../../../common/withStyles-afecc0b4.js';
+import { g as getThemeProps, w as withStyles } from '../../../common/withStyles-e0507d85.js';
 import { _ as _classCallCheck } from '../../../common/classCallCheck-4eda545c.js';
-import { b as borders, a as compose, c as css, d as display, f as flexbox, g as grid, e as palette, p as positions, h as boxShadow, i as sizing, j as style, t as typography, k as border, l as borderTop, m as borderRight, n as borderBottom, o as borderLeft, q as borderColor, r as borderRadius, u as flexBasis, v as flexDirection, w as flexWrap, x as justifyContent, y as alignItems, z as alignContent, A as order, B as flex, C as flexGrow, D as flexShrink, E as alignSelf, F as justifyItems, G as justifySelf, H as gridGap, I as gridColumnGap, J as gridRowGap, K as gridColumn, L as gridRow, M as gridAutoFlow, N as gridAutoColumns, O as gridAutoRows, P as gridTemplateColumns, Q as gridTemplateRows, R as gridTemplateAreas, S as gridArea, T as color, U as bgcolor, V as position, W as zIndex, X as top, Y as right, Z as bottom, _ as left, $ as width, a0 as maxWidth, a1 as minWidth, a2 as height, a3 as maxHeight, a4 as minHeight, a5 as sizeWidth, a6 as sizeHeight, a7 as boxSizing, a8 as fontFamily, a9 as fontSize, aa as fontStyle, ab as fontWeight, ac as letterSpacing, ad as lineHeight, ae as textAlign, s as styled } from '../../../common/styled-e970527e.js';
-import { T as ThemeProvider } from '../../../common/ThemeProvider-120dae8c.js';
+import { b as borders, a as compose, c as css, d as display, f as flexbox, g as grid, e as palette, p as positions, h as boxShadow, i as sizing, j as style, t as typography, k as border, l as borderTop, m as borderRight, n as borderBottom, o as borderLeft, q as borderColor, r as borderRadius, u as flexBasis, v as flexDirection, w as flexWrap, x as justifyContent, y as alignItems, z as alignContent, A as order, B as flex, C as flexGrow, D as flexShrink, E as alignSelf, F as justifyItems, G as justifySelf, H as gridGap, I as gridColumnGap, J as gridRowGap, K as gridColumn, L as gridRow, M as gridAutoFlow, N as gridAutoColumns, O as gridAutoRows, P as gridTemplateColumns, Q as gridTemplateRows, R as gridTemplateAreas, S as gridArea, T as color, U as bgcolor, V as position, W as zIndex, X as top, Y as right, Z as bottom, _ as left, $ as width, a0 as maxWidth, a1 as minWidth, a2 as height, a3 as maxHeight, a4 as minHeight, a5 as sizeWidth, a6 as sizeHeight, a7 as boxSizing, a8 as fontFamily, a9 as fontSize, aa as fontStyle, ab as fontWeight, ac as letterSpacing, ad as lineHeight, ae as textAlign, s as styled } from '../../../common/styled-d861f375.js';
+import { T as ThemeProvider } from '../../../common/ThemeProvider-76c49014.js';
 import { o as orange_1 } from '../../../common/orange-16905d37.js';
 import '../../../common/clsx.m-114f790f.js';
 
@@ -814,7 +814,7 @@ function decomposeColor(color) {
   var type = color.substring(0, marker);
 
   if (['rgb', 'rgba', 'hsl', 'hsla'].indexOf(type) === -1) {
-    throw new Error( (0, esm.formatMuiErrorMessage)(3, color));
+    throw new Error((0, esm.formatMuiErrorMessage)(3, color));
   }
 
   var values = color.substring(marker + 1, color.length - 1).split(',');
@@ -1156,11 +1156,11 @@ function createPalette(palette) {
     }
 
     if (!color.main) {
-      throw new Error( (0, esm.formatMuiErrorMessage)(4, mainShade));
+      throw new Error((0, esm.formatMuiErrorMessage)(4, mainShade));
     }
 
     if (typeof color.main !== 'string') {
-      throw new Error( _formatMuiErrorMessage(5, JSON.stringify(color.main)));
+      throw new Error(_formatMuiErrorMessage(5, JSON.stringify(color.main)));
     }
 
     addLightOrDark(color, 'light', lightShade, tonalOffset);
