@@ -6,7 +6,7 @@
 
 ```bash
 # clone this repository
-git clone --recursive https://github.com/YUUKIToriyama/imageCompare.git
+git clone https://github.com/YUUKIToriyama/imageCompare.git
 # do npm settings
 npm install
 # type these commands on bash, and go to localhost:8080 on your browser
