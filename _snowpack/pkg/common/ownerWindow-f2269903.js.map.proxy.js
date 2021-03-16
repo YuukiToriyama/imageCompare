@@ -1,0 +1,1 @@
+export default "/_snowpack/pkg/common/ownerWindow-f2269903.js.map";

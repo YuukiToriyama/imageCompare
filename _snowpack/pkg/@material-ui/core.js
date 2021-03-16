@@ -1,117 +1,32 @@
-export { B as Box } from '../common/Box-fb3979cf.js';
-export { I as IconButton } from '../common/IconButton-cfc77ba1.js';
-import { u as useTheme$1, _ as _extends, a as _objectWithoutPropertiesLoose, b as _objectWithoutProperties, c as _slicedToArray, d as _toConsumableArray, e as _defineProperty } from '../common/useTheme-39bd54a0.js';
+export { B as Box } from '../common/Box-419b1ee4.js';
+export { I as IconButton } from '../common/IconButton-3bf3254a.js';
+import { u as useTheme$1, _ as _objectWithoutPropertiesLoose, a as _objectWithoutProperties, b as _extends, c as _slicedToArray, d as _toConsumableArray, e as _defineProperty } from '../common/useTheme-01b231a7.js';
 import { r as react } from '../common/index-57a74e37.js';
 import '../common/index-ce016b4a.js';
 import { c as clsx } from '../common/clsx.m-114f790f.js';
-import { w as withStyles } from '../common/withStyles-268e9680.js';
-import { T as TransitionGroupContext, u as useForkRef, s as setRef, a as useEventCallback, b as useIsFocusVisible, B as ButtonBase } from '../common/ButtonBase-e51e8e0a.js';
+import { w as withStyles } from '../common/withStyles-b48eccb6.js';
+import { o as ownerDocument, a as ownerWindow, c as createChainedFunction, d as debounce, i as isMuiElement } from '../common/ownerWindow-f2269903.js';
+import { u as useForkRef, s as setRef, a as useEventCallback, b as useIsFocusVisible } from '../common/useIsFocusVisible-e5c1f5cc.js';
 import { r as reactDom } from '../common/index-8dbeb7e4.js';
-import { T as Typography } from '../common/Typography-4dd66756.js';
-export { T as Typography } from '../common/Typography-4dd66756.js';
-import { d as duration, z as zIndex, f as fade } from '../common/createMuiTheme-aadb263d.js';
-import { c as capitalize } from '../common/capitalize-7b0ec64b.js';
-export { _ as CircularProgress } from '../common/CircularProgress-1365890c.js';
-import { d as defaultTheme } from '../common/defaultTheme-ea0d179f.js';
+import { T as TransitionGroupContext, B as ButtonBase } from '../common/ButtonBase-b8e33888.js';
+import { T as Typography } from '../common/Typography-c091f65b.js';
+export { T as Typography } from '../common/Typography-c091f65b.js';
+import { d as duration, z as zIndex, f as fade } from '../common/createMuiTheme-3e21036f.js';
+import { c as capitalize } from '../common/capitalize-a3ff3a6a.js';
+export { _ as CircularProgress } from '../common/CircularProgress-075a1b06.js';
+import { d as defaultTheme } from '../common/defaultTheme-1f56af2d.js';
 import { _ as _classCallCheck } from '../common/classCallCheck-4eda545c.js';
-import { _ as _inheritsLoose, a as _createClass } from '../common/hoist-non-react-statics.cjs-ec3d9d33.js';
-import { g as getThemeProps } from '../common/withStyles-e0507d85.js';
-export { _ as Button } from '../common/Button-2af96c8f.js';
-import { r as require$$2 } from '../common/SvgIcon-852d8d1c.js';
-import '../common/styled-d861f375.js';
+import { _ as _inheritsLoose, a as _createClass } from '../common/hoist-non-react-statics.cjs-88c10efc.js';
+import { g as getThemeProps } from '../common/withStyles-3da4a224.js';
+export { _ as Button } from '../common/Button-0e24d469.js';
+import { c as createSvgIcon, S as SvgIcon } from '../common/createSvgIcon-d282f3ca.js';
+import '../common/styled-3daa9c37.js';
 import '../common/_commonjsHelpers-8c19dec8.js';
 
 function useTheme() {
   var theme = useTheme$1() || defaultTheme;
 
   return theme;
-}
-
-/**
- * Safe chained function
- *
- * Will only create a new function if needed,
- * otherwise will pass back existing functions or null.
- *
- * @param {function} functions to chain
- * @returns {function|null}
- */
-function createChainedFunction() {
-  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
-    funcs[_key] = arguments[_key];
-  }
-
-  return funcs.reduce(function (acc, func) {
-    if (func == null) {
-      return acc;
-    }
-
-    return function chainedFunction() {
-      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        args[_key2] = arguments[_key2];
-      }
-
-      acc.apply(this, args);
-      func.apply(this, args);
-    };
-  }, function () {});
-}
-
-/**
- * Private module reserved for @material-ui/x packages.
- */
-
-function createSvgIcon(path, displayName) {
-  var Component = function Component(props, ref) {
-    return /*#__PURE__*/react.createElement(require$$2, _extends({
-      ref: ref
-    }, props), path);
-  };
-
-  Component.muiName = require$$2.muiName;
-  return /*#__PURE__*/react.memo( /*#__PURE__*/react.forwardRef(Component));
-}
-
-// Corresponds to 10 frames at 60 Hz.
-// A few bytes payload overhead when lodash/debounce is ~3 kB and debounce ~300 B.
-function debounce(func) {
-  var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 166;
-  var timeout;
-
-  function debounced() {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    // eslint-disable-next-line consistent-this
-    var that = this;
-
-    var later = function later() {
-      func.apply(that, args);
-    };
-
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  }
-
-  debounced.clear = function () {
-    clearTimeout(timeout);
-  };
-
-  return debounced;
-}
-
-function isMuiElement(element, muiNames) {
-  return /*#__PURE__*/react.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
-}
-
-function ownerDocument(node) {
-  return node && node.ownerDocument || document;
-}
-
-function ownerWindow(node) {
-  var doc = ownerDocument(node);
-  return doc.defaultView || window;
 }
 
 var config = {
@@ -553,7 +468,7 @@ function getTransitionProps(props, options) {
   };
 }
 
-var styles = function styles(theme) {
+var styles$p = function styles(theme) {
   return {
     /* Styles applied to the container element. */
     container: {
@@ -759,11 +674,11 @@ var Collapse = /*#__PURE__*/react.forwardRef(function Collapse(props, ref) {
   });
 });
 Collapse.muiSupportAuto = true;
-var Collapse$1 = withStyles(styles, {
+var Collapse$1 = withStyles(styles$p, {
   name: 'MuiCollapse'
 })(Collapse);
 
-var styles$1 = function styles(theme) {
+var styles$o = function styles(theme) {
   var elevations = {};
   theme.shadows.forEach(function (shadow, index) {
     elevations["elevation".concat(index)] = {
@@ -807,11 +722,11 @@ var Paper = /*#__PURE__*/react.forwardRef(function Paper(props, ref) {
     ref: ref
   }, other));
 });
-var Paper$1 = withStyles(styles$1, {
+var Paper$1 = withStyles(styles$o, {
   name: 'MuiPaper'
 })(Paper);
 
-var styles$2 = function styles(theme) {
+var styles$n = function styles(theme) {
   var backgroundColorDefault = theme.palette.type === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
   return {
     /* Styles applied to the root element. */
@@ -911,11 +826,11 @@ var AppBar = /*#__PURE__*/react.forwardRef(function AppBar(props, ref) {
     ref: ref
   }, other));
 });
-var AppBar$1 = withStyles(styles$2, {
+var AppBar$1 = withStyles(styles$n, {
   name: 'MuiAppBar'
 })(AppBar);
 
-var styles$3 = {
+var styles$m = {
   entering: {
     opacity: 1
   },
@@ -923,7 +838,7 @@ var styles$3 = {
     opacity: 1
   }
 };
-var defaultTimeout = {
+var defaultTimeout$1 = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen
 };
@@ -947,7 +862,7 @@ var Fade = /*#__PURE__*/react.forwardRef(function Fade(props, ref) {
       _props$TransitionComp = props.TransitionComponent,
       TransitionComponent = _props$TransitionComp === void 0 ? Transition : _props$TransitionComp,
       _props$timeout = props.timeout,
-      timeout = _props$timeout === void 0 ? defaultTimeout : _props$timeout,
+      timeout = _props$timeout === void 0 ? defaultTimeout$1 : _props$timeout,
       other = _objectWithoutProperties(props, ["children", "disableStrictModeCompat", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "style", "TransitionComponent", "timeout"]);
 
   var theme = useTheme();
@@ -1024,13 +939,13 @@ var Fade = /*#__PURE__*/react.forwardRef(function Fade(props, ref) {
       style: _extends({
         opacity: 0,
         visibility: state === 'exited' && !inProp ? 'hidden' : undefined
-      }, styles$3[state], style, children.props.style),
+      }, styles$m[state], style, children.props.style),
       ref: handleRef
     }, childProps));
   });
 });
 
-var styles$4 = {
+var styles$l = {
   /* Styles applied to the root element. */
   root: {
     // Improve scrollable dialog support.
@@ -1073,17 +988,17 @@ var Backdrop = /*#__PURE__*/react.forwardRef(function Backdrop(props, ref) {
     ref: ref
   }, children));
 });
-var Backdrop$1 = withStyles(styles$4, {
+var Backdrop$1 = withStyles(styles$l, {
   name: 'MuiBackdrop'
 })(Backdrop);
 
-function getContainer(container) {
+function getContainer$1(container) {
   container = typeof container === 'function' ? container() : container; // #StrictMode ready
 
   return reactDom.findDOMNode(container);
 }
 
-var useEnhancedEffect = typeof window !== 'undefined' ? react.useLayoutEffect : react.useEffect;
+var useEnhancedEffect$1 = typeof window !== 'undefined' ? react.useLayoutEffect : react.useEffect;
 /**
  * Portals provide a first-class way to render children into a DOM node
  * that exists outside the DOM hierarchy of the parent component.
@@ -1101,12 +1016,12 @@ var Portal = /*#__PURE__*/react.forwardRef(function Portal(props, ref) {
       setMountNode = _React$useState[1];
 
   var handleRef = useForkRef( /*#__PURE__*/react.isValidElement(children) ? children.ref : null, ref);
-  useEnhancedEffect(function () {
+  useEnhancedEffect$1(function () {
     if (!disablePortal) {
-      setMountNode(getContainer(container) || document.body);
+      setMountNode(getContainer$1(container) || document.body);
     }
   }, [container, disablePortal]);
-  useEnhancedEffect(function () {
+  useEnhancedEffect$1(function () {
     if (mountNode && !disablePortal) {
       setRef(ref, mountNode);
       return function () {
@@ -1116,7 +1031,7 @@ var Portal = /*#__PURE__*/react.forwardRef(function Portal(props, ref) {
 
     return undefined;
   }, [ref, mountNode, disablePortal]);
-  useEnhancedEffect(function () {
+  useEnhancedEffect$1(function () {
     if (onRendered && (mountNode || disablePortal)) {
       onRendered();
     }
@@ -1455,6 +1370,13 @@ function Unstable_TrapFocus(props) {
     }
 
     var contain = function contain() {
+      var rootElement = rootRef.current; // Cleanup functions are executed lazily in React 17.
+      // Contain can be called between the component being unmounted and its cleanup function being run.
+
+      if (rootElement === null) {
+        return;
+      }
+
       if (!doc.hasFocus() || disableEnforceFocus || !isEnabled() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
         return;
@@ -1526,7 +1448,7 @@ function Unstable_TrapFocus(props) {
   }));
 }
 
-var styles$5 = {
+var styles$k = {
   /* Styles applied to the root element. */
   root: {
     zIndex: -1,
@@ -1558,11 +1480,11 @@ var SimpleBackdrop = /*#__PURE__*/react.forwardRef(function SimpleBackdrop(props
     "aria-hidden": true,
     ref: ref
   }, other, {
-    style: _extends({}, styles$5.root, invisible ? styles$5.invisible : {}, other.style)
+    style: _extends({}, styles$k.root, invisible ? styles$k.invisible : {}, other.style)
   })) : null;
 });
 
-function getContainer$1(container) {
+function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
   return reactDom.findDOMNode(container);
 }
@@ -1574,7 +1496,7 @@ function getHasTransition(props) {
 
 
 var defaultManager = new ModalManager();
-var styles$6 = function styles(theme) {
+var styles$j = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -1677,7 +1599,7 @@ var Modal = /*#__PURE__*/react.forwardRef(function Modal(inProps, ref) {
   };
 
   var handleOpen = useEventCallback(function () {
-    var resolvedContainer = getContainer$1(container) || getDoc().body;
+    var resolvedContainer = getContainer(container) || getDoc().body;
     manager.add(getModal(), resolvedContainer); // The element was already mounted.
 
     if (modalRef.current) {
@@ -1775,7 +1697,7 @@ var Modal = /*#__PURE__*/react.forwardRef(function Modal(inProps, ref) {
     }
   };
 
-  var inlineStyle = styles$6(theme || {
+  var inlineStyle = styles$j(theme || {
     zIndex: zIndex
   });
   var childProps = {};
@@ -1813,7 +1735,7 @@ var Modal = /*#__PURE__*/react.forwardRef(function Modal(inProps, ref) {
   }, /*#__PURE__*/react.cloneElement(children, childProps))));
 });
 
-var styles$7 = function styles(theme) {
+var styles$i = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -1946,7 +1868,7 @@ var styles$7 = function styles(theme) {
     }
   };
 };
-var defaultTransitionDuration = {
+var defaultTransitionDuration$1 = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen
 };
@@ -1988,7 +1910,7 @@ var Dialog = /*#__PURE__*/react.forwardRef(function Dialog(props, ref) {
       _props$TransitionComp = props.TransitionComponent,
       TransitionComponent = _props$TransitionComp === void 0 ? Fade : _props$TransitionComp,
       _props$transitionDura = props.transitionDuration,
-      transitionDuration = _props$transitionDura === void 0 ? defaultTransitionDuration : _props$transitionDura,
+      transitionDuration = _props$transitionDura === void 0 ? defaultTransitionDuration$1 : _props$transitionDura,
       TransitionProps = props.TransitionProps,
       ariaDescribedby = props['aria-describedby'],
       ariaLabelledby = props['aria-labelledby'],
@@ -2060,11 +1982,11 @@ var Dialog = /*#__PURE__*/react.forwardRef(function Dialog(props, ref) {
     className: clsx(classes.paper, classes["paperScroll".concat(capitalize(scroll))], classes["paperWidth".concat(capitalize(String(maxWidth)))], PaperProps.className, fullScreen && classes.paperFullScreen, fullWidth && classes.paperFullWidth)
   }), children))));
 });
-var Dialog$1 = withStyles(styles$7, {
+var Dialog$1 = withStyles(styles$i, {
   name: 'MuiDialog'
 })(Dialog);
 
-var styles$8 = {
+var styles$h = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -2093,11 +2015,11 @@ var DialogActions = /*#__PURE__*/react.forwardRef(function DialogActions(props, 
     ref: ref
   }, other));
 });
-var DialogActions$1 = withStyles(styles$8, {
+var DialogActions$1 = withStyles(styles$h, {
   name: 'MuiDialogActions'
 })(DialogActions);
 
-var styles$9 = function styles(theme) {
+var styles$g = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -2132,11 +2054,11 @@ var DialogContent = /*#__PURE__*/react.forwardRef(function DialogContent(props, 
     ref: ref
   }, other));
 });
-var DialogContent$1 = withStyles(styles$9, {
+var DialogContent$1 = withStyles(styles$g, {
   name: 'MuiDialogContent'
 })(DialogContent);
 
-var styles$a = {
+var styles$f = {
   /* Styles applied to the root element. */
   root: {
     marginBottom: 12
@@ -2150,11 +2072,11 @@ var DialogContentText = /*#__PURE__*/react.forwardRef(function DialogContentText
     ref: ref
   }, props));
 });
-var DialogContentText$1 = withStyles(styles$a, {
+var DialogContentText$1 = withStyles(styles$f, {
   name: 'MuiDialogContentText'
 })(DialogContentText);
 
-var styles$b = {
+var styles$e = {
   /* Styles applied to the root element. */
   root: {
     margin: 0,
@@ -2178,11 +2100,11 @@ var DialogTitle = /*#__PURE__*/react.forwardRef(function DialogTitle(props, ref)
     variant: "h6"
   }, children));
 });
-var DialogTitle$1 = withStyles(styles$b, {
+var DialogTitle$1 = withStyles(styles$e, {
   name: 'MuiDialogTitle'
 })(DialogTitle);
 
-var styles$c = function styles(theme) {
+var styles$d = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -2256,7 +2178,7 @@ var Divider = /*#__PURE__*/react.forwardRef(function Divider(props, ref) {
     ref: ref
   }, other));
 });
-var Divider$1 = withStyles(styles$c, {
+var Divider$1 = withStyles(styles$d, {
   name: 'MuiDivider'
 })(Divider);
 
@@ -2307,7 +2229,7 @@ function setTranslateValue(direction, node) {
     node.style.transform = transform;
   }
 }
-var defaultTimeout$1 = {
+var defaultTimeout = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen
 };
@@ -2329,7 +2251,7 @@ var Slide = /*#__PURE__*/react.forwardRef(function Slide(props, ref) {
       onExiting = props.onExiting,
       style = props.style,
       _props$timeout = props.timeout,
-      timeout = _props$timeout === void 0 ? defaultTimeout$1 : _props$timeout,
+      timeout = _props$timeout === void 0 ? defaultTimeout : _props$timeout,
       _props$TransitionComp = props.TransitionComponent,
       TransitionComponent = _props$TransitionComp === void 0 ? Transition : _props$TransitionComp,
       other = _objectWithoutProperties(props, ["children", "direction", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "style", "timeout", "TransitionComponent"]);
@@ -2468,7 +2390,7 @@ var Slide = /*#__PURE__*/react.forwardRef(function Slide(props, ref) {
   });
 });
 
-var styles$d = function styles(theme) {
+var styles$c = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {},
@@ -2565,7 +2487,7 @@ function isHorizontal(anchor) {
 function getAnchor(theme, anchor) {
   return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
-var defaultTransitionDuration$1 = {
+var defaultTransitionDuration = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen
 };
@@ -2597,7 +2519,7 @@ var Drawer = /*#__PURE__*/react.forwardRef(function Drawer(props, ref) {
       _props$TransitionComp = props.TransitionComponent,
       TransitionComponent = _props$TransitionComp === void 0 ? Slide : _props$TransitionComp,
       _props$transitionDura = props.transitionDuration,
-      transitionDuration = _props$transitionDura === void 0 ? defaultTransitionDuration$1 : _props$transitionDura,
+      transitionDuration = _props$transitionDura === void 0 ? defaultTransitionDuration : _props$transitionDura,
       _props$variant = props.variant,
       variant = _props$variant === void 0 ? 'temporary' : _props$variant,
       other = _objectWithoutProperties(props, ["anchor", "BackdropProps", "children", "classes", "className", "elevation", "ModalProps", "onClose", "open", "PaperProps", "SlideProps", "TransitionComponent", "transitionDuration", "variant"]);
@@ -2651,12 +2573,12 @@ var Drawer = /*#__PURE__*/react.forwardRef(function Drawer(props, ref) {
     ref: ref
   }, other, ModalProps), slidingDrawer);
 });
-var Drawer$1 = withStyles(styles$d, {
+var Drawer$1 = withStyles(styles$c, {
   name: 'MuiDrawer',
   flip: false
 })(Drawer);
 
-var styles$e = {
+var styles$b = {
   /* Styles applied to the root element. */
   root: {},
 
@@ -2771,7 +2693,7 @@ var Link = /*#__PURE__*/react.forwardRef(function Link(props, ref) {
     variant: variant
   }, other));
 });
-var Link$1 = withStyles(styles$e, {
+var Link$1 = withStyles(styles$b, {
   name: 'MuiLink'
 })(Link);
 
@@ -2779,9 +2701,9 @@ var Link$1 = withStyles(styles$e, {
  * @ignore - internal component.
  */
 
-var ListContext = /*#__PURE__*/react.createContext({});
+var ListContext = react.createContext({});
 
-var styles$f = {
+var styles$a = {
   /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
@@ -2829,11 +2751,11 @@ var List = /*#__PURE__*/react.forwardRef(function List(props, ref) {
     ref: ref
   }, other), subheader, children));
 });
-var List$1 = withStyles(styles$f, {
+var List$1 = withStyles(styles$a, {
   name: 'MuiList'
 })(List);
 
-var styles$g = function styles(theme) {
+var styles$9 = function styles(theme) {
   return {
     /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
     root: {
@@ -2918,7 +2840,7 @@ var styles$g = function styles(theme) {
     selected: {}
   };
 };
-var useEnhancedEffect$1 = typeof window === 'undefined' ? react.useEffect : react.useLayoutEffect;
+var useEnhancedEffect = typeof window === 'undefined' ? react.useEffect : react.useLayoutEffect;
 /**
  * Uses an additional container component if `ListItemSecondaryAction` is the last child.
  */
@@ -2960,7 +2882,7 @@ var ListItem = /*#__PURE__*/react.forwardRef(function ListItem(props, ref) {
     alignItems: alignItems
   };
   var listItemRef = react.useRef(null);
-  useEnhancedEffect$1(function () {
+  useEnhancedEffect(function () {
     if (autoFocus) {
       if (listItemRef.current) {
         listItemRef.current.focus();
@@ -3014,11 +2936,11 @@ var ListItem = /*#__PURE__*/react.forwardRef(function ListItem(props, ref) {
     ref: handleRef
   }, componentProps), children));
 });
-var ListItem$1 = withStyles(styles$g, {
+var ListItem$1 = withStyles(styles$9, {
   name: 'MuiListItem'
 })(ListItem);
 
-var styles$h = function styles(theme) {
+var styles$8 = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -3049,11 +2971,11 @@ var ListItemIcon = /*#__PURE__*/react.forwardRef(function ListItemIcon(props, re
     ref: ref
   }, other));
 });
-var ListItemIcon$1 = withStyles(styles$h, {
+var ListItemIcon$1 = withStyles(styles$8, {
   name: 'MuiListItemIcon'
 })(ListItemIcon);
 
-var styles$i = {
+var styles$7 = {
   /* Styles applied to the root element. */
   root: {
     flex: '1 1 auto',
@@ -3126,11 +3048,11 @@ var ListItemText = /*#__PURE__*/react.forwardRef(function ListItemText(props, re
     ref: ref
   }, other), primary, secondary);
 });
-var ListItemText$1 = withStyles(styles$i, {
+var ListItemText$1 = withStyles(styles$7, {
   name: 'MuiListItemText'
 })(ListItemText);
 
-var styles$j = {
+var styles$6 = {
   /* Styles applied to the root element. */
   root: {},
 
@@ -3205,7 +3127,7 @@ var Step = /*#__PURE__*/react.forwardRef(function Step(props, ref) {
 
   return newChildren;
 });
-var Step$1 = withStyles(styles$j, {
+var Step$1 = withStyles(styles$6, {
   name: 'MuiStep'
 })(Step);
 
@@ -3225,7 +3147,7 @@ var Warning = createSvgIcon( /*#__PURE__*/react.createElement("path", {
   d: "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
 }));
 
-var styles$k = function styles(theme) {
+var styles$5 = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -3293,7 +3215,7 @@ var StepIcon = /*#__PURE__*/react.forwardRef(function StepIcon(props, ref) {
       });
     }
 
-    return /*#__PURE__*/react.createElement(require$$2, {
+    return /*#__PURE__*/react.createElement(SvgIcon, {
       className: className,
       ref: ref
     }, _ref, /*#__PURE__*/react.createElement("text", {
@@ -3306,11 +3228,11 @@ var StepIcon = /*#__PURE__*/react.forwardRef(function StepIcon(props, ref) {
 
   return icon;
 });
-var StepIcon$1 = withStyles(styles$k, {
+var StepIcon$1 = withStyles(styles$5, {
   name: 'MuiStepIcon'
 })(StepIcon);
 
-var styles$l = function styles(theme) {
+var styles$4 = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -3432,11 +3354,11 @@ var StepLabel = /*#__PURE__*/react.forwardRef(function StepLabel(props, ref) {
   }, children) : null, optional));
 });
 StepLabel.muiName = 'StepLabel';
-var StepLabel$1 = withStyles(styles$l, {
+var StepLabel$1 = withStyles(styles$4, {
   name: 'MuiStepLabel'
 })(StepLabel);
 
-var styles$m = function styles(theme) {
+var styles$3 = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -3513,11 +3435,11 @@ var StepConnector = /*#__PURE__*/react.forwardRef(function StepConnector(props, 
     }[orientation])
   }));
 });
-var StepConnector$1 = withStyles(styles$m, {
+var StepConnector$1 = withStyles(styles$3, {
   name: 'MuiStepConnector'
 })(StepConnector);
 
-var styles$n = function styles(theme) {
+var styles$2 = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -3573,11 +3495,11 @@ var StepContent = /*#__PURE__*/react.forwardRef(function StepContent(props, ref)
     unmountOnExit: true
   }, TransitionProps), children));
 });
-var StepContent$1 = withStyles(styles$n, {
+var StepContent$1 = withStyles(styles$2, {
   name: 'MuiStepContent'
 })(StepContent);
 
-var styles$o = {
+var styles$1 = {
   /* Styles applied to the root element. */
   root: {
     display: 'flex',
@@ -3651,11 +3573,11 @@ var Stepper = /*#__PURE__*/react.forwardRef(function Stepper(props, ref) {
     ref: ref
   }, other), steps);
 });
-var Stepper$1 = withStyles(styles$o, {
+var Stepper$1 = withStyles(styles$1, {
   name: 'MuiStepper'
 })(Stepper);
 
-var styles$p = function styles(theme) {
+var styles = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -3698,7 +3620,7 @@ var Toolbar = /*#__PURE__*/react.forwardRef(function Toolbar(props, ref) {
     ref: ref
   }, other));
 });
-var Toolbar$1 = withStyles(styles$p, {
+var Toolbar$1 = withStyles(styles, {
   name: 'MuiToolbar'
 })(Toolbar);
 

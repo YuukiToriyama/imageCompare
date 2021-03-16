@@ -1,44 +1,22 @@
-import { b as _objectWithoutProperties, c as _slicedToArray, _ as _extends } from '../../common/useTheme-39bd54a0.js';
+import { a as _objectWithoutProperties, c as _slicedToArray, b as _extends } from '../../common/useTheme-01b231a7.js';
 import { r as react } from '../../common/index-57a74e37.js';
 import '../../common/index-ce016b4a.js';
 import { c as clsx } from '../../common/clsx.m-114f790f.js';
-import { w as withStyles } from '../../common/withStyles-268e9680.js';
-import { f as fade } from '../../common/createMuiTheme-aadb263d.js';
-import { c as capitalize } from '../../common/capitalize-7b0ec64b.js';
-import { u as useFormControl } from '../../common/useFormControl-0196bb6e.js';
-import { I as IconButton } from '../../common/IconButton-cfc77ba1.js';
+import { w as withStyles } from '../../common/withStyles-b48eccb6.js';
+import { f as fade } from '../../common/createMuiTheme-3e21036f.js';
+import { c as capitalize } from '../../common/capitalize-a3ff3a6a.js';
+import { u as useControlled } from '../../common/useControlled-055f5707.js';
+import { u as useFormControl } from '../../common/useFormControl-f79d857a.js';
+import { I as IconButton } from '../../common/IconButton-3bf3254a.js';
 import '../../common/_commonjsHelpers-8c19dec8.js';
-import '../../common/defaultTheme-ea0d179f.js';
-import '../../common/withStyles-e0507d85.js';
-import '../../common/hoist-non-react-statics.cjs-ec3d9d33.js';
-import '../../common/ButtonBase-e51e8e0a.js';
+import '../../common/defaultTheme-1f56af2d.js';
+import '../../common/withStyles-3da4a224.js';
+import '../../common/hoist-non-react-statics.cjs-88c10efc.js';
+import '../../common/ButtonBase-b8e33888.js';
 import '../../common/index-8dbeb7e4.js';
+import '../../common/useIsFocusVisible-e5c1f5cc.js';
 
-/* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
-function useControlled(_ref) {
-  var controlled = _ref.controlled,
-      defaultProp = _ref.default;
-      _ref.name;
-      _ref.state;
-
-  var _React$useRef = react.useRef(controlled !== undefined),
-      isControlled = _React$useRef.current;
-
-  var _React$useState = react.useState(defaultProp),
-      valueState = _React$useState[0],
-      setValue = _React$useState[1];
-
-  var value = isControlled ? controlled : valueState;
-
-  var setValueIfUncontrolled = react.useCallback(function (newValue) {
-    if (!isControlled) {
-      setValue(newValue);
-    }
-  }, []);
-  return [value, setValueIfUncontrolled];
-}
-
-var styles = {
+var styles$1 = {
   root: {
     padding: 9
   },
@@ -161,11 +139,11 @@ var SwitchBase = /*#__PURE__*/react.forwardRef(function SwitchBase(props, ref) {
     value: value
   }, inputProps)), checked ? checkedIcon : icon);
 }); // NB: If changed, please update Checkbox, Switch and Radio
-var SwitchBase$1 = withStyles(styles, {
+var SwitchBase$1 = withStyles(styles$1, {
   name: 'PrivateSwitchBase'
 })(SwitchBase);
 
-var styles$1 = function styles(theme) {
+var styles = function styles(theme) {
   return {
     /* Styles applied to the root element. */
     root: {
@@ -351,7 +329,7 @@ var Switch = /*#__PURE__*/react.forwardRef(function Switch(props, ref) {
     className: classes.track
   }));
 });
-var __pika_web_default_export_for_treeshaking__ = withStyles(styles$1, {
+var __pika_web_default_export_for_treeshaking__ = withStyles(styles, {
   name: 'MuiSwitch'
 })(Switch);
 
