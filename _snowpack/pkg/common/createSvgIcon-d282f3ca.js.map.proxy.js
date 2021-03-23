@@ -1,1 +1,0 @@
-export default "/_snowpack/pkg/common/createSvgIcon-d282f3ca.js.map";

@@ -1,1 +1,0 @@
-export default "/_snowpack/pkg/common/capitalize-a3ff3a6a.js.map";

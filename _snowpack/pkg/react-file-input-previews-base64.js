@@ -1,5 +1,5 @@
 import { c as createCommonjsModule, g as getDefaultExportFromCjs } from './common/_commonjsHelpers-8c19dec8.js';
-import { r as react } from './common/index-57a74e37.js';
+import { r as react } from './common/index-04edb6a1.js';
 import { p as propTypes } from './common/index-ce016b4a.js';
 
 var nonPreviewDefaultComponent = createCommonjsModule(function (module, exports) {
