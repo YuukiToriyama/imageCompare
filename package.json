@@ -29,6 +29,7 @@
 		"leaflet": "^1.7.1",
 		"leaflet.control.opacity": "^1.4.0",
 		"leaflet.sync": "^0.2.4",
+		"opencv-react": "^0.0.5",
 		"prop-types": "^15.7.2",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",

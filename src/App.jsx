@@ -3,6 +3,7 @@ import React from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import orange from "@material-ui/core/colors/orange";
+import { OpenCvProvider } from "opencv-react";
 
 // 自作モジュールの読み込み
 import MenuBar from "./components/MenuBar";
@@ -46,50 +47,28 @@ class App extends React.Component {
 		this.APP_INFO = [
 			"imageCompare 0.9",
 			"https://github.com/YUUKIToriyama/imageCompare",
-			"(C)Copyright 2020 YUUKIToriyama All Rights Reserved.",
+			"(C)Copyright 2020-2021 YUUKIToriyama All Rights Reserved.",
 		].join("\n");
 		this.OPEN_CV_URL = "https://docs.opencv.org/4.5.0/opencv.js";
-	}
-
-	// Appコンポーネントが呼び出されたら次はOpenCV.jsの読み込みを行なう
-	componentDidMount() {
-		let script = document.createElement("script");
-		script.setAttribute("type", "text/javascript");
-		script.addEventListener("load", () => {
-			if (cv.getBuildInformation) {
-				console.log(cv.getBuildInformation());
-				// 読み込みが完了したらstate.isOpencvLoadedを変更する
-				this.setState({
-					isOpencvLoaded: true,
-				});
-			} else {
-				cv["onRuntimeInitialized"] = () => {
-					console.log(cv.getBuildInformation());
-					// 読み込みが完了したらstate.isOpencvLoadedを変更する
-					this.setState({
-						isOpencvLoaded: true,
-					});
-				};
-			}
-		});
-		script.addEventListener("error", () => {
-			console.error("Failed to load " + this.OPEN_CV_URL);
-		});
-		script.src = this.OPEN_CV_URL;
-		let node = document.querySelector("head");
-		node.appendChild(script);
 	}
 
 	render() {
 		return (
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-				<MenuBar
-					title={this.APP_NAME}
-					message={this.APP_INFO}
-					isOpencvLoaded={this.state.isOpencvLoaded}
-				/>
-				<Workflow />
+				<OpenCvProvider openCvPath={this.OPEN_CV_URL} onLoad={() => {
+					this.setState({
+						isOpencvLoaded: true
+					});
+					console.log(cv.getBuildInformation());
+				}}>
+					<MenuBar
+						title={this.APP_NAME}
+						message={this.APP_INFO}
+						isOpencvLoaded={this.state.isOpencvLoaded}
+					/>
+					<Workflow />
+				</OpenCvProvider>
 			</ThemeProvider>
 		);
 	}
