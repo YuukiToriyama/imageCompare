@@ -17,6 +17,7 @@
     "leaflet.control.opacity/dist/L.Control.Opacity.css": "./leaflet.control.opacity/dist/L.Control.Opacity.css",
     "leaflet.sync": "./leaflet.sync.js",
     "leaflet/dist/leaflet.css": "./leaflet/dist/leaflet.css",
+    "opencv-react": "./opencv-react.js",
     "prop-types": "./prop-types.js",
     "react": "./react.js",
     "react-dom": "./react-dom.js",
