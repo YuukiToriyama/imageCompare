@@ -76,4 +76,3 @@ class MyDrawer extends React.Component {
   }
 }
 export default withStyles(useStyles)(MyDrawer);
-//# sourceMappingURL=MyDrawer.js.map

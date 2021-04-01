@@ -56,7 +56,7 @@ class MenuBar extends React.Component {
       }, line, /* @__PURE__ */ React.createElement("br", null)))
     }), /* @__PURE__ */ React.createElement(ScrollDialog, {
       label: "Licenses",
-      title: "\u30E9\u30A4\u30BB\u30F3\u30B9\u60C5\u5831",
+      title: "ライセンス情報",
       content: /* @__PURE__ */ React.createElement(LicenseInfo, null)
     }), /* @__PURE__ */ React.createElement(ScrollDialog, {
       label: "Help",
@@ -72,4 +72,3 @@ MenuBar.propTypes = {
   message: PropTypes.string,
   title: PropTypes.string.isRequired
 };
-//# sourceMappingURL=MenuBar.js.map

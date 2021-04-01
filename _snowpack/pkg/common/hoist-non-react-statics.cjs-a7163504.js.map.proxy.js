@@ -1,1 +1,0 @@
-export default "/_snowpack/pkg/common/hoist-non-react-statics.cjs-a7163504.js.map";

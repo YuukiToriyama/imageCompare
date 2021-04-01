@@ -86,4 +86,3 @@ ImageTransform.propTypes = {
   images: PropTypes.array.isRequired,
   onImageProcessingDone: PropTypes.func.isRequired
 };
-//# sourceMappingURL=ImageTransform.js.map

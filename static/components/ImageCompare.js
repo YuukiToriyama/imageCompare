@@ -41,7 +41,7 @@ class OverlayView extends React.Component {
       collapsed: false
     }).addTo(this.viewer);
     L.control.opacity(this.layers, {
-      label: "\u900F\u660E\u5EA6\u3092\u5909\u66F4",
+      label: "透明度を変更",
       collapsed: false
     }).addTo(this.viewer);
   }
@@ -102,14 +102,14 @@ class ImageCompare extends React.Component {
     this.MULTIPLE = false;
     this.state = {
       view: this.OVERLAY,
-      toggleLabel: "\u30AA\u30FC\u30D0\u30FC\u30EC\u30A4\u8868\u793A"
+      toggleLabel: "オーバーレイ表示"
     };
     this.changeView = this.changeView.bind(this);
   }
   changeView() {
     this.setState((prevState) => ({
       view: !prevState.view,
-      toggleLabel: prevState.view == true ? "\u4E8C\u753B\u9762\u8868\u793A" : "\u30AA\u30FC\u30D0\u30FC\u30EC\u30A4\u8868\u793A"
+      toggleLabel: prevState.view == true ? "二画面表示" : "オーバーレイ表示"
     }));
   }
   render() {
@@ -130,4 +130,3 @@ ImageCompare.propTypes = {
   images: PropTypes.array.isRequired
 };
 export default ImageCompare;
-//# sourceMappingURL=ImageCompare.js.map

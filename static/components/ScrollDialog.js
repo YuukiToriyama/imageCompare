@@ -55,4 +55,3 @@ ScrollDialog.propTypes = {
   title: PropTypes.string,
   content: PropTypes.any
 };
-//# sourceMappingURL=ScrollDialog.js.map

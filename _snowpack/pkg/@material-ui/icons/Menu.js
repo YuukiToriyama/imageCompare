@@ -1,19 +1,15 @@
 import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../common/_commonjsHelpers-8c19dec8.js';
 import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
+import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-93557af1.js';
 import { r as react } from '../../common/index-04edb6a1.js';
-import { c as capitalize } from '../../common/capitalize-ac82612e.js';
-import { c as createChainedFunction, d as debounce, i as isMuiElement, o as ownerDocument, a as ownerWindow } from '../../common/ownerWindow-23739e80.js';
-import { c as createSvgIcon$1 } from '../../common/createSvgIcon-1235d5d2.js';
+import { c as capitalize } from '../../common/capitalize-45210f8e.js';
+import { c as createChainedFunction, d as debounce, o as ownerDocument, a as ownerWindow } from '../../common/ownerWindow-14b71efa.js';
+import { c as createSvgIcon$1 } from '../../common/createSvgIcon-5055d181.js';
+import { i as isMuiElement } from '../../common/isMuiElement-8cbbe173.js';
 import { s as setRef, a as useEventCallback, u as useForkRef, b as useIsFocusVisible } from '../../common/useIsFocusVisible-8be5e09b.js';
-import { u as useControlled } from '../../common/useControlled-744117ae.js';
-import '../../common/useTheme-0e4a9e73.js';
+import '../../common/withStyles-86c93fe6.js';
 import '../../common/index-ce016b4a.js';
-import '../../common/clsx.m-114f790f.js';
-import '../../common/withStyles-46a1012a.js';
-import '../../common/defaultTheme-6146b6f4.js';
-import '../../common/createMuiTheme-a0505c0c.js';
-import '../../common/withStyles-9fd4cc6d.js';
-import '../../common/hoist-non-react-statics.cjs-a7163504.js';
+import '../../common/withStyles-bca80998.js';
 import '../../common/index-3eae4d6e.js';
 
 function deprecatedPropType(validator, reason) {
@@ -36,6 +32,30 @@ function unsupportedProp(props, propName, componentName, location, propFullName)
   {
     return null;
   }
+}
+
+/* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
+function useControlled(_ref) {
+  var controlled = _ref.controlled,
+      defaultProp = _ref.default;
+      _ref.name;
+      _ref.state;
+
+  var _React$useRef = react.useRef(controlled !== undefined),
+      isControlled = _React$useRef.current;
+
+  var _React$useState = react.useState(defaultProp),
+      valueState = _React$useState[0],
+      setValue = _React$useState[1];
+
+  var value = isControlled ? controlled : valueState;
+
+  var setValueIfUncontrolled = react.useCallback(function (newValue) {
+    if (!isControlled) {
+      setValue(newValue);
+    }
+  }, []);
+  return [value, setValueIfUncontrolled];
 }
 
 /**
@@ -77,90 +97,6 @@ var utils = /*#__PURE__*/Object.freeze({
   useForkRef: useForkRef,
   unstable_useId: useId,
   useIsFocusVisible: useIsFocusVisible
-});
-
-var _typeof_1 = createCommonjsModule(function (module) {
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-});
-
-var interopRequireWildcard = createCommonjsModule(function (module) {
-var _typeof = _typeof_1["default"];
-
-function _getRequireWildcardCache() {
-  if (typeof WeakMap !== "function") return null;
-  var cache = new WeakMap();
-
-  _getRequireWildcardCache = function _getRequireWildcardCache() {
-    return cache;
-  };
-
-  return cache;
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  }
-
-  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
-    return {
-      "default": obj
-    };
-  }
-
-  var cache = _getRequireWildcardCache();
-
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-
-  var newObj = {};
-  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
-
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
-
-      if (desc && (desc.get || desc.set)) {
-        Object.defineProperty(newObj, key, desc);
-      } else {
-        newObj[key] = obj[key];
-      }
-    }
-  }
-
-  newObj["default"] = obj;
-
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-
-  return newObj;
-}
-
-module.exports = _interopRequireWildcard;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
 });
 
 var createSvgIcon = createCommonjsModule(function (module, exports) {

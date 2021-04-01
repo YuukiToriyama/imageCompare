@@ -1,1 +1,0 @@
-export default "/_snowpack/pkg/@material-ui/core.js.map";

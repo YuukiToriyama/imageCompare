@@ -18,4 +18,3 @@ ButtonWithIcon.propTypes = {
 ButtonWithIcon.defaltProps = {
   color: "default"
 };
-//# sourceMappingURL=ButtonWithIcon.js.map

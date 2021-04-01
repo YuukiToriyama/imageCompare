@@ -1,12 +1,64 @@
-import { B as Box } from '../../common/Box-8aaba165.js';
-export { B as default } from '../../common/Box-8aaba165.js';
-import '../../common/useTheme-0e4a9e73.js';
+import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../common/_commonjsHelpers-8c19dec8.js';
+import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-93557af1.js';
+import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
+import { e as esm } from '../../common/defaultTheme-bdfc9657.js';
+import { s as styled_1 } from '../../common/styled-d7884012.js';
+import '../../common/withStyles-86c93fe6.js';
 import '../../common/index-ce016b4a.js';
-import '../../common/_commonjsHelpers-8c19dec8.js';
 import '../../common/index-04edb6a1.js';
-import '../../common/defaultTheme-6146b6f4.js';
-import '../../common/createMuiTheme-a0505c0c.js';
-import '../../common/styled-744bf93f.js';
-import '../../common/clsx.m-114f790f.js';
-import '../../common/hoist-non-react-statics.cjs-a7163504.js';
+import '../../common/styled-cada6615.js';
+import '../../common/orange-16905d37.js';
+
+var Box_1 = createCommonjsModule(function (module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styleFunction = void 0;
+
+
+
+var _styled = interopRequireDefault(styled_1);
+
+var styleFunction = (0, esm.css)((0, esm.compose)(esm.borders, esm.display, esm.flexbox, esm.grid, esm.positions, esm.palette, esm.shadows, esm.sizing, esm.spacing, esm.typography));
+/**
+ * @ignore - do not document.
+ */
+
+exports.styleFunction = styleFunction;
+var Box = (0, _styled.default)('div')(styleFunction, {
+  name: 'MuiBox'
+});
+var _default = Box;
+exports.default = _default;
+});
+
+var Box = createCommonjsModule(function (module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function get() {
+    return _Box.default;
+  }
+});
+Object.defineProperty(exports, "styleFunction", {
+  enumerable: true,
+  get: function get() {
+    return _Box.styleFunction;
+  }
+});
+
+var _Box = interopRequireWildcard(Box_1);
+});
+
+var __pika_web_default_export_for_treeshaking__ = /*@__PURE__*/getDefaultExportFromCjs(Box);
+
+export default __pika_web_default_export_for_treeshaking__;
 //# sourceMappingURL=Box.js.map

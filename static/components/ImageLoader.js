@@ -16,7 +16,7 @@ class ImageLoader extends React.Component {
   };
   render() {
     return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(FileInputComponent, {
-      labelText: this.props.loaderId + 1 + "\u679A\u76EE",
+      labelText: this.props.loaderId + 1 + "枚目",
       imagePreview: true,
       multiple: false,
       callbackFunction: (file) => {
@@ -40,4 +40,3 @@ ImageLoader.propTypes = {
   loaderId: PropTypes.number.isRequired,
   onInputImageChange: PropTypes.func.isRequired
 };
-//# sourceMappingURL=ImageLoader.js.map

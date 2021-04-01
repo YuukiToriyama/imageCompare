@@ -25,4 +25,3 @@ const LicenseInfo = () => {
   }));
 };
 export default LicenseInfo;
-//# sourceMappingURL=LicenseInfo.js.map

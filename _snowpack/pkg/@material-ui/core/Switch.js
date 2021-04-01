@@ -1,22 +1,224 @@
-import { a as _objectWithoutProperties, c as _slicedToArray, b as _extends } from '../../common/useTheme-0e4a9e73.js';
+import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../common/_commonjsHelpers-8c19dec8.js';
+import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
+import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-93557af1.js';
+import { _ as _extends_1, o as objectWithoutProperties, c as colorManipulator } from '../../common/defaultTheme-bdfc9657.js';
 import { r as react } from '../../common/index-04edb6a1.js';
-import '../../common/index-ce016b4a.js';
-import { c as clsx } from '../../common/clsx.m-114f790f.js';
-import { w as withStyles } from '../../common/withStyles-46a1012a.js';
-import { f as fade } from '../../common/createMuiTheme-a0505c0c.js';
-import { c as capitalize } from '../../common/capitalize-ac82612e.js';
-import { u as useControlled } from '../../common/useControlled-744117ae.js';
-import { u as useFormControl } from '../../common/useFormControl-64ca16fd.js';
-import { I as IconButton } from '../../common/IconButton-5dd620d4.js';
-import '../../common/_commonjsHelpers-8c19dec8.js';
-import '../../common/defaultTheme-6146b6f4.js';
-import '../../common/withStyles-9fd4cc6d.js';
-import '../../common/hoist-non-react-statics.cjs-a7163504.js';
-import '../../common/ButtonBase-7a833ddd.js';
+import { p as propTypes } from '../../common/index-ce016b4a.js';
+import { r as require$$4 } from '../../common/withStyles-86c93fe6.js';
+import { w as withStyles_1 } from '../../common/withStyles-c3c8e542.js';
+import { c as capitalize_1 } from '../../common/capitalize-f14e8c06.js';
+import { r as require$$9 } from '../../common/IconButton-c7deb546.js';
+import '../../common/styled-cada6615.js';
+import '../../common/orange-16905d37.js';
+import '../../common/withStyles-bca80998.js';
+import '../../common/capitalize-45210f8e.js';
+import '../../common/ButtonBase-62d07cfc.js';
 import '../../common/index-3eae4d6e.js';
 import '../../common/useIsFocusVisible-8be5e09b.js';
 
-var styles$1 = {
+var arrayWithHoles = createCommonjsModule(function (module) {
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var iterableToArrayLimit = createCommonjsModule(function (module) {
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var arrayLikeToArray = createCommonjsModule(function (module) {
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var unsupportedIterableToArray = createCommonjsModule(function (module) {
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var nonIterableRest = createCommonjsModule(function (module) {
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableRest;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var slicedToArray = createCommonjsModule(function (module) {
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+});
+
+var useControlled_1 = createCommonjsModule(function (module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useControlled;
+
+var React = interopRequireWildcard(react);
+
+/* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
+function useControlled(_ref) {
+  var controlled = _ref.controlled,
+      defaultProp = _ref.default;
+      _ref.name;
+      _ref.state;
+
+  var _React$useRef = React.useRef(controlled !== undefined),
+      isControlled = _React$useRef.current;
+
+  var _React$useState = React.useState(defaultProp),
+      valueState = _React$useState[0],
+      setValue = _React$useState[1];
+
+  var value = isControlled ? controlled : valueState;
+
+  var setValueIfUncontrolled = React.useCallback(function (newValue) {
+    if (!isControlled) {
+      setValue(newValue);
+    }
+  }, []);
+  return [value, setValueIfUncontrolled];
+}
+});
+
+var FormControlContext_1 = createCommonjsModule(function (module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useFormControl = useFormControl;
+exports.default = void 0;
+
+var React = interopRequireWildcard(react);
+
+/**
+ * @ignore - internal component.
+ */
+var FormControlContext = React.createContext();
+
+function useFormControl() {
+  return React.useContext(FormControlContext);
+}
+
+var _default = FormControlContext;
+exports.default = _default;
+});
+
+var useFormControl_1 = createCommonjsModule(function (module, exports) {
+
+
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useFormControl;
+
+var React = interopRequireWildcard(react);
+
+var _FormControlContext = interopRequireDefault(FormControlContext_1);
+
+function useFormControl() {
+  return React.useContext(_FormControlContext.default);
+}
+});
+
+var SwitchBase_1 = createCommonjsModule(function (module, exports) {
+
+
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = interopRequireDefault(_extends_1);
+
+var _slicedToArray2 = interopRequireDefault(slicedToArray);
+
+var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
+
+var React = interopRequireWildcard(react);
+
+interopRequireDefault(propTypes);
+
+var _clsx = interopRequireDefault(require$$4);
+
+
+
+var _useControlled3 = interopRequireDefault(useControlled_1);
+
+var _useFormControl = interopRequireDefault(useFormControl_1);
+
+var _withStyles = interopRequireDefault(withStyles_1);
+
+var _IconButton = interopRequireDefault(require$$9);
+
+var styles = {
   root: {
     padding: 9
   },
@@ -39,7 +241,8 @@ var styles$1 = {
  * @ignore - internal component.
  */
 
-var SwitchBase = /*#__PURE__*/react.forwardRef(function SwitchBase(props, ref) {
+exports.styles = styles;
+var SwitchBase = /*#__PURE__*/React.forwardRef(function SwitchBase(props, ref) {
   var autoFocus = props.autoFocus,
       checkedProp = props.checked,
       checkedIcon = props.checkedIcon,
@@ -60,19 +263,19 @@ var SwitchBase = /*#__PURE__*/react.forwardRef(function SwitchBase(props, ref) {
       tabIndex = props.tabIndex,
       type = props.type,
       value = props.value,
-      other = _objectWithoutProperties(props, ["autoFocus", "checked", "checkedIcon", "classes", "className", "defaultChecked", "disabled", "icon", "id", "inputProps", "inputRef", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"]);
+      other = (0, _objectWithoutProperties2.default)(props, ["autoFocus", "checked", "checkedIcon", "classes", "className", "defaultChecked", "disabled", "icon", "id", "inputProps", "inputRef", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"]);
 
-  var _useControlled = useControlled({
+  var _useControlled = (0, _useControlled3.default)({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
     name: 'SwitchBase',
     state: 'checked'
   }),
-      _useControlled2 = _slicedToArray(_useControlled, 2),
+      _useControlled2 = (0, _slicedToArray2.default)(_useControlled, 2),
       checked = _useControlled2[0],
       setCheckedState = _useControlled2[1];
 
-  var muiFormControl = useFormControl();
+  var muiFormControl = (0, _useFormControl.default)();
 
   var handleFocus = function handleFocus(event) {
     if (onFocus) {
@@ -113,16 +316,16 @@ var SwitchBase = /*#__PURE__*/react.forwardRef(function SwitchBase(props, ref) {
   }
 
   var hasLabelFor = type === 'checkbox' || type === 'radio';
-  return /*#__PURE__*/react.createElement(IconButton, _extends({
+  return /*#__PURE__*/React.createElement(_IconButton.default, (0, _extends2.default)({
     component: "span",
-    className: clsx(classes.root, className, checked && classes.checked, disabled && classes.disabled),
+    className: (0, _clsx.default)(classes.root, className, checked && classes.checked, disabled && classes.disabled),
     disabled: disabled,
     tabIndex: null,
     role: undefined,
     onFocus: handleFocus,
     onBlur: handleBlur,
     ref: ref
-  }, other), /*#__PURE__*/react.createElement("input", _extends({
+  }, other), /*#__PURE__*/React.createElement("input", (0, _extends2.default)({
     autoFocus: autoFocus,
     checked: checkedProp,
     defaultChecked: defaultChecked,
@@ -139,10 +342,46 @@ var SwitchBase = /*#__PURE__*/react.forwardRef(function SwitchBase(props, ref) {
     value: value
   }, inputProps)), checked ? checkedIcon : icon);
 }); // NB: If changed, please update Checkbox, Switch and Radio
-var SwitchBase$1 = withStyles(styles$1, {
+
+var _default = (0, _withStyles.default)(styles, {
   name: 'PrivateSwitchBase'
 })(SwitchBase);
 
+exports.default = _default;
+});
+
+var Switch_1 = createCommonjsModule(function (module, exports) {
+
+
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = interopRequireDefault(_extends_1);
+
+var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
+
+var React = interopRequireWildcard(react);
+
+interopRequireDefault(propTypes);
+
+var _clsx = interopRequireDefault(require$$4);
+
+
+
+var _withStyles = interopRequireDefault(withStyles_1);
+
+
+
+var _capitalize = interopRequireDefault(capitalize_1);
+
+var _SwitchBase = interopRequireDefault(SwitchBase_1);
+
+// @inheritedComponent IconButton
 var styles = function styles(theme) {
   return {
     /* Styles applied to the root element. */
@@ -204,7 +443,7 @@ var styles = function styles(theme) {
       '&$checked': {
         color: theme.palette.primary.main,
         '&:hover': {
-          backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+          backgroundColor: (0, colorManipulator.fade)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent'
           }
@@ -226,7 +465,7 @@ var styles = function styles(theme) {
       '&$checked': {
         color: theme.palette.secondary.main,
         '&:hover': {
-          backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+          backgroundColor: (0, colorManipulator.fade)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent'
           }
@@ -295,7 +534,9 @@ var styles = function styles(theme) {
     }
   };
 };
-var Switch = /*#__PURE__*/react.forwardRef(function Switch(props, ref) {
+
+exports.styles = styles;
+var Switch = /*#__PURE__*/React.forwardRef(function Switch(props, ref) {
   var classes = props.classes,
       className = props.className,
       _props$color = props.color,
@@ -304,34 +545,56 @@ var Switch = /*#__PURE__*/react.forwardRef(function Switch(props, ref) {
       edge = _props$edge === void 0 ? false : _props$edge,
       _props$size = props.size,
       size = _props$size === void 0 ? 'medium' : _props$size,
-      other = _objectWithoutProperties(props, ["classes", "className", "color", "edge", "size"]);
-
-  var icon = /*#__PURE__*/react.createElement("span", {
+      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "color", "edge", "size"]);
+  var icon = /*#__PURE__*/React.createElement("span", {
     className: classes.thumb
   });
-  return /*#__PURE__*/react.createElement("span", {
-    className: clsx(classes.root, className, {
+  return /*#__PURE__*/React.createElement("span", {
+    className: (0, _clsx.default)(classes.root, className, {
       'start': classes.edgeStart,
       'end': classes.edgeEnd
-    }[edge], size === "small" && classes["size".concat(capitalize(size))])
-  }, /*#__PURE__*/react.createElement(SwitchBase$1, _extends({
+    }[edge], size === "small" && classes["size".concat((0, _capitalize.default)(size))])
+  }, /*#__PURE__*/React.createElement(_SwitchBase.default, (0, _extends2.default)({
     type: "checkbox",
     icon: icon,
     checkedIcon: icon,
     classes: {
-      root: clsx(classes.switchBase, classes["color".concat(capitalize(color))]),
+      root: (0, _clsx.default)(classes.switchBase, classes["color".concat((0, _capitalize.default)(color))]),
       input: classes.input,
       checked: classes.checked,
       disabled: classes.disabled
     },
     ref: ref
-  }, other)), /*#__PURE__*/react.createElement("span", {
+  }, other)), /*#__PURE__*/React.createElement("span", {
     className: classes.track
   }));
 });
-var __pika_web_default_export_for_treeshaking__ = withStyles(styles, {
+
+var _default = (0, _withStyles.default)(styles, {
   name: 'MuiSwitch'
 })(Switch);
+
+exports.default = _default;
+});
+
+var Switch = createCommonjsModule(function (module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function get() {
+    return _Switch.default;
+  }
+});
+
+var _Switch = interopRequireDefault(Switch_1);
+});
+
+var __pika_web_default_export_for_treeshaking__ = /*@__PURE__*/getDefaultExportFromCjs(Switch);
 
 export default __pika_web_default_export_for_treeshaking__;
 //# sourceMappingURL=Switch.js.map

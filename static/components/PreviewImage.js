@@ -74,4 +74,3 @@ PreviewImage.defaultProps = {
   style: {width: "50%", height: "80vh", float: "none"}
 };
 export default PreviewImage;
-//# sourceMappingURL=PreviewImage.js.map
