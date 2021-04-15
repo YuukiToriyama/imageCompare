@@ -1,5 +1,5 @@
 import { c as createCommonjsModule } from './_commonjsHelpers-8c19dec8.js';
-import { b as esm } from './defaultTheme-93e4042c.js';
+import { b as esm } from './defaultTheme-543e4810.js';
 
 var capitalize_1 = createCommonjsModule(function (module, exports) {
 
@@ -16,7 +16,7 @@ exports.default = capitalize;
 // We only handle the first word.
 function capitalize(string) {
   if (typeof string !== 'string') {
-    throw new Error((0, esm.formatMuiErrorMessage)(7));
+    throw new Error( (0, esm.formatMuiErrorMessage)(7));
   }
 
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -24,4 +24,4 @@ function capitalize(string) {
 });
 
 export { capitalize_1 as c };
-//# sourceMappingURL=capitalize-7cae4eed.js.map
+//# sourceMappingURL=capitalize-7ba99b5f.js.map

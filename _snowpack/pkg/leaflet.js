@@ -7,7 +7,7 @@ var leafletSrc = createCommonjsModule(function (module, exports) {
  */
 
 (function (global, factory) {
-  factory(exports) ;
+   factory(exports) ;
 }(commonjsGlobal, (function (exports) {
   var version = "1.7.1";
 

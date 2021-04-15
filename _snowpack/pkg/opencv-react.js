@@ -2,8 +2,8 @@ import { r as react } from './common/index-04edb6a1.js';
 import './common/_commonjsHelpers-8c19dec8.js';
 
 var OpenCvContext = react.createContext();
-OpenCvContext.Consumer;
-    var Provider = OpenCvContext.Provider;
+var OpenCvConsumer = OpenCvContext.Consumer,
+    Provider = OpenCvContext.Provider;
 var scriptId = 'opencv-react';
 var moduleConfig = {
   wasmBinaryFile: 'opencv_js.wasm',

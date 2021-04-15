@@ -1,17 +1,17 @@
 import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../common/_commonjsHelpers-8c19dec8.js';
 import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
 import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-93557af1.js';
-import { _ as _extends_1, o as objectWithoutProperties } from '../../common/defaultTheme-93e4042c.js';
+import { _ as _extends_1, o as objectWithoutProperties } from '../../common/defaultTheme-543e4810.js';
 import { r as react } from '../../common/index-04edb6a1.js';
 import { p as propTypes } from '../../common/index-ce016b4a.js';
-import { c as _objectWithoutProperties, _ as _extends, r as require$$4 } from '../../common/withStyles-e1b0dff9.js';
-import { w as withStyles } from '../../common/withStyles-ff69e026.js';
-import { c as capitalize } from '../../common/capitalize-81361070.js';
+import { c as _objectWithoutProperties, _ as _extends, r as require$$4 } from '../../common/withStyles-8d7ad317.js';
+import { w as withStyles } from '../../common/withStyles-0319c339.js';
+import { c as capitalize } from '../../common/capitalize-49698f90.js';
 import { i as isMuiElement } from '../../common/isMuiElement-8cbbe173.js';
-import { w as withStyles_1 } from '../../common/withStyles-c44aba68.js';
-import { c as capitalize_1 } from '../../common/capitalize-7cae4eed.js';
-import { r as require$$6 } from '../../common/Typography-fffa1670.js';
-import '../../common/styled-942048ba.js';
+import { w as withStyles_1 } from '../../common/withStyles-786b5046.js';
+import { c as capitalize_1 } from '../../common/capitalize-7ba99b5f.js';
+import { r as require$$6 } from '../../common/Typography-cb44222b.js';
+import '../../common/styled-b9edf3bf.js';
 import '../../common/orange-16905d37.js';
 
 /**
@@ -110,7 +110,7 @@ var styles = {
  * ⚠️Only one input can be used within a FormControl.
  */
 
-var FormControl$1 = /*#__PURE__*/react.forwardRef(function FormControl(props, ref) {
+var FormControl = /*#__PURE__*/react.forwardRef(function FormControl(props, ref) {
   var children = props.children,
       classes = props.classes,
       className = props.className,
@@ -230,13 +230,13 @@ var FormControl$1 = /*#__PURE__*/react.forwardRef(function FormControl(props, re
     ref: ref
   }, other), children));
 });
-var FormControl$2 = withStyles(styles, {
+var FormControl$1 = withStyles(styles, {
   name: 'MuiFormControl'
-})(FormControl$1);
+})(FormControl);
 
-var FormControl = /*#__PURE__*/Object.freeze({
+var FormControl$2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  'default': FormControl$2,
+  'default': FormControl$1,
   useFormControl: useFormControl
 });
 
@@ -257,7 +257,7 @@ var _objectWithoutProperties2 = interopRequireDefault(objectWithoutProperties);
 
 var React = interopRequireWildcard(react);
 
-interopRequireDefault(propTypes);
+var _propTypes = interopRequireDefault(propTypes);
 
 var _clsx = interopRequireDefault(require$$4);
 
@@ -328,20 +328,20 @@ var styles = function styles(theme) {
 
 exports.styles = styles;
 var FormControlLabel = /*#__PURE__*/React.forwardRef(function FormControlLabel(props, ref) {
-  props.checked;
-      var classes = props.classes,
+  var checked = props.checked,
+      classes = props.classes,
       className = props.className,
       control = props.control,
-      disabledProp = props.disabled;
-      props.inputRef;
-      var label = props.label,
+      disabledProp = props.disabled,
+      inputRef = props.inputRef,
+      label = props.label,
       _props$labelPlacement = props.labelPlacement,
-      labelPlacement = _props$labelPlacement === void 0 ? 'end' : _props$labelPlacement;
-      props.name;
-      props.onChange;
-      props.value;
-      var other = (0, _objectWithoutProperties2.default)(props, ["checked", "classes", "className", "control", "disabled", "inputRef", "label", "labelPlacement", "name", "onChange", "value"]);
-  var muiFormControl = (0, FormControl.useFormControl)();
+      labelPlacement = _props$labelPlacement === void 0 ? 'end' : _props$labelPlacement,
+      name = props.name,
+      onChange = props.onChange,
+      value = props.value,
+      other = (0, _objectWithoutProperties2.default)(props, ["checked", "classes", "className", "control", "disabled", "inputRef", "label", "labelPlacement", "name", "onChange", "value"]);
+  var muiFormControl = (0, FormControl$2.useFormControl)();
   var disabled = disabledProp;
 
   if (typeof disabled === 'undefined' && typeof control.props.disabled !== 'undefined') {

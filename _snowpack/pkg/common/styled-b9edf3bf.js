@@ -1,5 +1,5 @@
 import { c as createCommonjsModule } from './_commonjsHelpers-8c19dec8.js';
-import { i as handleBreakpoints, h as _defineProperty, m as merge, _ as _extends, f as _toConsumableArray, c as _objectWithoutProperties, j as makeStyles, r as require$$4, k as hoistNonReactStatics_cjs } from './withStyles-e1b0dff9.js';
+import { i as handleBreakpoints, h as _defineProperty, m as merge, _ as _extends, f as _toConsumableArray, c as _objectWithoutProperties, j as makeStyles, r as require$$4, k as hoistNonReactStatics_cjs } from './withStyles-8d7ad317.js';
 import './index-ce016b4a.js';
 import { r as react } from './index-04edb6a1.js';
 
@@ -105,7 +105,7 @@ function style(options) {
     return handleBreakpoints(props, propValue, styleFromPropValue);
   };
 
-  fn.propTypes = {};
+  fn.propTypes =  {};
   fn.filterProps = [prop];
   return fn;
 }
@@ -142,7 +142,7 @@ function compose() {
   // };
 
 
-  fn.propTypes = {};
+  fn.propTypes =  {};
   fn.filterProps = styles.reduce(function (acc, style) {
     return acc.concat(style.filterProps);
   }, []);
@@ -192,7 +192,7 @@ var borderRadius = style({
 });
 var borders = compose(border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius);
 
-function omit$1(input, fields) {
+function omit(input, fields) {
   var output = {};
   Object.keys(input).forEach(function (prop) {
     if (fields.indexOf(prop) === -1) {
@@ -209,13 +209,13 @@ function css(styleFunction) {
     if (props.css) {
       return _extends({}, merge(output, styleFunction(_extends({
         theme: props.theme
-      }, props.css))), omit$1(props.css, [styleFunction.filterProps]));
+      }, props.css))), omit(props.css, [styleFunction.filterProps]));
     }
 
     return output;
   };
 
-  newStyleFunction.propTypes = {};
+  newStyleFunction.propTypes =  {};
   newStyleFunction.filterProps = ['css'].concat(_toConsumableArray(styleFunction.filterProps));
   return newStyleFunction;
 }
@@ -440,7 +440,7 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-function omit(input, fields) {
+function omit$1(input, fields) {
   var output = {};
   Object.keys(input).forEach(function (prop) {
     if (fields.indexOf(prop) === -1) {
@@ -505,7 +505,7 @@ function styled(Component) {
       var spread = other;
 
       if (filterProps) {
-        spread = omit(spread, filterProps);
+        spread = omit$1(spread, filterProps);
       }
 
       if (clone) {
@@ -535,4 +535,4 @@ function styled(Component) {
 }
 
 export { bottom as $, alignContent as A, order as B, flex as C, flexGrow as D, flexShrink as E, alignSelf as F, justifyItems as G, justifySelf as H, gridGap as I, gridColumnGap as J, gridRowGap as K, gridColumn as L, gridRow as M, gridAutoFlow as N, gridAutoColumns as O, gridAutoRows as P, gridTemplateColumns as Q, gridTemplateRows as R, gridTemplateAreas as S, gridArea as T, color as U, bgcolor as V, position as W, zIndex as X, top as Y, right as Z, _classCallCheck as _, compose as a, left as a0, width as a1, maxWidth as a2, minWidth as a3, height as a4, maxHeight as a5, minHeight as a6, sizeWidth as a7, sizeHeight as a8, boxSizing as a9, fontFamily as aa, fontSize as ab, fontStyle as ac, fontWeight as ad, letterSpacing as ae, lineHeight as af, textAlign as ag, borders as b, css as c, display as d, palette as e, flexbox as f, grid as g, boxShadow as h, sizing as i, style as j, border as k, borderTop as l, borderRight as m, borderBottom as n, borderLeft as o, positions as p, borderColor as q, reactIs as r, styled as s, typography as t, borderRadius as u, flexBasis as v, flexDirection as w, flexWrap as x, justifyContent as y, alignItems as z };
-//# sourceMappingURL=styled-942048ba.js.map
+//# sourceMappingURL=styled-b9edf3bf.js.map

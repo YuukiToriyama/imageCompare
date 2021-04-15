@@ -20,24 +20,24 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 
-function _typeof$1(obj) {
+function _typeof(obj) {
   "@babel/helpers - typeof";
 
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof$1 = function _typeof(obj) {
+    _typeof = function _typeof(obj) {
       return typeof obj;
     };
   } else {
-    _typeof$1 = function _typeof(obj) {
+    _typeof = function _typeof(obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return _typeof$1(obj);
+  return _typeof(obj);
 }
 
 function isPlainObject(item) {
-  return item && _typeof$1(item) === 'object' && item.constructor === Object;
+  return item && _typeof(item) === 'object' && item.constructor === Object;
 }
 function deepmerge(target, source) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
@@ -208,7 +208,7 @@ function handleBreakpoints(props, propValue, styleFromPropValue) {
     }, {});
   }
 
-  if (_typeof$1(propValue) === 'object') {
+  if (_typeof(propValue) === 'object') {
     var _themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
 
     return Object.keys(propValue).reduce(function (acc, breakpoint) {
@@ -238,7 +238,7 @@ function breakpoints(styleFunction) {
     return merge(base, extended);
   };
 
-  newStyleFunction.propTypes = {};
+  newStyleFunction.propTypes =  {};
   newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl'].concat(_toConsumableArray(styleFunction.filterProps));
   return newStyleFunction;
 }
@@ -282,7 +282,7 @@ function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
 
-function memoize$1(fn) {
+function memoize(fn) {
   var cache = {};
   return function (arg) {
     if (cache[arg] === undefined) {
@@ -314,7 +314,7 @@ var aliases = {
 // From 300,000 ops/sec
 // To 350,000 ops/sec
 
-var getCssProperties = memoize$1(function (prop) {
+var getCssProperties = memoize(function (prop) {
   // It's not a shorthand notation.
   if (prop.length > 2) {
     if (aliases[prop]) {
@@ -407,7 +407,7 @@ function spacing(props) {
   }).reduce(merge, {});
 }
 
-spacing.propTypes = {};
+spacing.propTypes =  {};
 spacing.filterProps = spacingKeys;
 
 var hasSymbol = typeof Symbol === 'function' && Symbol.for;
@@ -495,9 +495,9 @@ function getThemeProps(params) {
   return props;
 }
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof$1 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === 'object' && document.nodeType === 9;
+var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof$1(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof$1(document)) === 'object' && document.nodeType === 9;
 
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
@@ -1046,11 +1046,11 @@ function () {
   return KeyframesRule;
 }();
 var keyRegExp$1 = /@keyframes\s+/;
-var refRegExp$1 = /\$([\w-]+)/g;
+var refRegExp = /\$([\w-]+)/g;
 
 var findReferencedKeyframe = function findReferencedKeyframe(val, keyframes) {
   if (typeof val === 'string') {
-    return val.replace(refRegExp$1, function (match, name) {
+    return val.replace(refRegExp, function (match, name) {
       if (name in keyframes) {
         return keyframes[name];
       }
@@ -1278,7 +1278,7 @@ var pluginSimpleRule = {
   }
 };
 
-var plugins$1 = [pluginStyleRule, pluginConditionalRule, plugin, pluginKeyframeRule, pluginFontFaceRule, pluginViewportRule, pluginSimpleRule];
+var plugins = [pluginStyleRule, pluginConditionalRule, plugin, pluginKeyframeRule, pluginFontFaceRule, pluginViewportRule, pluginSimpleRule];
 
 var defaultUpdateOptions = {
   process: true
@@ -2030,7 +2030,7 @@ var createGenerateId = function createGenerateId(options) {
 /**
  * Cache the value from the first time a function is called.
  */
-var memoize = function memoize(fn) {
+var memoize$1 = function memoize(fn) {
   var value;
   return function () {
     if (!value) value = fn();
@@ -2115,7 +2115,7 @@ var setSelector = function setSelector(cssRule, selectorText) {
  */
 
 
-var getHead = memoize(function () {
+var getHead = memoize$1(function () {
   return document.querySelector('head');
 });
 /**
@@ -2242,7 +2242,7 @@ function insertStyle(style, options) {
  */
 
 
-var getNonce = memoize(function () {
+var getNonce = memoize$1(function () {
   var node = document.querySelector('meta[property="csp-nonce"]');
   return node ? node.getAttribute('content') : null;
 });
@@ -2502,8 +2502,8 @@ function () {
       minify: false
     });
 
-    for (var i = 0; i < plugins$1.length; i++) {
-      this.plugins.use(plugins$1[i], {
+    for (var i = 0; i < plugins.length; i++) {
+      this.plugins.use(plugins[i], {
         queue: 'internal'
       });
     }
@@ -2691,7 +2691,7 @@ var create = function create(options) {
  * A global Jss instance.
  */
 
-create();
+var jss = create();
 
 var now = Date.now();
 var fnValuesNs = "fnValues" + now;
@@ -2840,10 +2840,10 @@ function () {
   return GlobalPrefixedRule;
 }();
 
-var separatorRegExp$1 = /\s*,\s*/g;
+var separatorRegExp = /\s*,\s*/g;
 
 function addScope(selector, scope) {
-  var parts = selector.split(separatorRegExp$1);
+  var parts = selector.split(separatorRegExp);
   var scoped = '';
 
   for (var i = 0; i < parts.length; i++) {
@@ -2929,9 +2929,9 @@ function jssGlobal() {
   };
 }
 
-var separatorRegExp = /\s*,\s*/g;
+var separatorRegExp$1 = /\s*,\s*/g;
 var parentRegExp = /&/g;
-var refRegExp = /\$([\w-]+)/g;
+var refRegExp$1 = /\$([\w-]+)/g;
 /**
  * Convert nested rules to separate, remove them from original styles.
  *
@@ -2954,8 +2954,8 @@ function jssNested() {
   }
 
   function replaceParentRefs(nestedProp, parentProp) {
-    var parentSelectors = parentProp.split(separatorRegExp);
-    var nestedSelectors = nestedProp.split(separatorRegExp);
+    var parentSelectors = parentProp.split(separatorRegExp$1);
+    var nestedSelectors = nestedProp.split(separatorRegExp$1);
     var result = '';
 
     for (var i = 0; i < parentSelectors.length; i++) {
@@ -3010,7 +3010,7 @@ function jssNested() {
 
         if (!replaceRef) replaceRef = getReplaceRef(container, sheet); // Replace all $refs.
 
-        selector = selector.replace(refRegExp, replaceRef);
+        selector = selector.replace(refRegExp$1, replaceRef);
         container.addRule(selector, style[prop], _extends({}, options, {
           selector: selector
         }));
@@ -3039,19 +3039,19 @@ function jssNested() {
 /* eslint-disable no-var, prefer-template */
 var uppercasePattern = /[A-Z]/g;
 var msPattern = /^ms-/;
-var cache$2 = {};
+var cache = {};
 
 function toHyphenLower(match) {
   return '-' + match.toLowerCase()
 }
 
 function hyphenateStyleName(name) {
-  if (cache$2.hasOwnProperty(name)) {
-    return cache$2[name]
+  if (cache.hasOwnProperty(name)) {
+    return cache[name]
   }
 
   var hName = name.replace(uppercasePattern, toHyphenLower);
-  return (cache$2[name] = msPattern.test(hName) ? '-' + hName : hName)
+  return (cache[name] = msPattern.test(hName) ? '-' + hName : hName)
 }
 
 /**
@@ -3759,13 +3759,13 @@ var flex2009 = {
 // 'flex2009' going after 'flex2012'.
 // 'prefixed' going after 'unprefixed'
 
-var plugins = [appearence, colorAdjust, mask, textOrientation, transform, transition, writingMode, userSelect, breakPropsOld, inlineLogicalOld, unprefixed, prefixed, scrollSnap, overscrollBehavior, flex2012, flex2009];
-var propertyDetectors = plugins.filter(function (p) {
+var plugins$1 = [appearence, colorAdjust, mask, textOrientation, transform, transition, writingMode, userSelect, breakPropsOld, inlineLogicalOld, unprefixed, prefixed, scrollSnap, overscrollBehavior, flex2012, flex2009];
+var propertyDetectors = plugins$1.filter(function (p) {
   return p.supportedProperty;
 }).map(function (p) {
   return p.supportedProperty;
 });
-var noPrefill = plugins.filter(function (p) {
+var noPrefill = plugins$1.filter(function (p) {
   return p.noPrefill;
 }).reduce(function (a, p) {
   a.push.apply(a, _toConsumableArray(p.noPrefill));
@@ -3773,7 +3773,7 @@ var noPrefill = plugins.filter(function (p) {
 }, []);
 
 var el;
-var cache = {};
+var cache$1 = {};
 
 if (isBrowser) {
   el = document.createElement('p'); // We test every property on vendor prefix requirement.
@@ -3788,13 +3788,13 @@ if (isBrowser) {
 
   for (var key$1 in computed) {
     // eslint-disable-next-line no-restricted-globals
-    if (!isNaN(key$1)) cache[computed[key$1]] = computed[key$1];
+    if (!isNaN(key$1)) cache$1[computed[key$1]] = computed[key$1];
   } // Properties that cannot be correctly detected using the
   // cache prefill method.
 
 
   noPrefill.forEach(function (x) {
-    return delete cache[x];
+    return delete cache$1[x];
   });
 }
 /**
@@ -3816,8 +3816,8 @@ function supportedProperty(prop, options) {
   // For server-side rendering.
   if (!el) return prop; // Remove cache for benchmark tests or return property from the cache.
 
-  if (cache[prop] != null) {
-    return cache[prop];
+  if ( cache$1[prop] != null) {
+    return cache$1[prop];
   } // Check if 'transition' or 'transform' natively supported in browser.
 
 
@@ -3827,9 +3827,9 @@ function supportedProperty(prop, options) {
 
 
   for (var i = 0; i < propertyDetectors.length; i++) {
-    cache[prop] = propertyDetectors[i](prop, el.style, options); // Break loop, if value found.
+    cache$1[prop] = propertyDetectors[i](prop, el.style, options); // Break loop, if value found.
 
-    if (cache[prop]) break;
+    if (cache$1[prop]) break;
   } // Reset styles for current property.
   // Firefox can even throw an error for invalid properties, e.g., "0".
 
@@ -3840,10 +3840,10 @@ function supportedProperty(prop, options) {
     return false;
   }
 
-  return cache[prop];
+  return cache$1[prop];
 }
 
-var cache$1 = {};
+var cache$1$1 = {};
 var transitionProperties = {
   transition: 1,
   'transition-property': 1,
@@ -3895,8 +3895,8 @@ function supportedValue(property, value) {
 
   var cacheKey = property + prefixedValue; // Remove cache for benchmark tests or return value from cache.
 
-  if (cache$1[cacheKey] != null) {
-    return cache$1[cacheKey];
+  if ( cache$1$1[cacheKey] != null) {
+    return cache$1$1[cacheKey];
   } // IE can even throw an error in some cases, for e.g. style.content = 'bar'.
 
 
@@ -3905,7 +3905,7 @@ function supportedValue(property, value) {
     el$1.style[property] = prefixedValue;
   } catch (err) {
     // Return false if value not supported.
-    cache$1[cacheKey] = false;
+    cache$1$1[cacheKey] = false;
     return false;
   } // If 'transition' or 'transition-property' property.
 
@@ -3921,7 +3921,7 @@ function supportedValue(property, value) {
     el$1.style[property] = prefixedValue; // Return false if value not supported.
 
     if (el$1.style[property] === '') {
-      cache$1[cacheKey] = false;
+      cache$1$1[cacheKey] = false;
       return false;
     }
   } // Reset styles for current property.
@@ -3929,8 +3929,8 @@ function supportedValue(property, value) {
 
   el$1.style[property] = ''; // Write current value to cache.
 
-  cache$1[cacheKey] = prefixedValue;
-  return cache$1[cacheKey];
+  cache$1$1[cacheKey] = prefixedValue;
+  return cache$1$1[cacheKey];
 }
 
 /**
@@ -4027,8 +4027,8 @@ function jssPreset() {
 function mergeClasses() {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var baseClasses = options.baseClasses,
-      newClasses = options.newClasses;
-      options.Component;
+      newClasses = options.newClasses,
+      Component = options.Component;
 
   if (!newClasses) {
     return baseClasses;
@@ -4075,7 +4075,7 @@ function useTheme() {
   return theme;
 }
 
-var jss = create(jssPreset()); // Use a singleton or the provided one by the context.
+var jss$1 = create(jssPreset()); // Use a singleton or the provided one by the context.
 //
 // The counter-based approach doesn't tolerate any mistake.
 // It's much safer to use the same counter everywhere.
@@ -4086,7 +4086,7 @@ var sheetsManager = new Map();
 var defaultOptions = {
   disableGeneration: false,
   generateClassName: generateClassName,
-  jss: jss,
+  jss: jss$1,
   sheetsCache: null,
   sheetsManager: sheetsManager,
   sheetsRegistry: null
@@ -4637,8 +4637,8 @@ var withStyles = function withStyles(stylesOrCreator) {
       classNamePrefix: classNamePrefix
     }, stylesOptions));
     var WithStyles = /*#__PURE__*/react.forwardRef(function WithStyles(props, ref) {
-      props.classes;
-          var innerRef = props.innerRef,
+      var classesProp = props.classes,
+          innerRef = props.innerRef,
           other = _objectWithoutProperties(props, ["classes", "innerRef"]); // The wrapper receives only user supplied props, which could be a subset of
       // the actual props Component might receive due to merging with defaultProps.
       // So copying it here would give us the same result in the wrapper as well.
@@ -4680,5 +4680,5 @@ var withStyles = function withStyles(stylesOrCreator) {
   };
 };
 
-export { mergeClasses as A, sheetsManager as B, StylesContext as C, SheetsRegistry as S, ThemeContext as T, _extends as _, _inheritsLoose as a, _objectWithoutPropertiesLoose as b, _objectWithoutProperties as c, _slicedToArray as d, _createClass as e, _toConsumableArray as f, getThemeProps as g, _defineProperty as h, handleBreakpoints as i, makeStyles as j, hoistNonReactStatics_cjs as k, formatMuiErrorMessage as l, merge as m, deepmerge as n, createUnarySpacing as o, _assertThisInitialized as p, _typeof$1 as q, require$$4 as r, spacing as s, breakpoints as t, useTheme as u, createGenerateClassName as v, withStyles as w, StylesProvider as x, nested as y, jssPreset as z };
-//# sourceMappingURL=withStyles-e1b0dff9.js.map
+export { mergeClasses as A, sheetsManager as B, StylesContext as C, SheetsRegistry as S, ThemeContext as T, _extends as _, _inheritsLoose as a, _objectWithoutPropertiesLoose as b, _objectWithoutProperties as c, _slicedToArray as d, _createClass as e, _toConsumableArray as f, getThemeProps as g, _defineProperty as h, handleBreakpoints as i, makeStyles as j, hoistNonReactStatics_cjs as k, formatMuiErrorMessage as l, merge as m, deepmerge as n, createUnarySpacing as o, _assertThisInitialized as p, _typeof as q, require$$4 as r, spacing as s, breakpoints as t, useTheme as u, createGenerateClassName as v, withStyles as w, StylesProvider as x, nested as y, jssPreset as z };
+//# sourceMappingURL=withStyles-8d7ad317.js.map

@@ -1,12 +1,12 @@
 import { c as createCommonjsModule } from '../../common/_commonjsHelpers-8c19dec8.js';
 import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
-import { f as createMuiTheme_1, b as esm, a as esm$1, _ as _extends_1, d as defaultTheme_1, g as defineProperty, c as colorManipulator, t as transitions } from '../../common/defaultTheme-93e4042c.js';
-import { s as styled_1 } from '../../common/styled-1191441e.js';
+import { f as createMuiTheme_1, b as esm, a as esm$1, _ as _extends_1, d as defaultTheme_1, g as defineProperty, c as colorManipulator, t as transitions } from '../../common/defaultTheme-543e4810.js';
+import { s as styled_1 } from '../../common/styled-5635717f.js';
 import { r as react } from '../../common/index-04edb6a1.js';
-import { w as withStyles_1 } from '../../common/withStyles-c44aba68.js';
-import '../../common/withStyles-e1b0dff9.js';
+import { w as withStyles_1 } from '../../common/withStyles-786b5046.js';
+import '../../common/withStyles-8d7ad317.js';
 import '../../common/index-ce016b4a.js';
-import '../../common/styled-942048ba.js';
+import '../../common/styled-b9edf3bf.js';
 import '../../common/orange-16905d37.js';
 
 var createMuiStrictModeTheme_1 = createCommonjsModule(function (module, exports) {
@@ -278,7 +278,7 @@ function responsiveFontSizes(themeInput) {
     var lineHeight = style.lineHeight;
 
     if (!(0, cssUtils.isUnitless)(lineHeight) && !disableAlign) {
-      throw new Error((0, esm.formatMuiErrorMessage)(6));
+      throw new Error( (0, esm.formatMuiErrorMessage)(6));
     }
 
     if (!(0, cssUtils.isUnitless)(lineHeight)) {
@@ -325,7 +325,7 @@ exports.default = useTheme;
 
 
 
-interopRequireDefault(react);
+var _react = interopRequireDefault(react);
 
 var _defaultTheme = interopRequireDefault(defaultTheme_1);
 
