@@ -6,8 +6,8 @@ import orange from "@material-ui/core/colors/orange";
 import { OpenCvProvider } from "opencv-react";
 
 // 自作モジュールの読み込み
-import MenuBar from "./components/MenuBar";
-import Workflow from "./components/Workflow";
+import MenuBar from "./components/block/MenuBar";
+import Workflow from "./components/modules/Workflow";
 
 const theme = createMuiTheme({
 	palette: {

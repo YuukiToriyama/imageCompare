@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 
 // 自作モジュールの読み込み
-import PreviewImage from './PreviewImage';
+import PreviewImage from '../block/PreviewImage';
 
 const warpImage = (srcA, srcB, cPointsA, cPointsB, n_points) => {
 	// srcA, srcB: 入力画像(cv.Mat)
@@ -113,14 +113,14 @@ class ImageTransform extends React.Component {
 					image={this.images[0]}
 					onPointsSet={this.setCorrespondingPoints}
 					n_marker={this.n_marker}
-					style={{width: "50%", float: "left"}}
+					style={{ width: "50%", float: "left" }}
 				/>
 				<PreviewImage
 					imageId={1}
 					image={this.images[1]}
 					onPointsSet={this.setCorrespondingPoints}
 					n_marker={this.n_marker}
-					style={{width: "50%"}}
+					style={{ width: "50%" }}
 				/>
 				<canvas ref={this.invisibleCanvasRef} style={{ display: 'none' }}></canvas>
 			</Box>

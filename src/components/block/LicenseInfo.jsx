@@ -9,7 +9,7 @@ import {
 	Divider
 } from "@material-ui/core";
 
-import licenses from "../licenses.json";
+import licenses from "../../licenses.json";
 
 const LicenseInfo = () => {
 	return (
