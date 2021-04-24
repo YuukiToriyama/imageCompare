@@ -42,7 +42,7 @@ const App = () => {
 	const [isOpencvLoaded, setIsOpencvLoaded] = React.useState(false);
 	const APP_INFO = {
 		"NAME": "imageCompare",
-		"VERSION": "0.9",
+		"VERSION": "0.9.2",
 		"COPYRIGHT": "(C)Copyright 2020-2021 YUUKIToriyama All Rights Reserved.",
 		"GITHUB": "https://github.com/YUUKIToriyama/imageCompare"
 	}
