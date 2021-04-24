@@ -11,6 +11,7 @@ const ButtonWithIcon = (props) => {
 			startIcon={props.icon}
 			component='span'
 			color={props.color}
+			onClick={props.onClick}
 		>
 			{props.title}
 		</Button>
@@ -23,6 +24,7 @@ ButtonWithIcon.propTypes = {
 	icon: PropTypes.element.isRequired,
 	color: PropTypes.string,
 	title: PropTypes.string.isRequired,
+	onClick: PropTypes.func
 };
 ButtonWithIcon.defaltProps = {
 	color: 'default',
