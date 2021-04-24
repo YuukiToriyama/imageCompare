@@ -1,5 +1,5 @@
-import React from "../../_snowpack/pkg/react.js";
-import withStyles from "../../_snowpack/pkg/@material-ui/core/styles/withStyles.js";
+import React from "../../../_snowpack/pkg/react.js";
+import withStyles from "../../../_snowpack/pkg/@material-ui/core/styles/withStyles.js";
 import {
   Box,
   Button,
@@ -8,8 +8,8 @@ import {
   StepLabel,
   Stepper,
   Typography
-} from "../../_snowpack/pkg/@material-ui/core.js";
-import CircularProgress from "../../_snowpack/pkg/@material-ui/core/CircularProgress.js";
+} from "../../../_snowpack/pkg/@material-ui/core.js";
+import CircularProgress from "../../../_snowpack/pkg/@material-ui/core/CircularProgress.js";
 import ImageLoader from "./ImageLoader.js";
 import ImageCompare from "./ImageCompare.js";
 import ImageTransform from "./ImageTransform.js";

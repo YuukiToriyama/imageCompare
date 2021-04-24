@@ -7,7 +7,7 @@
     "@material-ui/core/CssBaseline": "./@material-ui/core/CssBaseline.js",
     "@material-ui/core/FormControlLabel": "./@material-ui/core/FormControlLabel.js",
     "@material-ui/core/Switch": "./@material-ui/core/Switch.js",
-    "@material-ui/core/colors/orange": "./@material-ui/core/colors/orange.js",
+    "@material-ui/core/colors": "./@material-ui/core/colors.js",
     "@material-ui/core/styles": "./@material-ui/core/styles.js",
     "@material-ui/core/styles/withStyles": "./@material-ui/core/styles/withStyles.js",
     "@material-ui/icons": "./@material-ui/icons.js",

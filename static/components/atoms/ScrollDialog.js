@@ -1,5 +1,5 @@
-import React from "../../_snowpack/pkg/react.js";
-import PropTypes from "../../_snowpack/pkg/prop-types.js";
+import React from "../../../_snowpack/pkg/react.js";
+import PropTypes from "../../../_snowpack/pkg/prop-types.js";
 import {
   Button,
   Dialog,
@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle
-} from "../../_snowpack/pkg/@material-ui/core.js";
+} from "../../../_snowpack/pkg/@material-ui/core.js";
 class ScrollDialog extends React.Component {
   constructor(props) {
     super(props);

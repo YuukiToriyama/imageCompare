@@ -1,16 +1,16 @@
-import React from "../../_snowpack/pkg/react.js";
-import PropTypes from "../../_snowpack/pkg/prop-types.js";
-import withStyles from "../../_snowpack/pkg/@material-ui/core/styles/withStyles.js";
+import React from "../../../_snowpack/pkg/react.js";
+import PropTypes from "../../../_snowpack/pkg/prop-types.js";
+import withStyles from "../../../_snowpack/pkg/@material-ui/core/styles/withStyles.js";
 import {
   AppBar,
   Toolbar,
   Typography,
   IconButton,
   CircularProgress
-} from "../../_snowpack/pkg/@material-ui/core.js";
-import MenuIcon from "../../_snowpack/pkg/@material-ui/icons/Menu.js";
+} from "../../../_snowpack/pkg/@material-ui/core.js";
+import MenuIcon from "../../../_snowpack/pkg/@material-ui/icons/Menu.js";
 import MyDrawer from "./MyDrawer.js";
-import ScrollDialog from "./ScrollDialog.js";
+import ScrollDialog from "../atoms/ScrollDialog.js";
 import LicenseInfo from "./LicenseInfo.js";
 const useStyles = (theme) => ({
   root: {
@@ -62,7 +62,7 @@ class MenuBar extends React.Component {
       label: "Help",
       title: "About this app",
       contentText: this.props.message
-    }))), /* @__PURE__ */ React.createElement(MyDrawer, {
+    }), this.props.darkModeSwitcher)), /* @__PURE__ */ React.createElement(MyDrawer, {
       ref: this.drawerRef
     }));
   }
@@ -70,5 +70,6 @@ class MenuBar extends React.Component {
 export default withStyles(useStyles)(MenuBar);
 MenuBar.propTypes = {
   message: PropTypes.string,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  darkModeSwitcher: PropTypes.element
 };

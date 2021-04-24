@@ -1,67 +1,76 @@
 import React from "../_snowpack/pkg/react.js";
-import {createMuiTheme, ThemeProvider} from "../_snowpack/pkg/@material-ui/core/styles.js";
-import CssBaseline from "../_snowpack/pkg/@material-ui/core/CssBaseline.js";
-import orange from "../_snowpack/pkg/@material-ui/core/colors/orange.js";
 import {OpenCvProvider} from "../_snowpack/pkg/opencv-react.js";
-import MenuBar from "./components/MenuBar.js";
-import Workflow from "./components/Workflow.js";
-const theme = createMuiTheme({
-  palette: {
-    primary: orange
-  },
-  typography: {
-    fontFamily: ["Roboto", "Noto Sans"].join(","),
-    fontSize: 13,
-    h1: {
-      fontSize: "1.75rem"
+import {
+  createMuiTheme,
+  ThemeProvider
+} from "../_snowpack/pkg/@material-ui/core/styles.js";
+import CssBaseline from "../_snowpack/pkg/@material-ui/core/CssBaseline.js";
+import * as colors from "../_snowpack/pkg/@material-ui/core/colors.js";
+import MenuBar from "./components/block/MenuBar.js";
+import Workflow from "./components/modules/Workflow.js";
+import ButtonWithIcon from "./components/atoms/ButtonWithIcon.js";
+import {
+  Brightness4,
+  Brightness7
+} from "../_snowpack/pkg/@material-ui/icons.js";
+const useDarkMode = () => {
+  const [darkMode, setDarkMode] = React.useState(localStorage.getItem("darkMode") === "on" ? true : false);
+  const handleDarkModeOn = React.useCallback(() => {
+    localStorage.setItem("darkMode", "on");
+    setDarkMode(true);
+  }, []);
+  const handleDarkModeOff = React.useCallback(() => {
+    localStorage.setItem("darkMode", "off");
+    setDarkMode(false);
+  }, []);
+  return {
+    darkMode,
+    handleDarkModeOn,
+    handleDarkModeOff
+  };
+};
+const App = () => {
+  const [isOpencvLoaded, setIsOpencvLoaded] = React.useState(false);
+  const APP_INFO = {
+    NAME: "imageCompare",
+    VERSION: "0.9.2",
+    COPYRIGHT: "(C)Copyright 2020-2021 YUUKIToriyama All Rights Reserved.",
+    GITHUB: "https://github.com/YUUKIToriyama/imageCompare"
+  };
+  const OPENCV_URL = "https://docs.opencv.org/4.5.0/opencv.js";
+  const {darkMode, handleDarkModeOn, handleDarkModeOff} = useDarkMode();
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: darkMode ? colors.brown[500] : colors.deepOrange[500]
+      },
+      type: darkMode ? "dark" : "light"
     },
-    h2: {
-      fontSize: "1.5rem"
-    },
-    h3: {
-      fontSize: "1.25rem"
-    },
-    h4: {
-      fontSize: "1.125rem"
-    },
-    h5: {
-      fontSize: "1rem"
-    },
-    h6: {
-      fontSize: "1rem"
+    typography: {
+      fontFamily: ["Roboto", "Noto Sans"].join(",")
     }
-  }
-});
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpencvLoaded: false
-    };
-    this.APP_NAME = "imageCompare";
-    this.APP_INFO = [
-      "imageCompare 0.9",
-      "https://github.com/YUUKIToriyama/imageCompare",
-      "(C)Copyright 2020-2021 YUUKIToriyama All Rights Reserved."
-    ].join("\n");
-    this.OPEN_CV_URL = "https://docs.opencv.org/4.5.0/opencv.js";
-  }
-  render() {
-    return /* @__PURE__ */ React.createElement(ThemeProvider, {
-      theme
-    }, /* @__PURE__ */ React.createElement(CssBaseline, null), /* @__PURE__ */ React.createElement(OpenCvProvider, {
-      openCvPath: this.OPEN_CV_URL,
-      onLoad: () => {
-        this.setState({
-          isOpencvLoaded: true
-        });
-        console.log(cv.getBuildInformation());
-      }
-    }, /* @__PURE__ */ React.createElement(MenuBar, {
-      title: this.APP_NAME,
-      message: this.APP_INFO,
-      isOpencvLoaded: this.state.isOpencvLoaded
-    }), /* @__PURE__ */ React.createElement(Workflow, null)));
-  }
-}
+  });
+  return /* @__PURE__ */ React.createElement(ThemeProvider, {
+    theme
+  }, /* @__PURE__ */ React.createElement(CssBaseline, null), /* @__PURE__ */ React.createElement(OpenCvProvider, {
+    openCvPath: OPENCV_URL,
+    onLoad: () => {
+      setIsOpencvLoaded(() => true);
+      console.log(cv.getBuildInformation());
+    }
+  }, /* @__PURE__ */ React.createElement(MenuBar, {
+    title: APP_INFO.NAME,
+    message: APP_INFO.COPYRIGHT,
+    isOpencvLoaded,
+    darkModeSwitcher: darkMode ? /* @__PURE__ */ React.createElement(ButtonWithIcon, {
+      onClick: handleDarkModeOff,
+      icon: /* @__PURE__ */ React.createElement(Brightness7, null),
+      title: "Light mode"
+    }) : /* @__PURE__ */ React.createElement(ButtonWithIcon, {
+      onClick: handleDarkModeOn,
+      icon: /* @__PURE__ */ React.createElement(Brightness4, null),
+      title: "Dark mode"
+    })
+  }), /* @__PURE__ */ React.createElement(Workflow, null)));
+};
 export default App;

@@ -1,5 +1,5 @@
-import React from "../../_snowpack/pkg/react.js";
-import withStyles from "../../_snowpack/pkg/@material-ui/core/styles/withStyles.js";
+import React from "../../../_snowpack/pkg/react.js";
+import withStyles from "../../../_snowpack/pkg/@material-ui/core/styles/withStyles.js";
 import {
   Link,
   Drawer,
@@ -9,8 +9,8 @@ import {
   ListItemIcon,
   ListItemText,
   IconButton
-} from "../../_snowpack/pkg/@material-ui/core.js";
-import {ChevronLeft, Help, GitHub, Info} from "../../_snowpack/pkg/@material-ui/icons.js";
+} from "../../../_snowpack/pkg/@material-ui/core.js";
+import {ChevronLeft, Help, GitHub, Info} from "../../../_snowpack/pkg/@material-ui/icons.js";
 const drawerWidth = 240;
 const useStyles = (theme) => ({
   drawer: {

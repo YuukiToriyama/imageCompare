@@ -1,8 +1,8 @@
-import React from "../../_snowpack/pkg/react.js";
-import PropTypes from "../../_snowpack/pkg/prop-types.js";
-import {Box, IconButton} from "../../_snowpack/pkg/@material-ui/core.js";
-import {PhotoCamera} from "../../_snowpack/pkg/@material-ui/icons.js";
-import FileInputComponent from "../../_snowpack/pkg/react-file-input-previews-base64.js";
+import React from "../../../_snowpack/pkg/react.js";
+import PropTypes from "../../../_snowpack/pkg/prop-types.js";
+import {Box, IconButton} from "../../../_snowpack/pkg/@material-ui/core.js";
+import {PhotoCamera} from "../../../_snowpack/pkg/@material-ui/icons.js";
+import FileInputComponent from "../../../_snowpack/pkg/react-file-input-previews-base64.js";
 class ImageLoader extends React.Component {
   fileInputCallback = (file) => {
     let imageObject = file;

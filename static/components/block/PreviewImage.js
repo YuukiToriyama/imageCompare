@@ -1,7 +1,7 @@
-import React from "../../_snowpack/pkg/react.js";
-import PropTypes from "../../_snowpack/pkg/prop-types.js";
-import "../../_snowpack/pkg/leaflet/dist/leaflet.css.proxy.js";
-import L from "../../_snowpack/pkg/leaflet.js";
+import React from "../../../_snowpack/pkg/react.js";
+import PropTypes from "../../../_snowpack/pkg/prop-types.js";
+import "../../../_snowpack/pkg/leaflet/dist/leaflet.css.proxy.js";
+import L from "../../../_snowpack/pkg/leaflet.js";
 class PreviewImage extends React.Component {
   constructor(props) {
     super(props);

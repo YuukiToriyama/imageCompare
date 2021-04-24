@@ -1,12 +1,12 @@
-import React from "../../_snowpack/pkg/react.js";
-import PropTypes from "../../_snowpack/pkg/prop-types.js";
-import Switch from "../../_snowpack/pkg/@material-ui/core/Switch.js";
-import FormControlLabel from "../../_snowpack/pkg/@material-ui/core/FormControlLabel.js";
-import "../../_snowpack/pkg/leaflet/dist/leaflet.css.proxy.js";
-import L from "../../_snowpack/pkg/leaflet.js";
-import "../../_snowpack/pkg/leaflet.control.opacity/dist/L.Control.Opacity.css.proxy.js";
-import "../../_snowpack/pkg/leaflet.control.opacity.js";
-import "../../_snowpack/pkg/leaflet.sync.js";
+import React from "../../../_snowpack/pkg/react.js";
+import PropTypes from "../../../_snowpack/pkg/prop-types.js";
+import Switch from "../../../_snowpack/pkg/@material-ui/core/Switch.js";
+import FormControlLabel from "../../../_snowpack/pkg/@material-ui/core/FormControlLabel.js";
+import "../../../_snowpack/pkg/leaflet/dist/leaflet.css.proxy.js";
+import L from "../../../_snowpack/pkg/leaflet.js";
+import "../../../_snowpack/pkg/leaflet.control.opacity/dist/L.Control.Opacity.css.proxy.js";
+import "../../../_snowpack/pkg/leaflet.control.opacity.js";
+import "../../../_snowpack/pkg/leaflet.sync.js";
 const imageObjectToImageLayer = (imageObject) => {
   let fileName = imageObject.name;
   let width = imageObject.width;

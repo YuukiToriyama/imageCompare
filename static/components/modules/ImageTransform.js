@@ -1,7 +1,7 @@
-import React from "../../_snowpack/pkg/react.js";
-import PropTypes from "../../_snowpack/pkg/prop-types.js";
-import Box from "../../_snowpack/pkg/@material-ui/core/Box.js";
-import PreviewImage from "./PreviewImage.js";
+import React from "../../../_snowpack/pkg/react.js";
+import PropTypes from "../../../_snowpack/pkg/prop-types.js";
+import Box from "../../../_snowpack/pkg/@material-ui/core/Box.js";
+import PreviewImage from "../block/PreviewImage.js";
 const warpImage = (srcA, srcB, cPointsA, cPointsB, n_points) => {
   const matA = cv.matFromArray(n_points, 3, cv.CV_32F, cPointsA);
   const matB = cv.matFromArray(n_points, 3, cv.CV_32F, cPointsB);

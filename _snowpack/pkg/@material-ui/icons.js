@@ -6,6 +6,14 @@ import '../common/index-ce016b4a.js';
 import '../common/withStyles-0319c339.js';
 import '../common/capitalize-49698f90.js';
 
+var Brightness4 = createSvgIcon( /*#__PURE__*/react.createElement("path", {
+  d: "M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
+}));
+
+var Brightness7 = createSvgIcon( /*#__PURE__*/react.createElement("path", {
+  d: "M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+}));
+
 var ChevronLeft = createSvgIcon( /*#__PURE__*/react.createElement("path", {
   d: "M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
 }));
@@ -30,5 +38,5 @@ var PhotoCamera = createSvgIcon( /*#__PURE__*/react.createElement(react.Fragment
   d: "M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"
 })));
 
-export { ChevronLeft, GitHub, Help, Info, PhotoCamera };
+export { Brightness4, Brightness7, ChevronLeft, GitHub, Help, Info, PhotoCamera };
 //# sourceMappingURL=icons.js.map
