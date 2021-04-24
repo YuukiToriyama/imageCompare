@@ -1,9 +1,12 @@
 /* App.jsx */
 import React from "react";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { OpenCvProvider } from "opencv-react";
+import {
+	createMuiTheme,
+	ThemeProvider
+} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import * as colors from "@material-ui/core/colors";
-import { OpenCvProvider } from "opencv-react";
 
 // 自作モジュールの読み込み
 import MenuBar from "./components/block/MenuBar";
@@ -49,7 +52,7 @@ const App = () => {
 	const theme = createMuiTheme({
 		palette: {
 			primary: {
-				main: colors.orange[500]
+				main: darkMode ? colors.brown[500] : colors.deepOrange[500]
 			},
 			type: darkMode ? "dark" : "light"
 		},
@@ -57,7 +60,6 @@ const App = () => {
 			fontFamily: ["Roboto", "Noto Sans"].join(",")
 		}
 	});
-
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -70,10 +72,10 @@ const App = () => {
 					title={APP_INFO.NAME}
 					message={APP_INFO.COPYRIGHT}
 					isOpencvLoaded={isOpencvLoaded}
+					darkModeSwitcher={
+						darkMode ? <ButtonWithIcon onClick={handleDarkModeOff} icon={<Brightness7 />} title="Light mode" /> : <ButtonWithIcon onClick={handleDarkModeOn} icon={<Brightness4 />} title="Dark mode" />
+					}
 				/>
-				{
-					darkMode ? <ButtonWithIcon onClick={handleDarkModeOff} icon={<Brightness7 />} title="Light mode" /> : <ButtonWithIcon onClick={handleDarkModeOn} icon={<Brightness4 />} title="Dark mode" />
-				}
 				<Workflow />
 			</OpenCvProvider>
 		</ThemeProvider>

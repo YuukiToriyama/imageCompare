@@ -85,6 +85,7 @@ class MenuBar extends React.Component {
 							title="About this app"
 							contentText={this.props.message}
 						/>
+						{this.props.darkModeSwitcher}
 					</Toolbar>
 				</AppBar>
 				<MyDrawer ref={this.drawerRef} />
@@ -98,4 +99,5 @@ export default withStyles(useStyles)(MenuBar);
 MenuBar.propTypes = {
 	message: PropTypes.string,
 	title: PropTypes.string.isRequired,
+	darkModeSwitcher: PropTypes.element,
 };
