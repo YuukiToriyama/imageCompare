@@ -11,21 +11,23 @@ import Workflow from "./components/modules/Workflow";
 
 // Dark mode / Light mode切り替え
 import ButtonWithIcon from "./components/atoms/ButtonWithIcon";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
+import {
+	Brightness4,
+	Brightness7
+} from "@material-ui/icons";
 
 const useDarkMode = () => {
 	const [darkMode, setDarkMode] = React.useState(
 		localStorage.getItem("darkMode") === "on" ? true : false
 	);
-	const handleDarkModeOn = () => {
+	const handleDarkModeOn = React.useCallback(() => {
 		localStorage.setItem("darkMode", "on");
 		setDarkMode(true);
-	};
-	const handleDarkModeOff = () => {
+	}, []);
+	const handleDarkModeOff = React.useCallback(() => {
 		localStorage.setItem("darkMode", "off");
 		setDarkMode(false);
-	};
+	}, []);
 	return {
 		darkMode,
 		handleDarkModeOn,
@@ -70,7 +72,7 @@ const App = () => {
 					isOpencvLoaded={isOpencvLoaded}
 				/>
 				{
-					darkMode ? <ButtonWithIcon onClick={handleDarkModeOff} icon={<Brightness7Icon />} title="Light mode" /> : <ButtonWithIcon onClick={handleDarkModeOn} icon={<Brightness4Icon />} title="Dark mode" />
+					darkMode ? <ButtonWithIcon onClick={handleDarkModeOff} icon={<Brightness7 />} title="Light mode" /> : <ButtonWithIcon onClick={handleDarkModeOn} icon={<Brightness4 />} title="Dark mode" />
 				}
 				<Workflow />
 			</OpenCvProvider>
