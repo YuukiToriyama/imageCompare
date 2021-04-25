@@ -33,6 +33,7 @@
 		"prop-types": "^15.7.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
-		"react-file-input-previews-base64": "^1.0.8"
+		"react-file-input-previews-base64": "^1.0.8",
+		"react-image-base64": "^1.0.3"
 	}
 }

@@ -3,60 +3,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, IconButton } from '@material-ui/core';
-import { PhotoCamera } from '@material-ui/icons';
-import FileInputComponent from 'react-file-input-previews-base64';
+import { Box } from '@material-ui/core';
+import ReactImageBase64 from "react-image-base64";
 
-class ImageLoader extends React.Component {
-	fileInputCallback = (file) => {
-		let imageObject = file;
+const ImageLoader = (props) => {
+	const [images, setImages] = React.useState({ data: [] });
+
+	const fileInputCallback = React.useCallback((file) => {
 		let img = new Image();
-		img.src = imageObject.base64;
+		img.src = file.ofileData;
+		// Base64でよみこんだデータからImageオブジェクトを作成し
+		// 縦横のサイズを取得する。
 		img.onload = () => {
-			imageObject['width'] = img.width;
-			imageObject['height'] = img.height;
-			// 親コンポーネントに読み込んだ画像を登録
-			this.props.onInputImageChange(imageObject);
+			file['ofileWidth'] = img.width;
+			file['ofileHeight'] = img.height;
+			// 画像プレビューのためにstateに保存
+			let filelist = images.data;
+			filelist.push(file);
+			setImages({
+				data: filelist
+			});
+			// 読み込んだ画像を親コンポーネントのstateに登録
+			if (images.data.length >= 2) {
+				props.onInputImageChange(images.data.slice(0, 2));
+			}
 		};
-		/* imageObjectには以下のようなオブジェクトが入ります
+		console.log(file)
+		/* fileには次のようなオブジェクトが入ります
 		{
-			name: 'IMG_20160813_102226.jpg',
-			type: 'image/jpeg',
-			size: 645,
-			base64: 'data:image/jpeg;base64,/9j/4SzyRXhpZgAATU0AKgA...',
-			file: File,
-			width: 320,
-			height: 260
-		};
+			fileData: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgIC...",
+			fileName: "IMG_0419.JPG",
+			fileSize: 5152,
+			fileType: "image/jpeg",
+			ofileData: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgIC...",
+			ofileSize: 3618725,
+			ofileWidth: 3456,
+			ofileHeight: 4608, 
+			result: true
+		}
 		*/
-	};
-
-	render() {
-		return (
-			<Box>
-				<FileInputComponent
-					labelText={this.props.loaderId + 1 + '枚目'}
-					imagePreview={true}
-					multiple={false}
-					callbackFunction={(file) => {
-						console.log(file.name + ' has been loaded.');
-						this.fileInputCallback(file);
-					}}
-					buttonComponent={
-						<IconButton color='primary' aria-label='upload picture' component='span'>
-							<PhotoCamera />
-						</IconButton>
-					}
-					textFieldComponent={<input type='text' />}
-					accept='image/*'
-				/>
-			</Box>
-		);
-	}
+	});
+	return (
+		<Box>
+			<ReactImageBase64
+				thumbnail_size={100}
+				drop={true}
+				dropText="ファイルをdrug&dropしてください"
+				multiple={false}
+				handleChange={(data) => {
+					fileInputCallback(data);
+				}}
+			/>
+			<table>
+				<thead>
+					<tr>
+						<th>ファイル名</th>
+						<th>画像</th>
+						<th>縦(px)</th>
+						<th>横(px)</th>
+					</tr>
+					{images.data.map((image, index) => (
+						<tr key={index}>
+							<td>{image.fileName}</td>
+							<td><img src={image.fileData} /></td>
+							<td>{image.ofileWidth}</td>
+							<td>{image.ofileHeight}</td>
+						</tr>
+					))}
+				</thead>
+			</table>
+		</Box>
+	);
 }
 export default ImageLoader;
 
 ImageLoader.propTypes = {
-	loaderId: PropTypes.number.isRequired,
 	onInputImageChange: PropTypes.func.isRequired,
 };

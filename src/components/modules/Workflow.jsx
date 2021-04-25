@@ -166,10 +166,12 @@ class Workflow extends React.Component {
 						<Typography variant="body2">
 							画像はブラウザ上に読み込まれるだけで、外部には送信されません。
 						</Typography>
-						<div>
-							{this.renderImageLoader(0)}
-							{this.renderImageLoader(1)}
-						</div>
+						<ImageLoader onInputImageChange={(data) => {
+							this.setState({
+								inputImages: data
+							});
+							this.handleNext();
+						}} />
 					</Box>
 				);
 			case 2:
