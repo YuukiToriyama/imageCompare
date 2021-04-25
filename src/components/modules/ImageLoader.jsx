@@ -28,8 +28,8 @@ const ImageLoader = (props) => {
 				props.onInputImageChange(images.data.slice(0, 2));
 			}
 		};
-		console.log(file)
 		/* fileには次のようなオブジェクトが入ります
+		console.log(file)
 		{
 			fileData: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgIC...",
 			fileName: "IMG_0419.JPG",
@@ -49,7 +49,7 @@ const ImageLoader = (props) => {
 				thumbnail_size={100}
 				drop={true}
 				dropText="ファイルをdrug&dropしてください"
-				multiple={false}
+				multiple={true}
 				handleChange={(data) => {
 					fileInputCallback(data);
 				}}

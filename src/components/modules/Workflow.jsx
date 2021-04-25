@@ -33,7 +33,7 @@ class Workflow extends React.Component {
 		super(props);
 		this.state = {
 			activeStep: 0,
-			inputImages: [null, null],
+			inputImages: [],
 			transformedImage: {},
 			processing: false,
 		};
@@ -45,32 +45,6 @@ class Workflow extends React.Component {
 			"画像比較ビュー",
 		];
 	}
-
-	// ImageLoaderを複数用意するための準備
-	renderImageLoader = (i) => {
-		return (
-			<ImageLoader
-				loaderId={i}
-				onInputImageChange={(imageObject) =>
-					new Promise((resolve) => {
-						// ImageLoaderで読み込んだ画像をstate.inputImagesに保存して、
-						let images = this.state.inputImages;
-						images[i] = imageObject;
-						this.setState({
-							inputImage: images,
-						});
-						resolve(true);
-					}).then((result) => {
-						// それが終わったらstate.inputImagesの状態を確認
-						// 条件が整っていればstepperを一つ進める
-						this.state.inputImages.every((image) => {
-							return image !== null;
-						}) && this.handleNext();
-					})
-				}
-			/>
-		);
-	};
 
 	// 画像処理を行なう
 	executeImageMatching = () => {
@@ -99,7 +73,7 @@ class Workflow extends React.Component {
 	handleReset = () => {
 		this.setState({
 			activeStep: 0,
-			inputImages: [null, null],
+			inputImages: [],
 			processing: false,
 		});
 	};
@@ -170,8 +144,16 @@ class Workflow extends React.Component {
 							this.setState({
 								inputImages: data
 							});
-							this.handleNext();
 						}} />
+						<Button
+							disabled={(this.state.inputImages.length < 2) ? true : false}
+							color="primary"
+							variant="contained"
+							onClick={() => this.handleNext()}
+						>
+							次へ
+						</Button>
+
 					</Box>
 				);
 			case 2:
