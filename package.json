@@ -1,6 +1,6 @@
 {
 	"name": "image-compare",
-	"version": "0.9.2",
+	"version": "0.9.3",
 	"description": "ブラウザ上で簡単に画像比較が可能です",
 	"main": "src/index.js",
 	"scripts": {
