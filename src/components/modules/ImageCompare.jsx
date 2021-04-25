@@ -8,21 +8,19 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 // Leaflet
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-
 // Leaflet.Control.Opacity
 import 'leaflet.control.opacity/dist/L.Control.Opacity.css';
 import 'leaflet.control.opacity';
-
 // Leaflet.Sync
 import 'leaflet.sync';
 
 const imageObjectToImageLayer = (imageObject) => {
 	/* 引数imageObjectとして想定されるもの
 	{
-		name: "IMG_1192.jpg",
-		width: 1000,
-		height: 670,
-		base64: "data:image/jpg;base64,xxxxx..."
+		fileName: "IMG_1192.jpg",
+		ofileWidth: 1000,
+		ofileHeight: 670,
+		ofileData: "data:image/jpg;base64,xxxxx..."
 	}
 	*/
 	let fileName = imageObject.fileName;
@@ -32,7 +30,10 @@ const imageObjectToImageLayer = (imageObject) => {
 		[(-1 * height) / 2, (-1 * width) / 2],
 		[height / 2, width / 2],
 	]);
-	return { fileName: fileName, imageLayer: imageLayer };
+	return {
+		fileName: fileName,
+		imageLayer: imageLayer
+	};
 };
 
 // 二枚の画像をオーバーレイして表示するモード
@@ -59,17 +60,13 @@ class OverlayView extends React.Component {
 			this.viewer.addLayer(this.layers[key]);
 		});
 
-		L.control
-			.layers({}, this.layers, {
-				collapsed: false,
-			})
-			.addTo(this.viewer);
-		L.control
-			.opacity(this.layers, {
-				label: '透明度を変更',
-				collapsed: false,
-			})
-			.addTo(this.viewer);
+		L.control.layers({}, this.layers, {
+			collapsed: false,
+		}).addTo(this.viewer);
+		L.control.opacity(this.layers, {
+			label: '透明度を変更',
+			collapsed: false,
+		}).addTo(this.viewer);
 	}
 
 	render() {
