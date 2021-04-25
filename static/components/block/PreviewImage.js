@@ -14,15 +14,15 @@ class PreviewImage extends React.Component {
   componentDidMount() {
     let image = this.props.image;
     this.imageBounds = new L.latLngBounds([
-      [-image.height / 2, -image.width / 2],
-      [image.height / 2, image.width / 2]
+      [-image.ofileHeight / 2, -image.ofileWidth / 2],
+      [image.ofileHeight / 2, image.ofileWidth / 2]
     ]);
     this.map = L.map(this.mapRef.current, {
       center: [0, 0],
       maxBounds: this.imageBounds.pad(0.3),
       crs: L.CRS.Simple
     });
-    this.layer = L.imageOverlay(image.base64, this.imageBounds);
+    this.layer = L.imageOverlay(image.ofileData, this.imageBounds);
     this.layer.addTo(this.map);
     this.map.fitBounds(this.imageBounds);
     for (var i = 0; i < this.props.n_marker; i++) {
@@ -43,8 +43,8 @@ class PreviewImage extends React.Component {
       let correspondingPoint = this.markers.map((marker) => {
         let latlng = marker.getLatLng();
         let point = {
-          x: this.props.image.width / 2 + latlng.lng,
-          y: this.props.image.height / 2 - latlng.lat
+          x: this.props.image.ofileWidth / 2 + latlng.lng,
+          y: this.props.image.ofileHeight / 2 - latlng.lat
         };
         return point;
       });

@@ -27,7 +27,7 @@ class Workflow extends React.Component {
     super(props);
     this.state = {
       activeStep: 0,
-      inputImages: [null, null],
+      inputImages: [],
       transformedImage: {},
       processing: false
     };
@@ -39,23 +39,6 @@ class Workflow extends React.Component {
       "画像比較ビュー"
     ];
   }
-  renderImageLoader = (i) => {
-    return /* @__PURE__ */ React.createElement(ImageLoader, {
-      loaderId: i,
-      onInputImageChange: (imageObject) => new Promise((resolve) => {
-        let images = this.state.inputImages;
-        images[i] = imageObject;
-        this.setState({
-          inputImage: images
-        });
-        resolve(true);
-      }).then((result) => {
-        this.state.inputImages.every((image) => {
-          return image !== null;
-        }) && this.handleNext();
-      })
-    });
-  };
   executeImageMatching = () => {
     this.imageCropRef.current.executeImageMatching();
   };
@@ -78,7 +61,7 @@ class Workflow extends React.Component {
   handleReset = () => {
     this.setState({
       activeStep: 0,
-      inputImages: [null, null],
+      inputImages: [],
       processing: false
     });
   };
@@ -132,7 +115,18 @@ class Workflow extends React.Component {
           variant: "body1"
         }, "比較を行ないたい画像をアップロードしてください。"), /* @__PURE__ */ React.createElement(Typography, {
           variant: "body2"
-        }, "画像はブラウザ上に読み込まれるだけで、外部には送信されません。"), /* @__PURE__ */ React.createElement("div", null, this.renderImageLoader(0), this.renderImageLoader(1)));
+        }, "画像はブラウザ上に読み込まれるだけで、外部には送信されません。"), /* @__PURE__ */ React.createElement(ImageLoader, {
+          onInputImageChange: (data) => {
+            this.setState({
+              inputImages: data
+            });
+          }
+        }), /* @__PURE__ */ React.createElement(Button, {
+          disabled: this.state.inputImages.length < 2 ? true : false,
+          color: "primary",
+          variant: "contained",
+          onClick: () => this.handleNext()
+        }, "次へ"));
       case 2:
         return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(Typography, {
           variant: "body1"

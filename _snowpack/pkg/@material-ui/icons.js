@@ -30,13 +30,5 @@ var Info = createSvgIcon( /*#__PURE__*/react.createElement("path", {
   d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
 }));
 
-var PhotoCamera = createSvgIcon( /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("circle", {
-  cx: "12",
-  cy: "12",
-  r: "3.2"
-}), /*#__PURE__*/react.createElement("path", {
-  d: "M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"
-})));
-
-export { Brightness4, Brightness7, ChevronLeft, GitHub, Help, Info, PhotoCamera };
+export { Brightness4, Brightness7, ChevronLeft, GitHub, Help, Info };
 //# sourceMappingURL=icons.js.map

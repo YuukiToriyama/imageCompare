@@ -1,42 +1,40 @@
 import React from "../../../_snowpack/pkg/react.js";
 import PropTypes from "../../../_snowpack/pkg/prop-types.js";
-import {Box, IconButton} from "../../../_snowpack/pkg/@material-ui/core.js";
-import {PhotoCamera} from "../../../_snowpack/pkg/@material-ui/icons.js";
-import FileInputComponent from "../../../_snowpack/pkg/react-file-input-previews-base64.js";
-class ImageLoader extends React.Component {
-  fileInputCallback = (file) => {
-    let imageObject = file;
+import {Box} from "../../../_snowpack/pkg/@material-ui/core.js";
+import ReactImageBase64 from "../../../_snowpack/pkg/react-image-base64.js";
+const ImageLoader = (props) => {
+  const [images, setImages] = React.useState({data: []});
+  const fileInputCallback = React.useCallback((file) => {
     let img = new Image();
-    img.src = imageObject.base64;
+    img.src = file.ofileData;
     img.onload = () => {
-      imageObject["width"] = img.width;
-      imageObject["height"] = img.height;
-      this.props.onInputImageChange(imageObject);
+      file["ofileWidth"] = img.width;
+      file["ofileHeight"] = img.height;
+      let filelist = images.data;
+      filelist.push(file);
+      setImages({
+        data: filelist
+      });
+      if (images.data.length >= 2) {
+        props.onInputImageChange(images.data.slice(0, 2));
+      }
     };
-  };
-  render() {
-    return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(FileInputComponent, {
-      labelText: this.props.loaderId + 1 + "枚目",
-      imagePreview: true,
-      multiple: false,
-      callbackFunction: (file) => {
-        console.log(file.name + " has been loaded.");
-        this.fileInputCallback(file);
-      },
-      buttonComponent: /* @__PURE__ */ React.createElement(IconButton, {
-        color: "primary",
-        "aria-label": "upload picture",
-        component: "span"
-      }, /* @__PURE__ */ React.createElement(PhotoCamera, null)),
-      textFieldComponent: /* @__PURE__ */ React.createElement("input", {
-        type: "text"
-      }),
-      accept: "image/*"
-    }));
-  }
-}
+  });
+  return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(ReactImageBase64, {
+    thumbnail_size: 100,
+    drop: true,
+    dropText: "ファイルをdrug&dropしてください",
+    multiple: true,
+    handleChange: (data) => {
+      fileInputCallback(data);
+    }
+  }), /* @__PURE__ */ React.createElement("table", null, /* @__PURE__ */ React.createElement("thead", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", null, "ファイル名"), /* @__PURE__ */ React.createElement("th", null, "画像"), /* @__PURE__ */ React.createElement("th", null, "縦(px)"), /* @__PURE__ */ React.createElement("th", null, "横(px)")), images.data.map((image, index) => /* @__PURE__ */ React.createElement("tr", {
+    key: index
+  }, /* @__PURE__ */ React.createElement("td", null, image.fileName), /* @__PURE__ */ React.createElement("td", null, /* @__PURE__ */ React.createElement("img", {
+    src: image.fileData
+  })), /* @__PURE__ */ React.createElement("td", null, image.ofileWidth), /* @__PURE__ */ React.createElement("td", null, image.ofileHeight))))));
+};
 export default ImageLoader;
 ImageLoader.propTypes = {
-  loaderId: PropTypes.number.isRequired,
   onInputImageChange: PropTypes.func.isRequired
 };

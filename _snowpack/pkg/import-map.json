@@ -21,6 +21,6 @@
     "prop-types": "./prop-types.js",
     "react": "./react.js",
     "react-dom": "./react-dom.js",
-    "react-file-input-previews-base64": "./react-file-input-previews-base64.js"
+    "react-image-base64": "./react-image-base64.js"
   }
 }

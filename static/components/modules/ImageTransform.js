@@ -45,17 +45,16 @@ class ImageTransform extends React.Component {
       imgElement.src = dataUrl2;
       return imgElement;
     };
-    let image_1, image_2;
-    image_1 = cv.imread(createImgElement(this.images[0].base64));
-    image_2 = cv.imread(createImgElement(this.images[1].base64));
+    let image_1 = cv.imread(createImgElement(this.images[0].ofileData));
+    let image_2 = cv.imread(createImgElement(this.images[1].ofileData));
     let new_image_1 = warpImage(image_1, image_2, correspondingPoints_1, correspondingPoints_2, this.n_marker);
     cv.imshow(this.invisibleCanvasRef.current, new_image_1);
     let dataUrl = this.invisibleCanvasRef.current.toDataURL("image/png", 1);
     const imageObject = {
-      name: this.images[0].name + "(Transformed)",
-      base64: dataUrl,
-      width: this.invisibleCanvasRef.current.width,
-      height: this.invisibleCanvasRef.current.height
+      fileName: this.images[0].fileName + "(Transformed)",
+      ofileData: dataUrl,
+      ofileWidth: this.invisibleCanvasRef.current.width,
+      ofileHeight: this.invisibleCanvasRef.current.height
     };
     this.props.onImageProcessingDone(imageObject);
     image_1.delete();

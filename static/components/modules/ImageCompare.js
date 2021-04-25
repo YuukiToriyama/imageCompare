@@ -8,10 +8,10 @@ import "../../../_snowpack/pkg/leaflet.control.opacity/dist/L.Control.Opacity.cs
 import "../../../_snowpack/pkg/leaflet.control.opacity.js";
 import "../../../_snowpack/pkg/leaflet.sync.js";
 const imageObjectToImageLayer = (imageObject) => {
-  let fileName = imageObject.name;
-  let width = imageObject.width;
-  let height = imageObject.height;
-  let imageLayer = L.imageOverlay(imageObject.base64, [
+  let fileName = imageObject.fileName;
+  let width = imageObject.ofileWidth;
+  let height = imageObject.ofileHeight;
+  let imageLayer = L.imageOverlay(imageObject.ofileData, [
     [-1 * height / 2, -1 * width / 2],
     [height / 2, width / 2]
   ]);
