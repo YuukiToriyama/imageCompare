@@ -1,15 +1,22 @@
 import React from "react"
 import "@testing-library/jest-dom";
 import {
-	render
+	render,
+	fireEvent
 } from "@testing-library/react";
 import ButtonWithIcon from "../components/atoms/ButtonWithIcon";
 import PhoneIcon from '@material-ui/icons/Phone';
 
 describe("<ButtonWithIcon/>", () => {
-	test("ButtonWithIconコンポーネントのレンダリング", () => {
-		const { getByText, debug } = render(<ButtonWithIcon icon={<PhoneIcon />} title="Contact me!" />);
-		const title = getByText("Contact me!");
-		debug(title);
+	const onButtonClick = () => {
+		console.log("Hello, world");
+	};
+	test("ボタンが描画されているか", () => {
+		const renderResult = render(<ButtonWithIcon icon={<PhoneIcon />} title="Contact me!" onClick={onButtonClick} />);
+		expect(renderResult.getByText("Contact me!")).toBeInTheDocument();
+	});
+	test("onClickが作動するか", () => {
+		const renderResult = render(<ButtonWithIcon icon={<PhoneIcon />} title="Contact me!" onClick={onButtonClick} />);
+		fireEvent.click(renderResult.getByRole("button"));
 	});
 })
