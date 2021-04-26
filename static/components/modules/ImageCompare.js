@@ -15,7 +15,10 @@ const imageObjectToImageLayer = (imageObject) => {
     [-1 * height / 2, -1 * width / 2],
     [height / 2, width / 2]
   ]);
-  return {fileName, imageLayer};
+  return {
+    fileName,
+    imageLayer
+  };
 };
 class OverlayView extends React.Component {
   constructor(props) {

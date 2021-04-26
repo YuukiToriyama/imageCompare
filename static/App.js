@@ -8,6 +8,10 @@ import CssBaseline from "../_snowpack/pkg/@material-ui/core/CssBaseline.js";
 import * as colors from "../_snowpack/pkg/@material-ui/core/colors.js";
 import MenuBar from "./components/block/MenuBar.js";
 import Workflow from "./components/modules/Workflow.js";
+import {
+  APP_INFO,
+  OPENCV_URL
+} from "./utils/Settings.js";
 import ButtonWithIcon from "./components/atoms/ButtonWithIcon.js";
 import {
   Brightness4,
@@ -31,13 +35,6 @@ const useDarkMode = () => {
 };
 const App = () => {
   const [isOpencvLoaded, setIsOpencvLoaded] = React.useState(false);
-  const APP_INFO = {
-    NAME: "imageCompare",
-    VERSION: "0.9.2",
-    COPYRIGHT: "(C)Copyright 2020-2021 YUUKIToriyama All Rights Reserved.",
-    GITHUB: "https://github.com/YUUKIToriyama/imageCompare"
-  };
-  const OPENCV_URL = "https://docs.opencv.org/4.5.0/opencv.js";
   const {darkMode, handleDarkModeOn, handleDarkModeOff} = useDarkMode();
   const theme = createMuiTheme({
     palette: {

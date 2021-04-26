@@ -3,16 +3,22 @@ import withStyles from "../../../_snowpack/pkg/@material-ui/core/styles/withStyl
 import {
   Box,
   Button,
+  Paper,
   Step,
   StepContent,
   StepLabel,
   Stepper,
-  Typography
+  Typography,
+  Tooltip
 } from "../../../_snowpack/pkg/@material-ui/core.js";
 import CircularProgress from "../../../_snowpack/pkg/@material-ui/core/CircularProgress.js";
 import ImageLoader from "./ImageLoader.js";
 import ImageCompare from "./ImageCompare.js";
 import ImageTransform from "./ImageTransform.js";
+import {
+  howToUse,
+  workflowSteps
+} from "../../utils/Messages.js";
 const styles = {
   root: {
     width: "100%"
@@ -22,170 +28,113 @@ const styles = {
     marginRight: "15px"
   }
 };
-class Workflow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeStep: 0,
-      inputImages: [],
-      transformedImage: {},
-      processing: false
-    };
-    this.imageCropRef = React.createRef();
-    this.steps = [
-      "はじめに",
-      "画像の読み込み",
-      "コントロールポイントの設定",
-      "画像比較ビュー"
-    ];
-  }
-  executeImageMatching = () => {
-    this.imageCropRef.current.executeImageMatching();
+const Workflow = (props) => {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [inputImages, setInputImages] = React.useState([]);
+  const [transformedImage, setTransformedImage] = React.useState({});
+  const [isProcessing, setIsProcessing] = React.useState(false);
+  const handleNext = () => {
+    setActiveStep((prevState) => prevState + 1);
   };
-  handleImageProcessingDone = (imageObject) => {
-    this.setState({
-      transformedImage: imageObject,
-      processing: false
-    });
+  const handleBack = () => {
+    setActiveStep((prevState) => prevState - 1);
   };
-  handleNext = () => {
-    this.setState((prevState) => ({
-      activeStep: prevState.activeStep + 1
-    }));
+  const handleReset = () => {
+    setActiveStep(0);
+    setInputImages([]);
+    setIsProcessing(false);
   };
-  handleBack = () => {
-    this.setState((prevState) => ({
-      activeStep: prevState.activeStep - 1
-    }));
+  const refImageTransform = React.useRef(null);
+  const handleImageProcessingDone = (imageObject) => {
+    setTransformedImage(imageObject);
+    setIsProcessing(false);
   };
-  handleReset = () => {
-    this.setState({
-      activeStep: 0,
-      inputImages: [],
-      processing: false
-    });
-  };
-  howToMessage = [
-    {
-      title: "このアプリでできること",
-      content: [
-        "このアプリでは、特徴の似ている画像をうまく対応させて重ねて見ることができます。",
-        "これまではPhotoShopやGIMPなどのアプリを開いて難しい手順を踏まなければできなかった作業をブラウザの中だけで実現できます。"
-      ]
-    },
-    {
-      title: "このアプリの使い方",
-      content: [
-        "まず、比較をしたい画像を用意します。対応しているファイルタイプはjpegとpngです。",
-        "つぎに、それらファイルを読み込みます。",
-        "画像の読み込みが完了すると、読み込んだ画像をマウスで動かしたり拡大縮小できる画面が現れます。",
-        "この画面では、2つの画像を一致させるために必要な操作を行ないます。",
-        "それぞれの画面の中央に、数字のついたマーカーが用意されています。これらを動かして、右と左とで同じ番号のマーカーが同じポイントを押さえるようにマーカーの位置を調整して下さい。",
-        "マーカーの位置合わせが終わったら、次は画像処理の作業に移ります。",
-        "「処理を実行」ボタンを押すと、左画面に映っていた画像が、左側の画像にフィットするように変形作業が実行されます。",
-        "ボタンを押すと処理は自動的に進行し、処理が終わると画像の比較閲覧画面が表示されます。",
-        "デフォルトはレイヤー表示ですが、トグルスイッチをいじると、二画面モードにも変更できます。",
-        "うまく画像が合っていないというときは、対応点の位置合わせがうまく行っていない可能性があります。「始めに戻る」ボタンを押して最初からやり直して下さい。"
-      ]
-    }
-  ];
-  getEachSteps = (step) => {
-    switch (step) {
-      case 0:
-        return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(Typography, {
-          variant: "body1"
-        }, "はじめにこのアプリについて説明します。"), this.howToMessage.map((message) => {
-          const text = message.content.map((line, index) => {
-            return /* @__PURE__ */ React.createElement("div", {
-              key: index
-            }, line);
+  const generateEachSteps = (index) => {
+    if (index == 0) {
+      return /* @__PURE__ */ React.createElement(React.Fragment, null, howToUse.map((message) => {
+        const text = message.content.map((line, index2) => {
+          return /* @__PURE__ */ React.createElement("div", {
+            key: index2
+          }, line);
+        });
+        return /* @__PURE__ */ React.createElement(Paper, {
+          elevation: 3,
+          style: {marginTop: "10px"}
+        }, /* @__PURE__ */ React.createElement(Typography, {
+          variant: "h6"
+        }, message.title), /* @__PURE__ */ React.createElement(Typography, {
+          variant: "body2"
+        }, text));
+      }), /* @__PURE__ */ React.createElement(Button, {
+        color: "primary",
+        variant: "contained",
+        onClick: handleNext
+      }, "始める"));
+    } else if (index == 1) {
+      return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(ImageLoader, {
+        onInputImageChange: (data) => {
+          setInputImages(data);
+        }
+      }), /* @__PURE__ */ React.createElement(Button, {
+        disabled: inputImages.length < 2 ? true : false,
+        color: "primary",
+        variant: "contained",
+        onClick: () => handleNext()
+      }, "次へ"));
+    } else if (index == 2) {
+      return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(ImageTransform, {
+        ref: refImageTransform,
+        images: inputImages,
+        onImageProcessingDone: handleImageProcessingDone
+      }), /* @__PURE__ */ React.createElement(Button, {
+        variant: "contained",
+        color: "primary",
+        onClick: () => {
+          new Promise((resolve, reject) => {
+            setIsProcessing(true);
+            refImageTransform.current.executeImageMatching();
+            resolve(true);
+          }).then(() => {
+            setIsProcessing(false);
+            handleNext();
           });
-          return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Typography, {
-            variant: "h3"
-          }, message.title), /* @__PURE__ */ React.createElement(Typography, {
-            variant: "body1"
-          }, text));
-        }), /* @__PURE__ */ React.createElement(Button, {
-          color: "primary",
-          variant: "contained",
-          onClick: this.handleNext
-        }, "始める"));
-      case 1:
-        return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(Typography, {
-          variant: "body1"
-        }, "比較を行ないたい画像をアップロードしてください。"), /* @__PURE__ */ React.createElement(Typography, {
-          variant: "body2"
-        }, "画像はブラウザ上に読み込まれるだけで、外部には送信されません。"), /* @__PURE__ */ React.createElement(ImageLoader, {
-          onInputImageChange: (data) => {
-            this.setState({
-              inputImages: data
-            });
-          }
-        }), /* @__PURE__ */ React.createElement(Button, {
-          disabled: this.state.inputImages.length < 2 ? true : false,
-          color: "primary",
-          variant: "contained",
-          onClick: () => this.handleNext()
-        }, "次へ"));
-      case 2:
-        return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(Typography, {
-          variant: "body1"
-        }, "数字のついたマーカーを動かして、2つの画像の対応関係を設定します。"), /* @__PURE__ */ React.createElement(Typography, {
-          variant: "body2"
-        }, "右と左とで同じ番号のマーカーが同じポイントを押さえるようにマーカーの位置を調整して下さい。"), /* @__PURE__ */ React.createElement(ImageTransform, {
-          ref: this.imageCropRef,
-          images: this.state.inputImages,
-          onImageProcessingDone: this.handleImageProcessingDone
-        }), this.state.processing === true && /* @__PURE__ */ React.createElement(CircularProgress, null), /* @__PURE__ */ React.createElement(Button, {
-          variant: "contained",
-          color: "primary",
-          onClick: () => {
-            new Promise((resolve, reject) => {
-              this.setState({
-                processing: true
-              });
-              this.imageCropRef.current.executeImageMatching();
-              resolve(true);
-            }).then(() => {
-              this.setState({
-                processing: false
-              });
-              this.handleNext();
-            });
-          }
-        }, "処理を実行"));
-      case 3:
-        return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(Typography, {
-          variant: "body1"
-        }, "処理が完了しました！"), /* @__PURE__ */ React.createElement(Typography, {
-          variant: "body2"
-        }, "透明度を変えることで2つの画像を透過させてみることができます。また、二画面モードに表示を切り替えることもできます。"), this.state.inputImages[1] != null && /* @__PURE__ */ React.createElement(ImageCompare, {
+        }
+      }, "処理を実行"), isProcessing === true && /* @__PURE__ */ React.createElement(CircularProgress, null));
+    } else if (index == 3) {
+      if (inputImages[1] != null) {
+        return /* @__PURE__ */ React.createElement(ImageCompare, {
           images: [
-            this.state.transformedImage,
-            this.state.inputImages[1]
+            transformedImage,
+            inputImages[1]
           ]
-        }));
-      default:
-        return /* @__PURE__ */ React.createElement(Typography, null, "Unknown step");
+        });
+      }
+    } else {
+      return /* @__PURE__ */ React.createElement(Typography, null, "Unknown step");
     }
   };
-  render() {
-    const ResetButton = () => {
-      return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(Button, {
-        disabled: this.state.activeStep === 0,
-        onClick: this.handleReset
-      }, "最初に戻る"));
-    };
-    return /* @__PURE__ */ React.createElement(Box, {
-      className: this.props.classes.root
-    }, /* @__PURE__ */ React.createElement(Stepper, {
-      activeStep: this.state.activeStep,
-      orientation: "vertical"
-    }, this.steps.map((label, index) => /* @__PURE__ */ React.createElement(Step, {
-      key: label
-    }, /* @__PURE__ */ React.createElement(StepLabel, null, label), /* @__PURE__ */ React.createElement(StepContent, null, this.getEachSteps(index), /* @__PURE__ */ React.createElement(ResetButton, {
-      props: this.props
-    }))))));
-  }
-}
+  const ResetButton = () => {
+    return /* @__PURE__ */ React.createElement(Box, null, /* @__PURE__ */ React.createElement(Button, {
+      disabled: activeStep === 0,
+      onClick: handleReset
+    }, "最初に戻る"));
+  };
+  return /* @__PURE__ */ React.createElement(Box, {
+    className: props.classes.root
+  }, /* @__PURE__ */ React.createElement(Stepper, {
+    activeStep,
+    orientation: "vertical"
+  }, workflowSteps.map((step, index) => /* @__PURE__ */ React.createElement(Step, {
+    key: "step" + index
+  }, /* @__PURE__ */ React.createElement(StepLabel, null, step.title), /* @__PURE__ */ React.createElement(Tooltip, {
+    title: step.hint,
+    placement: "bottom",
+    arrow: true,
+    interactive: true
+  }, /* @__PURE__ */ React.createElement(StepContent, null, /* @__PURE__ */ React.createElement(Typography, {
+    variant: "body1"
+  }, step.description.join("\n")), generateEachSteps(index), /* @__PURE__ */ React.createElement(ResetButton, {
+    props
+  })))))));
+};
 export default withStyles(styles)(Workflow);

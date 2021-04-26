@@ -1,6 +1,15 @@
 import React from "../../../_snowpack/pkg/react.js";
 import PropTypes from "../../../_snowpack/pkg/prop-types.js";
-import {Box} from "../../../_snowpack/pkg/@material-ui/core.js";
+import {
+  Box,
+  Paper,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody
+} from "../../../_snowpack/pkg/@material-ui/core.js";
 import ReactImageBase64 from "../../../_snowpack/pkg/react-image-base64.js";
 const ImageLoader = (props) => {
   const [images, setImages] = React.useState({data: []});
@@ -28,11 +37,16 @@ const ImageLoader = (props) => {
     handleChange: (data) => {
       fileInputCallback(data);
     }
-  }), /* @__PURE__ */ React.createElement("table", null, /* @__PURE__ */ React.createElement("thead", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", null, "ファイル名"), /* @__PURE__ */ React.createElement("th", null, "画像"), /* @__PURE__ */ React.createElement("th", null, "縦(px)"), /* @__PURE__ */ React.createElement("th", null, "横(px)")), images.data.map((image, index) => /* @__PURE__ */ React.createElement("tr", {
+  }), /* @__PURE__ */ React.createElement(TableContainer, {
+    component: Paper
+  }, /* @__PURE__ */ React.createElement(Table, {
+    stickyHeader: true,
+    size: "small"
+  }, /* @__PURE__ */ React.createElement(TableHead, null, /* @__PURE__ */ React.createElement(TableRow, null, /* @__PURE__ */ React.createElement(TableCell, null, "ファイル名"), /* @__PURE__ */ React.createElement(TableCell, null, "画像"), /* @__PURE__ */ React.createElement(TableCell, null, "縦(px)"), /* @__PURE__ */ React.createElement(TableCell, null, "横(px)"))), /* @__PURE__ */ React.createElement(TableBody, null, images.data.map((image, index) => /* @__PURE__ */ React.createElement(TableRow, {
     key: index
-  }, /* @__PURE__ */ React.createElement("td", null, image.fileName), /* @__PURE__ */ React.createElement("td", null, /* @__PURE__ */ React.createElement("img", {
+  }, /* @__PURE__ */ React.createElement(TableCell, null, image.fileName), /* @__PURE__ */ React.createElement(TableCell, null, /* @__PURE__ */ React.createElement("img", {
     src: image.fileData
-  })), /* @__PURE__ */ React.createElement("td", null, image.ofileWidth), /* @__PURE__ */ React.createElement("td", null, image.ofileHeight))))));
+  })), /* @__PURE__ */ React.createElement(TableCell, null, image.ofileWidth), /* @__PURE__ */ React.createElement(TableCell, null, image.ofileHeight)))))));
 };
 export default ImageLoader;
 ImageLoader.propTypes = {
