@@ -3,7 +3,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box } from '@material-ui/core';
+import {
+	Box,
+	Paper,
+	TableContainer,
+	Table,
+	TableHead,
+	TableRow,
+	TableCell,
+	TableBody
+} from '@material-ui/core';
 import ReactImageBase64 from "react-image-base64";
 
 const ImageLoader = (props) => {
@@ -54,24 +63,28 @@ const ImageLoader = (props) => {
 					fileInputCallback(data);
 				}}
 			/>
-			<table>
-				<thead>
-					<tr>
-						<th>ファイル名</th>
-						<th>画像</th>
-						<th>縦(px)</th>
-						<th>横(px)</th>
-					</tr>
-					{images.data.map((image, index) => (
-						<tr key={index}>
-							<td>{image.fileName}</td>
-							<td><img src={image.fileData} /></td>
-							<td>{image.ofileWidth}</td>
-							<td>{image.ofileHeight}</td>
-						</tr>
+			<TableContainer component={Paper}>
+				<Table size="small">
+					<TableHead>
+						<TableRow>
+							<TableCell>ファイル名</TableCell>
+							<TableCell>画像</TableCell>
+							<TableCell>縦(px)</TableCell>
+							<TableCell>横(px)</TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{images.data.map((image, index) => (
+						<TableRow key={index}>
+							<TableCell>{image.fileName}</TableCell>
+							<TableCell><img src={image.fileData} /></TableCell>
+							<TableCell>{image.ofileWidth}</TableCell>
+							<TableCell>{image.ofileHeight}</TableCell>
+						</TableRow>
 					))}
-				</thead>
-			</table>
+					</TableBody>
+				</Table>
+			</TableContainer>
 		</Box>
 	);
 }
