@@ -64,7 +64,7 @@ const ImageLoader = (props) => {
 				}}
 			/>
 			<TableContainer component={Paper}>
-				<Table size="small">
+				<Table stickyHeader size="small">
 					<TableHead>
 						<TableRow>
 							<TableCell>ファイル名</TableCell>

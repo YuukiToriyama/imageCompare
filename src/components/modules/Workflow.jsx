@@ -18,7 +18,8 @@ import ImageLoader from "./ImageLoader";
 import ImageCompare from "./ImageCompare";
 import ImageTransform from "./ImageTransform";
 import {
-	howToUse
+	howToUse,
+	workflowSteps
 } from "../../utils/Messages";
 
 const styles = {
@@ -57,127 +58,81 @@ const Workflow = (props) => {
 	// <ImageTransform/>を参照するためのref
 	const refImageTransform = React.useRef(null);
 
-	// 画像処理を行なう
-	const executeImageMatching = () => {
-		refImageTransform.current.executeImageMatching();
-	};
 	// 処理の終わった画像を受け取る関数(ImageTransformsから呼び出して使う)
 	const handleImageProcessingDone = (imageObject) => {
 		setTransformedImage(imageObject);
 		setIsProcessing(false);
 	};
 
-
-	const steps = [
-		"はじめに",
-		"画像の読み込み",
-		"コントロールポイントの設定",
-		"画像比較ビュー",
-	];
 	// Stepperの各段階を作成する関数
-	const generateEachSteps = (step) => {
-		switch (step) {
-			case 0:
-				return (
-					<Box>
-						<Typography variant="body1">
-							はじめにこのアプリについて説明します。
-						</Typography>
-						{howToUse.map((message) => {
-							const text = message.content.map((line, index) => {
-								return <div key={index}>{line}</div>;
+	const generateEachSteps = (index) => {
+		if (index == 0) {
+			return (
+				<React.Fragment>
+					{howToUse.map((message) => {
+						const text = message.content.map((line, index) => {
+							return <div key={index}>{line}</div>;
+						});
+						return (
+							<div>
+								<Typography variant="h3">{message.title}</Typography>
+								<Typography variant="body1">{text}</Typography>
+							</div>
+						);
+					})}
+					<Button color="primary" variant="contained" onClick={handleNext}>始める</Button>
+				</React.Fragment>
+			);
+		} else if (index == 1) {
+			return (
+				<React.Fragment>
+					<ImageLoader onInputImageChange={(data) => {
+						setInputImages(data);
+					}} />
+					<Button
+						disabled={(inputImages.length < 2) ? true : false}
+						color="primary"
+						variant="contained"
+						onClick={() => handleNext()}
+					>次へ</Button>
+				</React.Fragment>
+			);
+		} else if (index == 2) {
+			return (
+				<React.Fragment>
+					<ImageTransform
+						ref={refImageTransform}
+						images={inputImages}
+						onImageProcessingDone={handleImageProcessingDone}
+					/>
+					<Button
+						variant="contained"
+						color="primary"
+						onClick={() => {
+							new Promise((resolve, reject) => {
+								setIsProcessing(true);
+								refImageTransform.current.executeImageMatching();
+								resolve(true);
+							}).then(() => {
+								setIsProcessing(false);
+								handleNext();
 							});
-							return (
-								<div>
-									<Typography variant="h3">{message.title}</Typography>
-									<Typography variant="body1">{text}</Typography>
-								</div>
-							);
-						})}
-						<Button
-							color="primary"
-							variant="contained"
-							onClick={handleNext}
-						>
-							始める
-						</Button>
-					</Box>
-				);
-			case 1:
-				return (
-					<Box>
-						<Typography variant="body1">
-							比較を行ないたい画像をアップロードしてください。
-						</Typography>
-						<Typography variant="body2">
-							画像はブラウザ上に読み込まれるだけで、外部には送信されません。
-						</Typography>
-						<ImageLoader onInputImageChange={(data) => {
-							setInputImages(data);
-						}} />
-						<Button
-							disabled={(inputImages.length < 2) ? true : false}
-							color="primary"
-							variant="contained"
-							onClick={() => handleNext()}
-						>
-							次へ
-						</Button>
-
-					</Box>
-				);
-			case 2:
-				return (
-					<Box>
-						<Typography variant="body1">
-							数字のついたマーカーを動かして、2つの画像の対応関係を設定します。
-						</Typography>
-						<Typography variant="body2">
-							右と左とで同じ番号のマーカーが同じポイントを押さえるようにマーカーの位置を調整して下さい。
-						</Typography>
-						<ImageTransform
-							ref={refImageTransform}
-							images={inputImages}
-							onImageProcessingDone={handleImageProcessingDone}
-						/>
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={() => {
-								new Promise((resolve, reject) => {
-									setIsProcessing(true);
-									refImageTransform.current.executeImageMatching();
-									resolve(true);
-								}).then(() => {
-									setIsProcessing(false);
-									handleNext();
-								});
-							}}
-						>
-							処理を実行
-						</Button>
-						{(isProcessing === true) && <CircularProgress />}
-					</Box>
-				);
-			case 3:
-				return (
-					<Box>
-						<Typography variant="body1">処理が完了しました！</Typography>
-						<Typography variant="body2">
-							透明度を変えることで2つの画像を透過させてみることができます。また、二画面モードに表示を切り替えることもできます。
-						</Typography>
-						{inputImages[1] != null && (
-							<ImageCompare
-								images={[
-									transformedImage,
-									inputImages[1]
-								]}
-							/>
-						)}
-					</Box>
-				);
-			default:
-				return <Typography>Unknown step</Typography>;
+						}}
+					>処理を実行</Button>
+					{(isProcessing === true) && <CircularProgress />}
+				</React.Fragment>
+			);
+		} else if (index == 3) {
+			if (inputImages[1] != null) {
+				return <ImageCompare
+					images={[
+						transformedImage,
+						inputImages[1]
+					]}
+				/>
+			}
+		} else {
+			return <Typography>Unknown step</Typography>;
 		}
 	};
 
@@ -198,10 +153,12 @@ const Workflow = (props) => {
 	return (
 		<Box className={props.classes.root}>
 			<Stepper activeStep={activeStep} orientation="vertical">
-				{steps.map((label, index) => (
-					<Step key={label}>
-						<StepLabel>{label}</StepLabel>
+				{workflowSteps.map((step, index) => (
+					<Step key={"step" + index}>
+						<StepLabel>{step.title}</StepLabel>
 						<StepContent>
+							<Typography variant="body1">{step.description.join("\n")}</Typography>
+							<Typography variant="caption">{step.hint}</Typography>
 							{generateEachSteps(index)}
 							<ResetButton props={props} />
 						</StepContent>
