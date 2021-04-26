@@ -17,6 +17,9 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import ImageLoader from "./ImageLoader";
 import ImageCompare from "./ImageCompare";
 import ImageTransform from "./ImageTransform";
+import {
+	howToUse
+} from "../../utils/Messages";
 
 const styles = {
 	root: {
@@ -28,82 +31,51 @@ const styles = {
 	},
 };
 
-class Workflow extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			activeStep: 0,
-			inputImages: [],
-			transformedImage: {},
-			processing: false,
-		};
-		this.imageCropRef = React.createRef();
-		this.steps = [
-			"はじめに",
-			"画像の読み込み",
-			"コントロールポイントの設定",
-			"画像比較ビュー",
-		];
-	}
-
-	// 画像処理を行なう
-	executeImageMatching = () => {
-		this.imageCropRef.current.executeImageMatching();
-	};
-	// 処理の終わった画像を受け取る関数
-	// ImageTransformsから呼び出して使う
-	handleImageProcessingDone = (imageObject) => {
-		this.setState({
-			transformedImage: imageObject,
-			processing: false,
-		});
-	};
+const Workflow = (props) => {
+	// Stepperの操作に使用する
+	const [activeStep, setActiveStep] = React.useState(0);
+	// ImageLoaderで読み込んだ画像をImageTransformに受け渡す際に使用する
+	const [inputImages, setInputImages] = React.useState([]);
+	// ImageTransformで変形処理を施した画像をImageCompareに受け渡すために使用する
+	const [transformedImage, setTransformedImage] = React.useState({});
+	// 画像処理にかんして処理中かどうかを表すフラグ
+	const [isProcessing, setIsProcessing] = React.useState(false);
 
 	// Stepperの挙動を制御する関数
-	handleNext = () => {
-		this.setState((prevState) => ({
-			activeStep: prevState.activeStep + 1,
-		}));
+	const handleNext = () => {
+		setActiveStep(prevState => prevState + 1);
 	};
-	handleBack = () => {
-		this.setState((prevState) => ({
-			activeStep: prevState.activeStep - 1,
-		}));
+	const handleBack = () => {
+		setActiveStep(prevState => prevState - 1);
 	};
-	handleReset = () => {
-		this.setState({
-			activeStep: 0,
-			inputImages: [],
-			processing: false,
-		});
+	const handleReset = () => {
+		setActiveStep(0);
+		setInputImages([]);
+		setIsProcessing(false);
 	};
 
-	howToMessage = [
-		{
-			title: "このアプリでできること",
-			content: [
-				"このアプリでは、特徴の似ている画像をうまく対応させて重ねて見ることができます。",
-				"これまではPhotoShopやGIMPなどのアプリを開いて難しい手順を踏まなければできなかった作業をブラウザの中だけで実現できます。",
-			],
-		},
-		{
-			title: "このアプリの使い方",
-			content: [
-				"まず、比較をしたい画像を用意します。対応しているファイルタイプはjpegとpngです。",
-				"つぎに、それらファイルを読み込みます。",
-				"画像の読み込みが完了すると、読み込んだ画像をマウスで動かしたり拡大縮小できる画面が現れます。",
-				"この画面では、2つの画像を一致させるために必要な操作を行ないます。",
-				"それぞれの画面の中央に、数字のついたマーカーが用意されています。これらを動かして、右と左とで同じ番号のマーカーが同じポイントを押さえるようにマーカーの位置を調整して下さい。",
-				"マーカーの位置合わせが終わったら、次は画像処理の作業に移ります。",
-				"「処理を実行」ボタンを押すと、左画面に映っていた画像が、左側の画像にフィットするように変形作業が実行されます。",
-				"ボタンを押すと処理は自動的に進行し、処理が終わると画像の比較閲覧画面が表示されます。",
-				"デフォルトはレイヤー表示ですが、トグルスイッチをいじると、二画面モードにも変更できます。",
-				"うまく画像が合っていないというときは、対応点の位置合わせがうまく行っていない可能性があります。「始めに戻る」ボタンを押して最初からやり直して下さい。",
-			],
-		},
+	// <ImageTransform/>を参照するためのref
+	const refImageTransform = React.useRef(null);
+
+	// 画像処理を行なう
+	const executeImageMatching = () => {
+		refImageTransform.current.executeImageMatching();
+	};
+	// 処理の終わった画像を受け取る関数(ImageTransformsから呼び出して使う)
+	const handleImageProcessingDone = (imageObject) => {
+		setTransformedImage(imageObject);
+		setIsProcessing(false);
+	};
+
+
+	const steps = [
+		"はじめに",
+		"画像の読み込み",
+		"コントロールポイントの設定",
+		"画像比較ビュー",
 	];
-
-	getEachSteps = (step) => {
+	// Stepperの各段階を作成する関数
+	const generateEachSteps = (step) => {
 		switch (step) {
 			case 0:
 				return (
@@ -111,7 +83,7 @@ class Workflow extends React.Component {
 						<Typography variant="body1">
 							はじめにこのアプリについて説明します。
 						</Typography>
-						{this.howToMessage.map((message) => {
+						{howToUse.map((message) => {
 							const text = message.content.map((line, index) => {
 								return <div key={index}>{line}</div>;
 							});
@@ -125,7 +97,7 @@ class Workflow extends React.Component {
 						<Button
 							color="primary"
 							variant="contained"
-							onClick={this.handleNext}
+							onClick={handleNext}
 						>
 							始める
 						</Button>
@@ -141,15 +113,13 @@ class Workflow extends React.Component {
 							画像はブラウザ上に読み込まれるだけで、外部には送信されません。
 						</Typography>
 						<ImageLoader onInputImageChange={(data) => {
-							this.setState({
-								inputImages: data
-							});
+							setInputImages(data);
 						}} />
 						<Button
-							disabled={(this.state.inputImages.length < 2) ? true : false}
+							disabled={(inputImages.length < 2) ? true : false}
 							color="primary"
 							variant="contained"
-							onClick={() => this.handleNext()}
+							onClick={() => handleNext()}
 						>
 							次へ
 						</Button>
@@ -166,31 +136,27 @@ class Workflow extends React.Component {
 							右と左とで同じ番号のマーカーが同じポイントを押さえるようにマーカーの位置を調整して下さい。
 						</Typography>
 						<ImageTransform
-							ref={this.imageCropRef}
-							images={this.state.inputImages}
-							onImageProcessingDone={this.handleImageProcessingDone}
+							ref={refImageTransform}
+							images={inputImages}
+							onImageProcessingDone={handleImageProcessingDone}
 						/>
-						{this.state.processing === true && <CircularProgress />}
 						<Button
 							variant="contained"
 							color="primary"
 							onClick={() => {
 								new Promise((resolve, reject) => {
-									this.setState({
-										processing: true,
-									});
-									this.imageCropRef.current.executeImageMatching();
+									setIsProcessing(true);
+									refImageTransform.current.executeImageMatching();
 									resolve(true);
 								}).then(() => {
-									this.setState({
-										processing: false,
-									});
-									this.handleNext();
+									setIsProcessing(false);
+									handleNext();
 								});
 							}}
 						>
 							処理を実行
 						</Button>
+						{(isProcessing === true) && <CircularProgress />}
 					</Box>
 				);
 			case 3:
@@ -200,11 +166,11 @@ class Workflow extends React.Component {
 						<Typography variant="body2">
 							透明度を変えることで2つの画像を透過させてみることができます。また、二画面モードに表示を切り替えることもできます。
 						</Typography>
-						{this.state.inputImages[1] != null && (
+						{inputImages[1] != null && (
 							<ImageCompare
 								images={[
-									this.state.transformedImage,
-									this.state.inputImages[1],
+									transformedImage,
+									inputImages[1]
 								]}
 							/>
 						)}
@@ -215,36 +181,34 @@ class Workflow extends React.Component {
 		}
 	};
 
-	render() {
-		// 戻る(リセット)ボタン
-		const ResetButton = () => {
-			return (
-				<Box>
-					<Button
-						disabled={this.state.activeStep === 0}
-						onClick={this.handleReset}
-					>
-						最初に戻る
-					</Button>
-				</Box>
-			);
-		};
+	// 戻る(リセット)ボタン
+	const ResetButton = () => {
 		return (
-			<Box className={this.props.classes.root}>
-				<Stepper activeStep={this.state.activeStep} orientation="vertical">
-					{this.steps.map((label, index) => (
-						<Step key={label}>
-							<StepLabel>{label}</StepLabel>
-							<StepContent>
-								{this.getEachSteps(index)}
-								<ResetButton props={this.props} />
-							</StepContent>
-						</Step>
-					))}
-				</Stepper>
+			<Box>
+				<Button
+					disabled={activeStep === 0}
+					onClick={handleReset}
+				>
+					最初に戻る
+					</Button>
 			</Box>
 		);
-	}
-}
+	};
 
+	return (
+		<Box className={props.classes.root}>
+			<Stepper activeStep={activeStep} orientation="vertical">
+				{steps.map((label, index) => (
+					<Step key={label}>
+						<StepLabel>{label}</StepLabel>
+						<StepContent>
+							{generateEachSteps(index)}
+							<ResetButton props={props} />
+						</StepContent>
+					</Step>
+				))}
+			</Stepper>
+		</Box>
+	);
+}
 export default withStyles(styles)(Workflow);
