@@ -11,6 +11,7 @@ import {
 	StepLabel,
 	Stepper,
 	Typography,
+	Tooltip
 } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -157,12 +158,13 @@ const Workflow = (props) => {
 				{workflowSteps.map((step, index) => (
 					<Step key={"step" + index}>
 						<StepLabel>{step.title}</StepLabel>
-						<StepContent>
-							<Typography variant="body1">{step.description.join("\n")}</Typography>
-							<Typography variant="caption">{step.hint}</Typography>
-							{generateEachSteps(index)}
-							<ResetButton props={props} />
-						</StepContent>
+						<Tooltip title={step.hint} placement="bottom" arrow interactive>
+							<StepContent>
+								<Typography variant="body1">{step.description.join("\n")}</Typography>
+								{generateEachSteps(index)}
+								<ResetButton props={props} />
+							</StepContent>
+						</Tooltip>
 					</Step>
 				))}
 			</Stepper>
