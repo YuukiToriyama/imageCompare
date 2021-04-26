@@ -5,6 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import {
 	Box,
 	Button,
+	Paper,
 	Step,
 	StepContent,
 	StepLabel,
@@ -74,10 +75,10 @@ const Workflow = (props) => {
 							return <div key={index}>{line}</div>;
 						});
 						return (
-							<div>
-								<Typography variant="h3">{message.title}</Typography>
-								<Typography variant="body1">{text}</Typography>
-							</div>
+							<Paper elevation={3} style={{ marginTop: "10px" }}>
+								<Typography variant="h6">{message.title}</Typography>
+								<Typography variant="body2">{text}</Typography>
+							</Paper>
 						);
 					})}
 					<Button color="primary" variant="contained" onClick={handleNext}>始める</Button>
