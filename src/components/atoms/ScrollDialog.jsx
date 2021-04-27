@@ -11,60 +11,47 @@ import {
 	DialogTitle,
 } from '@material-ui/core';
 
-class ScrollDialog extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			open: false,
-		};
-		this.descriptionElement = React.createRef();
-	}
+const ScrollDialog = (props) => {
+	const [isOpen, setIsOpen] = React.useState(false);
+	const refDescriptionElement = React.useRef(null);
 
-	handleClickOpen = () => {
-		this.setState({
-			open: true,
-		});
+	const handleClick = () => {
+		const open = () => setIsOpen(true);
+		const close = () => setIsOpen(false);
 	};
 
-	handleClose = () => {
-		this.setState({
-			open: false,
-		});
-	};
-
-	render() {
-		return (
-			<div>
-				<Button onClick={this.handleClickOpen}>{this.props.label}</Button>
-				<Dialog
-					open={this.state.open}
-					onClose={this.handleClose}
-					scroll='paper'
-					aria-labelledby='scroll-dialog-title'
-					aria-describedby='scroll-dialog-description'
-				>
-					<DialogTitle id='scroll-dialog-title'>{this.props.title}</DialogTitle>
-					<DialogContent dividers={true}>
-						{(this.props.content != undefined) ? this.props.content :
-							<DialogContentText
-								id='scroll-dialog-description'
-								ref={this.descriptionElement}
-								tabIndex={-1}
-							>
-								{this.props.contentText}
-							</DialogContentText>
-						}
-					</DialogContent>
-					<DialogActions>
-						<Button onClick={this.handleClose} color='primary'>
-							OK
+	return (
+		<div>
+			<Button onClick={handleClick.open}>{props.label}</Button>
+			<Dialog
+				open={isOpen}
+				onClose={handleClick.close}
+				scroll='paper'
+				aria-labelledby='scroll-dialog-title'
+				aria-describedby='scroll-dialog-description'
+				aria-label="scroll-dialog"
+			>
+				<DialogTitle id='scroll-dialog-title'>{props.title}</DialogTitle>
+				<DialogContent dividers={true}>
+					{(props.content != undefined) ? props.content :
+						<DialogContentText
+							id='scroll-dialog-description'
+							ref={refDescriptionElement}
+							tabIndex={-1}
+						>
+							{props.contentText}
+						</DialogContentText>
+					}
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClick.close} color='primary'>
+						OK
 						</Button>
-					</DialogActions>
-				</Dialog>
-			</div>
-		);
-	}
-}
+				</DialogActions>
+			</Dialog>
+		</div>
+	);
+};
 export default ScrollDialog;
 
 ScrollDialog.propTypes = {
