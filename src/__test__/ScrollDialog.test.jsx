@@ -17,16 +17,15 @@ describe("<ScrollDialog/>", () => {
 		const button = screen.getByRole("button");
 		expect(button).toBeInTheDocument();
 	});
-	test("ボタンを押した時ダイアログが表示されるかどうか", () => {
+	test("ボタンを押した時ダイアログが表示されるかどうか", async () => {
 		const result = render(<ScrollDialog
 			label="Show help"
 			title="Help"
 			content="Help content below"
 		/>);
 		const button = screen.getByRole("button");
-
 		userEvent.click(button);
-		const element = result.getByLabelText("scroll-dialog");
+		const element = screen.getByText(/Help/i);
 		expect(element).toBeInTheDocument();
 	});
 })
