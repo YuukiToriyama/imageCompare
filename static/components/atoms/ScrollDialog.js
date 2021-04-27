@@ -8,47 +8,35 @@ import {
   DialogContentText,
   DialogTitle
 } from "../../../_snowpack/pkg/@material-ui/core.js";
-class ScrollDialog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false
-    };
-    this.descriptionElement = React.createRef();
-  }
-  handleClickOpen = () => {
-    this.setState({
-      open: true
-    });
+const ScrollDialog = (props) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const refDescriptionElement = React.useRef(null);
+  const handleClick = () => {
+    const open = () => setIsOpen(true);
+    const close = () => setIsOpen(false);
   };
-  handleClose = () => {
-    this.setState({
-      open: false
-    });
-  };
-  render() {
-    return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Button, {
-      onClick: this.handleClickOpen
-    }, this.props.label), /* @__PURE__ */ React.createElement(Dialog, {
-      open: this.state.open,
-      onClose: this.handleClose,
-      scroll: "paper",
-      "aria-labelledby": "scroll-dialog-title",
-      "aria-describedby": "scroll-dialog-description"
-    }, /* @__PURE__ */ React.createElement(DialogTitle, {
-      id: "scroll-dialog-title"
-    }, this.props.title), /* @__PURE__ */ React.createElement(DialogContent, {
-      dividers: true
-    }, this.props.content != void 0 ? this.props.content : /* @__PURE__ */ React.createElement(DialogContentText, {
-      id: "scroll-dialog-description",
-      ref: this.descriptionElement,
-      tabIndex: -1
-    }, this.props.contentText)), /* @__PURE__ */ React.createElement(DialogActions, null, /* @__PURE__ */ React.createElement(Button, {
-      onClick: this.handleClose,
-      color: "primary"
-    }, "OK"))));
-  }
-}
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Button, {
+    onClick: handleClick.open
+  }, props.label), /* @__PURE__ */ React.createElement(Dialog, {
+    open: isOpen,
+    onClose: handleClick.close,
+    scroll: "paper",
+    "aria-labelledby": "scroll-dialog-title",
+    "aria-describedby": "scroll-dialog-description",
+    "aria-label": "scroll-dialog"
+  }, /* @__PURE__ */ React.createElement(DialogTitle, {
+    id: "scroll-dialog-title"
+  }, props.title), /* @__PURE__ */ React.createElement(DialogContent, {
+    dividers: true
+  }, props.content != void 0 ? props.content : /* @__PURE__ */ React.createElement(DialogContentText, {
+    id: "scroll-dialog-description",
+    ref: refDescriptionElement,
+    tabIndex: -1
+  }, props.contentText)), /* @__PURE__ */ React.createElement(DialogActions, null, /* @__PURE__ */ React.createElement(Button, {
+    onClick: handleClick.close,
+    color: "primary"
+  }, "OK"))));
+};
 export default ScrollDialog;
 ScrollDialog.propTypes = {
   label: PropTypes.string,
