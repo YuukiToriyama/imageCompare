@@ -1,5 +1,5 @@
 import { c as createCommonjsModule } from './_commonjsHelpers-8c19dec8.js';
-import { b as esm } from './defaultTheme-1624b609.js';
+import { b as esm } from './defaultTheme-28aa1102.js';
 
 var capitalize_1 = createCommonjsModule(function (module, exports) {
 
@@ -24,4 +24,4 @@ function capitalize(string) {
 });
 
 export { capitalize_1 as c };
-//# sourceMappingURL=capitalize-7ab764e3.js.map
+//# sourceMappingURL=capitalize-7e27d783.js.map

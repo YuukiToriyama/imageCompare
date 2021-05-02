@@ -313,7 +313,7 @@ function withThemeCreator() {
 
 var withTheme = withThemeCreator();
 
-/** @license Material-UI v4.11.3
+/** @license Material-UI v4.11.4
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -1499,4 +1499,4 @@ exports.default = _default;
 });
 
 export { _extends_1 as _, esm$2 as a, esm as b, colorManipulator as c, defaultTheme_1 as d, esm$1 as e, createMuiTheme_1 as f, defineProperty as g, objectWithoutProperties as o, transitions as t };
-//# sourceMappingURL=defaultTheme-1624b609.js.map
+//# sourceMappingURL=defaultTheme-28aa1102.js.map
