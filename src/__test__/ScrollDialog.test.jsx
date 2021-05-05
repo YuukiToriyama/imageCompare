@@ -25,7 +25,7 @@ describe("<ScrollDialog/>", () => {
 		/>);
 		const button = screen.getByRole("button");
 		userEvent.click(button);
-		const element = screen.getByText(/Help/i);
+		const element = screen.getByText("Help");
 		expect(element).toBeInTheDocument();
 	});
 })
