@@ -11,9 +11,9 @@ import {
 const ScrollDialog = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const refDescriptionElement = React.useRef(null);
-  const handleClick = () => {
-    const open = () => setIsOpen(true);
-    const close = () => setIsOpen(false);
+  const handleClick = {
+    open: () => setIsOpen(true),
+    close: () => setIsOpen(false)
   };
   return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Button, {
     onClick: handleClick.open

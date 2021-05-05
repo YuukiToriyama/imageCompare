@@ -150,7 +150,7 @@ function _arrayWithoutHoles(arr) {
 }
 
 function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
 }
 
 function _unsupportedIterableToArray(o, minLen) {
@@ -248,14 +248,17 @@ function _arrayWithHoles(arr) {
 }
 
 function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]);
+
+  if (_i == null) return;
   var _arr = [];
   var _n = true;
   var _d = false;
-  var _e = undefined;
+
+  var _s, _e;
 
   try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
       _arr.push(_s.value);
 
       if (i && _arr.length === i) break;
@@ -4681,4 +4684,4 @@ var withStyles = function withStyles(stylesOrCreator) {
 };
 
 export { mergeClasses as A, sheetsManager as B, StylesContext as C, SheetsRegistry as S, ThemeContext as T, _extends as _, _inheritsLoose as a, _objectWithoutPropertiesLoose as b, _objectWithoutProperties as c, _slicedToArray as d, _createClass as e, _toConsumableArray as f, getThemeProps as g, _defineProperty as h, deepmerge as i, handleBreakpoints as j, makeStyles as k, hoistNonReactStatics_cjs as l, merge as m, formatMuiErrorMessage as n, createUnarySpacing as o, _assertThisInitialized as p, _typeof as q, require$$4 as r, spacing as s, breakpoints as t, useTheme as u, createGenerateClassName as v, withStyles as w, StylesProvider as x, nested as y, jssPreset as z };
-//# sourceMappingURL=withStyles-225f3571.js.map
+//# sourceMappingURL=withStyles-26bb02d1.js.map
