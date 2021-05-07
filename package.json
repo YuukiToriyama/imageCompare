@@ -16,7 +16,7 @@
     "url": "git+https://github.com/YUUKIToriyama/imageCompare.git"
   },
   "author": "YUUKIToriyama",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/YUUKIToriyama/imageCompare/issues"
   },
