@@ -10,9 +10,9 @@ import { o as ownerDocument, a as ownerWindow, c as createChainedFunction, d as 
 import { u as useForkRef, s as setRef, a as useEventCallback, b as useIsFocusVisible } from '../common/useIsFocusVisible-8be5e09b.js';
 import { r as require$$6$1 } from '../common/Typography-aebe91f5.js';
 export { r as Typography } from '../common/Typography-aebe91f5.js';
+import { c as createSvgIcon, S as SvgIcon } from '../common/createSvgIcon-ac4c92ee.js';
 import { i as isMuiElement } from '../common/isMuiElement-8cbbe173.js';
 export { r as IconButton } from '../common/IconButton-400ded96.js';
-import { c as createSvgIcon, S as SvgIcon } from '../common/createSvgIcon-ac4c92ee.js';
 import '../common/_commonjsHelpers-8c19dec8.js';
 
 var styled = function styled(Component) {
