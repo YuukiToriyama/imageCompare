@@ -1,6 +1,6 @@
 {
   "name": "image-compare",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "ブラウザ上で簡単に画像比較が可能です",
   "main": "src/index.js",
   "scripts": {
@@ -39,7 +39,7 @@
     "leaflet": "^1.7.1",
     "leaflet.control.opacity": "^1.5.0",
     "leaflet.sync": "^0.2.4",
-    "materialui-component-collection": "^0.9.0",
+    "materialui-component-collection": "^0.9.1",
     "opencv-react": "^0.0.5",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
