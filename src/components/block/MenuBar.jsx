@@ -6,16 +6,19 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {
 	AppBar,
+	Button,
 	Toolbar,
 	Typography,
 	IconButton,
 	CircularProgress,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import {
+	ModalMenu
+} from 'materialui-component-collection';
 
 // 自作モジュールの読み込み
 import MyDrawer from "./MyDrawer";
-import ScrollDialog from "../atoms/ScrollDialog";
 import LicenseInfo from "./LicenseInfo";
 
 const useStyles = (theme) => ({
@@ -61,30 +64,38 @@ class MenuBar extends React.Component {
 						{!this.props.isOpencvLoaded ? (
 							<CircularProgress color="inherit" />
 						) : (
-							<ScrollDialog
-								label="About OpenCV.js"
-								title="Build information"
-								contentText={cv
-									.getBuildInformation()
-									.split("\n")
-									.map((line, key) => (
-										<span key={key}>
-											{line}
-											<br />
-										</span>
-									))}
-							/>
+							<ModalMenu
+								triggerElement={<Button>About OpenCV.js</Button>}
+								label={{
+									title: "Build information",
+									closeButton: "OK"
+								}}
+							>
+								{
+									cv.getBuildInformation().split("\n").map((line, key) => (
+										<span key={key}>{line}<br /></span>
+									))
+								}
+							</ModalMenu>
 						)}
-						<ScrollDialog
-							label="Licenses"
-							title="ライセンス情報"
-							content={<LicenseInfo />}
-						/>
-						<ScrollDialog
-							label="Help"
-							title="About this app"
-							contentText={this.props.message}
-						/>
+						<ModalMenu
+							triggerElement={<Button>Licenses</Button>}
+							label={{
+								title: "ライセンス情報",
+								closeButton: "OK"
+							}}
+						>
+							<LicenseInfo />
+						</ModalMenu>
+						<ModalMenu
+							triggerElement={<Button>Help</Button>}
+							label={{
+								title: "About this app",
+								closeButton: "OK"
+							}}
+						>
+							{this.props.message}
+						</ModalMenu>
 						{this.props.darkModeSwitcher}
 					</Toolbar>
 				</AppBar>
