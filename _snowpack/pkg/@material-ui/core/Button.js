@@ -1,19 +1,18 @@
 import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../common/_commonjsHelpers-8c19dec8.js';
 import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
-import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-4b5df1c6.js';
-import { o as objectWithoutProperties, _ as _extends_1, c as colorManipulator } from '../../common/defaultTheme-8262ede6.js';
+import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-ffbff788.js';
+import { o as objectWithoutProperties, _ as _extends_1, c as colorManipulator } from '../../common/defaultTheme-c2a4828c.js';
 import { r as react } from '../../common/index-04edb6a1.js';
 import { p as propTypes } from '../../common/index-ce016b4a.js';
 import { r as require$$4 } from '../../common/withStyles-9cb64e83.js';
-import { w as withStyles_1 } from '../../common/withStyles-a04cd98a.js';
-import { c as capitalize_1 } from '../../common/capitalize-6ef41b38.js';
-import { r as require$$6 } from '../../common/ButtonBase-5e6cd1d6.js';
-import '../../common/typeof-06592999.js';
-import '../../common/styled-ad35330b.js';
+import { w as withStyles_1 } from '../../common/withStyles-7e6bc5cc.js';
+import { c as capitalize_1 } from '../../common/capitalize-39d178e0.js';
+import { r as require$$6 } from '../../common/ButtonBase-07bbad79.js';
+import '../../common/styled-858bb94a.js';
 import '../../common/green-c86e4e47.js';
 import '../../common/index-3eae4d6e.js';
 import '../../common/useIsFocusVisible-8be5e09b.js';
-import '../../common/withStyles-2981c907.js';
+import '../../common/withStyles-88cffec4.js';
 
 var Button_1 = createCommonjsModule(function (module, exports) {
 
@@ -58,7 +57,7 @@ var styles = function styles(theme) {
       }),
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: (0, colorManipulator.fade)(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+        backgroundColor: (0, colorManipulator.alpha)(theme.palette.text.primary, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent'
@@ -90,7 +89,7 @@ var styles = function styles(theme) {
     textPrimary: {
       color: theme.palette.primary.main,
       '&:hover': {
-        backgroundColor: (0, colorManipulator.fade)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: (0, colorManipulator.alpha)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent'
@@ -102,7 +101,7 @@ var styles = function styles(theme) {
     textSecondary: {
       color: theme.palette.secondary.main,
       '&:hover': {
-        backgroundColor: (0, colorManipulator.fade)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: (0, colorManipulator.alpha)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent'
@@ -122,10 +121,10 @@ var styles = function styles(theme) {
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
     outlinedPrimary: {
       color: theme.palette.primary.main,
-      border: "1px solid ".concat((0, colorManipulator.fade)(theme.palette.primary.main, 0.5)),
+      border: "1px solid ".concat((0, colorManipulator.alpha)(theme.palette.primary.main, 0.5)),
       '&:hover': {
         border: "1px solid ".concat(theme.palette.primary.main),
-        backgroundColor: (0, colorManipulator.fade)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: (0, colorManipulator.alpha)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent'
@@ -136,10 +135,10 @@ var styles = function styles(theme) {
     /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
     outlinedSecondary: {
       color: theme.palette.secondary.main,
-      border: "1px solid ".concat((0, colorManipulator.fade)(theme.palette.secondary.main, 0.5)),
+      border: "1px solid ".concat((0, colorManipulator.alpha)(theme.palette.secondary.main, 0.5)),
       '&:hover': {
         border: "1px solid ".concat(theme.palette.secondary.main),
-        backgroundColor: (0, colorManipulator.fade)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        backgroundColor: (0, colorManipulator.alpha)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'transparent'

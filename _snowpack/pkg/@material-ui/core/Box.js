@@ -1,13 +1,12 @@
 import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../common/_commonjsHelpers-8c19dec8.js';
-import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-4b5df1c6.js';
+import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-ffbff788.js';
 import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
-import { e as esm } from '../../common/defaultTheme-8262ede6.js';
-import { s as styled_1 } from '../../common/styled-b100278e.js';
-import '../../common/typeof-06592999.js';
+import { e as esm } from '../../common/defaultTheme-c2a4828c.js';
+import { s as styled_1 } from '../../common/styled-5d14f31d.js';
 import '../../common/withStyles-9cb64e83.js';
 import '../../common/index-ce016b4a.js';
 import '../../common/index-04edb6a1.js';
-import '../../common/styled-ad35330b.js';
+import '../../common/styled-858bb94a.js';
 import '../../common/green-c86e4e47.js';
 
 var Box_1 = createCommonjsModule(function (module, exports) {
@@ -23,7 +22,7 @@ exports.default = exports.styleFunction = void 0;
 
 var _styled = interopRequireDefault(styled_1);
 
-var styleFunction = (0, esm.css)((0, esm.compose)(esm.borders, esm.display, esm.flexbox, esm.grid, esm.positions, esm.palette, esm.shadows, esm.sizing, esm.spacing, esm.typography));
+var styleFunction = (0, esm.styleFunctionSx)((0, esm.compose)(esm.borders, esm.display, esm.flexbox, esm.grid, esm.positions, esm.palette, esm.shadows, esm.sizing, esm.spacing, esm.typography));
 /**
  * @ignore - do not document.
  */

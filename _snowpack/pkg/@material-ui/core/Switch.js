@@ -1,19 +1,18 @@
 import { c as createCommonjsModule, g as getDefaultExportFromCjs } from '../../common/_commonjsHelpers-8c19dec8.js';
 import { i as interopRequireDefault } from '../../common/interopRequireDefault-3cc583d4.js';
-import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-4b5df1c6.js';
-import { _ as _extends_1, o as objectWithoutProperties, c as colorManipulator } from '../../common/defaultTheme-8262ede6.js';
+import { i as interopRequireWildcard } from '../../common/interopRequireWildcard-ffbff788.js';
+import { _ as _extends_1, o as objectWithoutProperties, c as colorManipulator } from '../../common/defaultTheme-c2a4828c.js';
 import { r as react } from '../../common/index-04edb6a1.js';
 import { p as propTypes } from '../../common/index-ce016b4a.js';
 import { r as require$$4 } from '../../common/withStyles-9cb64e83.js';
-import { w as withStyles_1 } from '../../common/withStyles-a04cd98a.js';
-import { c as capitalize_1 } from '../../common/capitalize-6ef41b38.js';
-import { r as require$$9 } from '../../common/IconButton-3459889d.js';
-import '../../common/typeof-06592999.js';
-import '../../common/styled-ad35330b.js';
+import { w as withStyles_1 } from '../../common/withStyles-7e6bc5cc.js';
+import { c as capitalize_1 } from '../../common/capitalize-39d178e0.js';
+import { r as require$$9 } from '../../common/IconButton-96542ca7.js';
+import '../../common/styled-858bb94a.js';
 import '../../common/green-c86e4e47.js';
-import '../../common/withStyles-2981c907.js';
+import '../../common/withStyles-88cffec4.js';
 import '../../common/capitalize-0ec16b1b.js';
-import '../../common/ButtonBase-5e6cd1d6.js';
+import '../../common/ButtonBase-07bbad79.js';
 import '../../common/index-3eae4d6e.js';
 import '../../common/useIsFocusVisible-8be5e09b.js';
 
@@ -447,7 +446,7 @@ var styles = function styles(theme) {
       '&$checked': {
         color: theme.palette.primary.main,
         '&:hover': {
-          backgroundColor: (0, colorManipulator.fade)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+          backgroundColor: (0, colorManipulator.alpha)(theme.palette.primary.main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent'
           }
@@ -469,7 +468,7 @@ var styles = function styles(theme) {
       '&$checked': {
         color: theme.palette.secondary.main,
         '&:hover': {
-          backgroundColor: (0, colorManipulator.fade)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+          backgroundColor: (0, colorManipulator.alpha)(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
           '@media (hover: none)': {
             backgroundColor: 'transparent'
           }
